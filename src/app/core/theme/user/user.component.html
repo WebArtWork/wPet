@@ -1,0 +1,95 @@
+<div class="wrapper" id="wrapper">
+	<nav class="nav" (clickOutside)="showSidebar = false">
+		<ul class="nav__ul container" [class._active]="showSidebar">
+			<li class="nav__li">
+				<a
+					routerLinkActive="_activeLink"
+					(click)="showSidebar = false"
+					routerLink="/profile"
+					class="nav__a"
+				>
+					<span class="material-icons">home</span>
+				</a>
+			</li>
+			<li class="nav__li _burger" (click)="showSidebar = !showSidebar">
+				<a class="nav__toggle" [class._active]="showSidebar">
+					<span class="nav__toggle-line"></span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="main" [class.showTable]="showSidebar">
+		<div class="fade" [@showInOut]="showSidebar" *ngIf="showSidebar"></div>
+		<div class="nav__burger _active" [class._active]="showSidebar">
+			<div class="nav__burger-list">
+				<div class="theme-switch">
+					<span
+						class="material-icons"
+						*ngIf="!us.mode"
+						(click)="us.setMode('dark')"
+					>
+						dark_mode
+					</span>
+					<span
+						class="material-icons"
+						*ngIf="us.mode"
+						(click)="us.setMode()"
+					>
+						light_mode
+					</span>
+				</div>
+				<a
+					class="nav__burger-link nav__burger-user"
+					routerLink="/profile"
+				>
+					<img
+						[src]="forceAvatarUrl || us.user.thumb ? url + us.user.thumb : 'assets/default.png'"
+						(error)="forceAvatarUrl = 'assets/default.png'"
+						alt="Profile Picture"
+						class="avatar__img"
+						height="50"
+						width="50"
+					/>
+					<div class="name">{{us.user.name || "Profile"}}</div>
+				</a>
+				<hr />
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/admin/users"
+					class="nav__burger-link"
+					*ngIf="us.role('admin')"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">people</span>
+					<span translate>Theme.Users</span>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/admin/forms"
+					class="nav__burger-link"
+					*ngIf="us.role('admin')"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">backup_table</span>
+					<span translate>Theme.Forms</span>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/admin/translates"
+					class="nav__burger-link"
+					*ngIf="us.role('admin')"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">translate</span>
+					<span translate>Theme.Translates</span>
+				</a>
+				<hr *ngIf="us.role('admin')" />
+			</div>
+		</div>
+		<router-outlet></router-outlet>
+	</div>
+</div>
