@@ -62,6 +62,86 @@ const routes: Routes = [
 		children: [
 			/* user */
 			{
+				path: 'allergies',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Allergies'
+					}
+				},
+				loadChildren: () => import('./modules/petallergy/pages/allergies/allergies.module').then(m => m.AllergiesModule)
+			}, 
+			{
+				path: 'items',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Items'
+					}
+				},
+				loadChildren: () => import('./modules/petitem/pages/items/items.module').then(m => m.ItemsModule)
+			}, 
+			{
+				path: 'food',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Food'
+					}
+				},
+				loadChildren: () => import('./modules/petfood/pages/food/food.module').then(m => m.FoodModule)
+			}, 
+			{
+				path: 'drugs',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Drugs'
+					}
+				},
+				loadChildren: () => import('./modules/petdrug/pages/drugs/drugs.module').then(m => m.DrugsModule)
+			}, 
+			{
+				path: 'clinics',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Clinics'
+					}
+				},
+				loadChildren: () => import('./modules/petclinic/pages/clinics/clinics.module').then(m => m.ClinicsModule)
+			}, 
+			{
+				path: 'doctors',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Doctors'
+					}
+				},
+				loadChildren: () => import('./modules/petdoctor/pages/doctors/doctors.module').then(m => m.DoctorsModule)
+			}, 
+			{
+				path: 'records',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Records'
+					}
+				},
+				loadChildren: () => import('./modules/petrecord/pages/records/records.module').then(m => m.RecordsModule)
+			}, 
+			{
+				path: 'pets',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Pets'
+					}
+				},
+				loadChildren: () => import('./modules/pet/pages/pets/pets.module').then(m => m.PetsModule)
+			}, 
+			{
 				path: 'profile',
 				canActivate: [MetaGuard],
 				data: {
