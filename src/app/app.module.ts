@@ -28,6 +28,46 @@ const routes: Routes = [
 		children: [
 			/* guest */
 			{
+				path: 'petstore',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Petstore'
+					}
+				},
+				loadChildren: () => import('./pages/guest/petstore/petstore.module').then(m => m.PetstoreModule)
+			}, 
+			{
+				path: 'petdoctors',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Petdoctors'
+					}
+				},
+				loadChildren: () => import('./pages/guest/petdoctors/petdoctors.module').then(m => m.PetdoctorsModule)
+			}, 
+			{
+				path: 'petclinics',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Petclinics'
+					}
+				},
+				loadChildren: () => import('./pages/guest/petclinics/petclinics.module').then(m => m.PetclinicsModule)
+			}, 
+			{
+				path: 'newhome',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Newhome'
+					}
+				},
+				loadChildren: () => import('./pages/guest/newhome/newhome.module').then(m => m.NewhomeModule)
+			}, 
+			{
 				path: 'components',
 				canActivate: [MetaGuard],
 				data: {
@@ -61,6 +101,36 @@ const routes: Routes = [
 		component: UserComponent,
 		children: [
 			/* user */
+			{
+				path: 'pethistory',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Pethistory'
+					}
+				},
+				loadChildren: () => import('./pages/user/pethistory/pethistory.module').then(m => m.PethistoryModule)
+			}, 
+			{
+				path: 'petprofile',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Petprofile'
+					}
+				},
+				loadChildren: () => import('./pages/user/petprofile/petprofile.module').then(m => m.PetprofileModule)
+			}, 
+			{
+				path: 'mypets',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Mypets'
+					}
+				},
+				loadChildren: () => import('./pages/user/mypets/mypets.module').then(m => m.MypetsModule)
+			}, 
 			{
 				path: 'allergies',
 				canActivate: [MetaGuard],
