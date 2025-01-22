@@ -26,47 +26,7 @@ const routes: Routes = [
 		canActivate: [GuestGuard],
 		component: GuestComponent,
 		children: [
-			/* guest */
-			{
-				path: 'petstore',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Petstore'
-					}
-				},
-				loadChildren: () => import('./pages/guest/petstore/petstore.module').then(m => m.PetstoreModule)
-			}, 
-			{
-				path: 'petdoctors',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Petdoctors'
-					}
-				},
-				loadChildren: () => import('./pages/guest/petdoctors/petdoctors.module').then(m => m.PetdoctorsModule)
-			}, 
-			{
-				path: 'petclinics',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Petclinics'
-					}
-				},
-				loadChildren: () => import('./pages/guest/petclinics/petclinics.module').then(m => m.PetclinicsModule)
-			}, 
-			{
-				path: 'newhome',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Newhome'
-					}
-				},
-				loadChildren: () => import('./pages/guest/newhome/newhome.module').then(m => m.NewhomeModule)
-			}, 
+			/* guest */ 
 			{
 				path: 'components',
 				canActivate: [MetaGuard],
@@ -101,6 +61,46 @@ const routes: Routes = [
 		component: UserComponent,
 		children: [
 			/* user */
+			{
+				path: 'petstore',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Petstore'
+					}
+				},
+				loadChildren: () => import('./pages/user/petstore/petstore.module').then(m => m.PetstoreModule)
+			}, 
+			{
+				path: 'petdoctors',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Petdoctors'
+					}
+				},
+				loadChildren: () => import('./pages/user/petdoctors/petdoctors.module').then(m => m.PetdoctorsModule)
+			}, 
+			{
+				path: 'petclinics',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Petclinics'
+					}
+				},
+				loadChildren: () => import('./pages/user/petclinics/petclinics.module').then(m => m.PetclinicsModule)
+			}, 
+			{
+				path: 'newhome',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Newhome'
+					}
+				},
+				loadChildren: () => import('./pages/user/newhome/newhome.module').then(m => m.NewhomeModule)
+			},
 			{
 				path: 'pethistory',
 				canActivate: [MetaGuard],
