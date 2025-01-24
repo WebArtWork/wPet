@@ -7,6 +7,10 @@ const routes: Routes = [
 	{
 		path: '',
 		component: DoctorsComponent
+	},
+	{
+		path: ':clinic_id',
+		component: DoctorsComponent
 	}
 ];
 

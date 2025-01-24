@@ -7,6 +7,10 @@ const routes: Routes = [
 	{
 		path: '',
 		component: FoodComponent
+	},
+	{
+		path: ':place_id',
+		component: FoodComponent
 	}
 ];
 

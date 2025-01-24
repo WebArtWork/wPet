@@ -7,38 +7,48 @@ import { TranslateService } from 'src/app/core/modules/translate/translate.servi
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { petrecordFormComponents } from '../../formcomponents/petrecord.formcomponents';
 import { firstValueFrom } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	templateUrl: './records.component.html',
 	styleUrls: ['./records.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class RecordsComponent {
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('petrecord', petrecordFormComponents);
+	form: FormInterface = this._form.getForm(
+		'petrecord',
+		petrecordFormComponents
+	);
 
 	config = {
 		paginate: this.setRows.bind(this),
 		perPage: 20,
-		setPerPage: this._petrecordService.setPerPage.bind(this._petrecordService),
+		setPerPage: this._petrecordService.setPerPage.bind(
+			this._petrecordService
+		),
 		allDocs: false,
-		create: (): void => {
-			this._form.modal<Petrecord>(this.form, {
-				label: 'Create',
-				click: async (created: unknown, close: () => void) => {
-					close();
+		create: this._router.url.includes('records/')
+			? (): void => {
+					this._form.modal<Petrecord>(this.form, {
+						label: 'Create',
+						click: async (created: unknown, close: () => void) => {
+							close();
 
-					this._preCreate(created as Petrecord);
+							this._preCreate(created as Petrecord);
 
-					await firstValueFrom(
-						this._petrecordService.create(created as Petrecord)
-					);
+							await firstValueFrom(
+								this._petrecordService.create(
+									created as Petrecord
+								)
+							);
 
-					this.setRows();
-				},
-			});
-		},
+							this.setRows();
+						}
+					});
+			  }
+			: null,
 		update: (doc: Petrecord): void => {
 			this._form
 				.modal<Petrecord>(this.form, [], doc)
@@ -55,17 +65,19 @@ export class RecordsComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: async (): Promise<void> => {
-							await firstValueFrom(this._petrecordService.delete(doc));
+							await firstValueFrom(
+								this._petrecordService.delete(doc)
+							);
 
 							this.setRows();
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
@@ -73,33 +85,41 @@ export class RecordsComponent {
 				icon: 'cloud_download',
 				click: (doc: Petrecord): void => {
 					this._form.modalUnique<Petrecord>('petrecord', 'url', doc);
-				},
-			},
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	rows: Petrecord[] = [];
+
+	pet_id = '';
 
 	constructor(
 		private _translate: TranslateService,
 		private _petrecordService: PetrecordService,
 		private _alert: AlertService,
 		private _form: FormService,
-		private _core: CoreService
+		private _core: CoreService,
+		private _router: Router,
+		private _route: ActivatedRoute
 	) {
 		this.setRows();
+
+		this._route.paramMap.subscribe((params) => {
+			this.pet_id = params.get('pet_id') || '';
+		});
 	}
 
 	setRows(page = this._page): void {
@@ -108,11 +128,13 @@ export class RecordsComponent {
 		this._core.afterWhile(
 			this,
 			() => {
-				this._petrecordService.get({ page }).subscribe((rows) => {
-					this.rows.splice(0, this.rows.length);
+				this._petrecordService
+					.get({ page, query: this._query() })
+					.subscribe((rows) => {
+						this.rows.splice(0, this.rows.length);
 
-					this.rows.push(...rows);
-				});
+						this.rows.push(...rows);
+					});
 			},
 			250
 		);
@@ -137,7 +159,8 @@ export class RecordsComponent {
 						for (const petrecord of this.rows) {
 							if (
 								!petrecords.find(
-									(localPetrecord) => localPetrecord._id === petrecord._id
+									(localPetrecord) =>
+										localPetrecord._id === petrecord._id
 								)
 							) {
 								await firstValueFrom(
@@ -148,14 +171,17 @@ export class RecordsComponent {
 
 						for (const petrecord of petrecords) {
 							const localPetrecord = this.rows.find(
-								(localPetrecord) => localPetrecord._id === petrecord._id
+								(localPetrecord) =>
+									localPetrecord._id === petrecord._id
 							);
 
 							if (localPetrecord) {
 								this._core.copy(petrecord, localPetrecord);
 
 								await firstValueFrom(
-									this._petrecordService.update(localPetrecord)
+									this._petrecordService.update(
+										localPetrecord
+									)
 								);
 							} else {
 								this._preCreate(petrecord);
@@ -174,5 +200,19 @@ export class RecordsComponent {
 
 	private _preCreate(petrecord: Petrecord): void {
 		delete petrecord.__created;
+
+		if (this.pet_id) {
+			petrecord.pet = this.pet_id;
+		}
+	}
+
+	private _query(): string {
+		let query = '';
+
+		if (this.pet_id) {
+			query += (query ? '&' : '') + 'pet=' + this.pet_id;
+		}
+
+		return query;
 	}
 }

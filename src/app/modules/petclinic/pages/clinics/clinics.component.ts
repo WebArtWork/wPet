@@ -11,17 +11,22 @@ import { firstValueFrom } from 'rxjs';
 @Component({
 	templateUrl: './clinics.component.html',
 	styleUrls: ['./clinics.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class ClinicsComponent {
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('petclinic', petclinicFormComponents);
+	form: FormInterface = this._form.getForm(
+		'petclinic',
+		petclinicFormComponents
+	);
 
 	config = {
 		paginate: this.setRows.bind(this),
 		perPage: 20,
-		setPerPage: this._petclinicService.setPerPage.bind(this._petclinicService),
+		setPerPage: this._petclinicService.setPerPage.bind(
+			this._petclinicService
+		),
 		allDocs: false,
 		create: (): void => {
 			this._form.modal<Petclinic>(this.form, {
@@ -36,7 +41,7 @@ export class ClinicsComponent {
 					);
 
 					this.setRows();
-				},
+				}
 			});
 		},
 		update: (doc: Petclinic): void => {
@@ -55,39 +60,53 @@ export class ClinicsComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: async (): Promise<void> => {
-							await firstValueFrom(this._petclinicService.delete(doc));
+							await firstValueFrom(
+								this._petclinicService.delete(doc)
+							);
 
 							this.setRows();
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
 			{
+				icon: 'badge',
+				hrefFunc: (doc: Petclinic): string => {
+					return '/doctors/' + doc._id;
+				}
+			},
+			{
+				icon: 'place',
+				hrefFunc: (doc: Petclinic): string => {
+					return '/places/' + 'clinic/' + doc._id;
+				}
+			},
+			{
 				icon: 'cloud_download',
 				click: (doc: Petclinic): void => {
 					this._form.modalUnique<Petclinic>('petclinic', 'url', doc);
-				},
-			},
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	rows: Petclinic[] = [];
@@ -137,7 +156,8 @@ export class ClinicsComponent {
 						for (const petclinic of this.rows) {
 							if (
 								!petclinics.find(
-									(localPetclinic) => localPetclinic._id === petclinic._id
+									(localPetclinic) =>
+										localPetclinic._id === petclinic._id
 								)
 							) {
 								await firstValueFrom(
@@ -148,14 +168,17 @@ export class ClinicsComponent {
 
 						for (const petclinic of petclinics) {
 							const localPetclinic = this.rows.find(
-								(localPetclinic) => localPetclinic._id === petclinic._id
+								(localPetclinic) =>
+									localPetclinic._id === petclinic._id
 							);
 
 							if (localPetclinic) {
 								this._core.copy(petclinic, localPetclinic);
 
 								await firstValueFrom(
-									this._petclinicService.update(localPetclinic)
+									this._petclinicService.update(
+										localPetclinic
+									)
 								);
 							} else {
 								this._preCreate(petclinic);

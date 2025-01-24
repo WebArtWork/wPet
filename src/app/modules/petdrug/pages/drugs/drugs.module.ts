@@ -7,6 +7,10 @@ const routes: Routes = [
 	{
 		path: '',
 		component: DrugsComponent
+	},
+	{
+		path: ':place_id',
+		component: DrugsComponent
 	}
 ];
 

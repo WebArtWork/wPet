@@ -1,6 +1,6 @@
 export const petallergyFormComponents = {
 	formId: 'petallergy',
-	title: 'Petallergy',
+	title: 'Allergy',
 	components: [
 		{
 			name: 'Text',

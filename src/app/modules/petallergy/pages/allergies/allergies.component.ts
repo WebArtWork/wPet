@@ -6,16 +6,24 @@ import { FormService } from 'src/app/core/modules/form/form.service';
 import { TranslateService } from 'src/app/core/modules/translate/translate.service';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { petallergyFormComponents } from '../../formcomponents/petallergy.formcomponents';
+import { Route, Router } from '@angular/router';
 
 @Component({
 	templateUrl: './allergies.component.html',
 	styleUrls: ['./allergies.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class AllergiesComponent {
+	pet_id = this._router.url.includes('allergies/')
+		? this._router.url.replace('/allergies/', '')
+		: '';
+
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('petallergy', petallergyFormComponents);
+	form: FormInterface = this._form.getForm(
+		'petallergy',
+		petallergyFormComponents
+	);
 
 	config = {
 		create: (): void => {
@@ -27,7 +35,7 @@ export class AllergiesComponent {
 					this._petallergyService.create(created as Petallergy);
 
 					close();
-				},
+				}
 			});
 		},
 		update: (doc: Petallergy): void => {
@@ -46,37 +54,41 @@ export class AllergiesComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: (): void => {
 							this._petallergyService.delete(doc);
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
 			{
 				icon: 'cloud_download',
 				click: (doc: Petallergy): void => {
-					this._form.modalUnique<Petallergy>('petallergy', 'url', doc);
-				},
-			},
+					this._form.modalUnique<Petallergy>(
+						'petallergy',
+						'url',
+						doc
+					);
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	get rows(): Petallergy[] {
@@ -88,7 +100,8 @@ export class AllergiesComponent {
 		private _petallergyService: PetallergyService,
 		private _alert: AlertService,
 		private _form: FormService,
-		private _core: CoreService
+		private _core: CoreService,
+		private _router: Router
 	) {}
 
 	private _bulkManagement(create = true): () => void {
@@ -106,7 +119,8 @@ export class AllergiesComponent {
 						for (const petallergy of this.rows) {
 							if (
 								!petallergys.find(
-									(localPetallergy) => localPetallergy._id === petallergy._id
+									(localPetallergy) =>
+										localPetallergy._id === petallergy._id
 								)
 							) {
 								this._petallergyService.delete(petallergy);
@@ -115,7 +129,8 @@ export class AllergiesComponent {
 
 						for (const petallergy of petallergys) {
 							const localPetallergy = this.rows.find(
-								(localPetallergy) => localPetallergy._id === petallergy._id
+								(localPetallergy) =>
+									localPetallergy._id === petallergy._id
 							);
 
 							if (localPetallergy) {
@@ -135,5 +150,10 @@ export class AllergiesComponent {
 
 	private _preCreate(petallergy: Petallergy): void {
 		delete petallergy.__created;
+
+		if (this.pet_id) {
+			petallergy.pet = this.pet_id;
+		}
 	}
 }
+ 

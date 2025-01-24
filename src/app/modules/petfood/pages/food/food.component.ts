@@ -7,11 +7,12 @@ import { TranslateService } from 'src/app/core/modules/translate/translate.servi
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { petfoodFormComponents } from '../../formcomponents/petfood.formcomponents';
 import { firstValueFrom } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	templateUrl: './food.component.html',
 	styleUrls: ['./food.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class FoodComponent {
 	columns = ['name', 'description'];
@@ -36,7 +37,7 @@ export class FoodComponent {
 					);
 
 					this.setRows();
-				},
+				}
 			});
 		},
 		update: (doc: Petfood): void => {
@@ -55,17 +56,19 @@ export class FoodComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: async (): Promise<void> => {
-							await firstValueFrom(this._petfoodService.delete(doc));
+							await firstValueFrom(
+								this._petfoodService.delete(doc)
+							);
 
 							this.setRows();
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
@@ -73,33 +76,41 @@ export class FoodComponent {
 				icon: 'cloud_download',
 				click: (doc: Petfood): void => {
 					this._form.modalUnique<Petfood>('petfood', 'url', doc);
-				},
-			},
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	rows: Petfood[] = [];
+
+	place_id = '';
 
 	constructor(
 		private _translate: TranslateService,
 		private _petfoodService: PetfoodService,
 		private _alert: AlertService,
 		private _form: FormService,
-		private _core: CoreService
+		private _core: CoreService,
+		private _router: Router,
+		private _route: ActivatedRoute
 	) {
 		this.setRows();
+
+		this._route.paramMap.subscribe((params) => {
+			this.place_id = params.get('place_id') || '';
+		});
 	}
 
 	setRows(page = this._page): void {
@@ -108,11 +119,13 @@ export class FoodComponent {
 		this._core.afterWhile(
 			this,
 			() => {
-				this._petfoodService.get({ page }).subscribe((rows) => {
-					this.rows.splice(0, this.rows.length);
+				this._petfoodService
+					.get({ page, query: this._query() })
+					.subscribe((rows) => {
+						this.rows.splice(0, this.rows.length);
 
-					this.rows.push(...rows);
-				});
+						this.rows.push(...rows);
+					});
 			},
 			250
 		);
@@ -137,7 +150,8 @@ export class FoodComponent {
 						for (const petfood of this.rows) {
 							if (
 								!petfoods.find(
-									(localPetfood) => localPetfood._id === petfood._id
+									(localPetfood) =>
+										localPetfood._id === petfood._id
 								)
 							) {
 								await firstValueFrom(
@@ -148,7 +162,8 @@ export class FoodComponent {
 
 						for (const petfood of petfoods) {
 							const localPetfood = this.rows.find(
-								(localPetfood) => localPetfood._id === petfood._id
+								(localPetfood) =>
+									localPetfood._id === petfood._id
 							);
 
 							if (localPetfood) {
@@ -174,5 +189,19 @@ export class FoodComponent {
 
 	private _preCreate(petfood: Petfood): void {
 		delete petfood.__created;
+
+		if (this.place_id) {
+			petfood.place = this.place_id;
+		}
+	}
+
+	private _query(): string {
+		let query = '';
+
+		if (this.place_id) {
+			query += (query ? '&' : '') + 'place=' + this.place_id;
+		}
+
+		return query;
 	}
 }

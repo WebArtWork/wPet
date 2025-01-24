@@ -7,21 +7,31 @@ import { TranslateService } from 'src/app/core/modules/translate/translate.servi
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { petplaceFormComponents } from '../../formcomponents/petplace.formcomponents';
 import { firstValueFrom } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	templateUrl: './places.component.html',
 	styleUrls: ['./places.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class PlacesComponent {
+	// clinic_id = this._router.url.includes('places/')
+	// 	? this._router.url.replace('/places/', '')
+	// 	: '';
+
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('petplace', petplaceFormComponents);
+	form: FormInterface = this._form.getForm(
+		'petplace',
+		petplaceFormComponents
+	);
 
 	config = {
 		paginate: this.setRows.bind(this),
 		perPage: 20,
-		setPerPage: this._petplaceService.setPerPage.bind(this._petplaceService),
+		setPerPage: this._petplaceService.setPerPage.bind(
+			this._petplaceService
+		),
 		allDocs: false,
 		create: (): void => {
 			this._form.modal<Petplace>(this.form, {
@@ -36,7 +46,7 @@ export class PlacesComponent {
 					);
 
 					this.setRows();
-				},
+				}
 			});
 		},
 		update: (doc: Petplace): void => {
@@ -55,51 +65,80 @@ export class PlacesComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: async (): Promise<void> => {
-							await firstValueFrom(this._petplaceService.delete(doc));
+							await firstValueFrom(
+								this._petplaceService.delete(doc)
+							);
 
 							this.setRows();
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
 			{
+				icon: 'medication',
+				hrefFunc: (doc: Petplace): string => {
+					return '/drugs/' + doc._id;
+				}
+			},
+			{
+				icon: 'restaurant_menu',
+				hrefFunc: (doc: Petplace): string => {
+					return '/food/' + doc._id;
+				}
+			},
+			{
+				icon: 'category',
+				hrefFunc: (doc: Petplace): string => {
+					return '/items/' + doc._id;
+				}
+			},
+			{
 				icon: 'cloud_download',
 				click: (doc: Petplace): void => {
 					this._form.modalUnique<Petplace>('petplace', 'url', doc);
-				},
-			},
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	rows: Petplace[] = [];
+
+	clinic_id = '';
+	store_id = '';
 
 	constructor(
 		private _translate: TranslateService,
 		private _petplaceService: PetplaceService,
 		private _alert: AlertService,
 		private _form: FormService,
-		private _core: CoreService
+		private _core: CoreService,
+		private _route: ActivatedRoute
 	) {
 		this.setRows();
+
+		this._route.paramMap.subscribe((params) => {
+			this.clinic_id = params.get('clinic_id') || '';
+			this.store_id = params.get('store_id') || '';
+		});
 	}
 
 	setRows(page = this._page): void {
@@ -108,11 +147,13 @@ export class PlacesComponent {
 		this._core.afterWhile(
 			this,
 			() => {
-				this._petplaceService.get({ page }).subscribe((rows) => {
-					this.rows.splice(0, this.rows.length);
+				this._petplaceService
+					.get({ page, query: this._query() })
+					.subscribe((rows) => {
+						this.rows.splice(0, this.rows.length);
 
-					this.rows.push(...rows);
-				});
+						this.rows.push(...rows);
+					});
 			},
 			250
 		);
@@ -137,7 +178,8 @@ export class PlacesComponent {
 						for (const petplace of this.rows) {
 							if (
 								!petplaces.find(
-									(localPetplace) => localPetplace._id === petplace._id
+									(localPetplace) =>
+										localPetplace._id === petplace._id
 								)
 							) {
 								await firstValueFrom(
@@ -148,7 +190,8 @@ export class PlacesComponent {
 
 						for (const petplace of petplaces) {
 							const localPetplace = this.rows.find(
-								(localPetplace) => localPetplace._id === petplace._id
+								(localPetplace) =>
+									localPetplace._id === petplace._id
 							);
 
 							if (localPetplace) {
@@ -174,5 +217,26 @@ export class PlacesComponent {
 
 	private _preCreate(petplace: Petplace): void {
 		delete petplace.__created;
+
+		if (this.clinic_id) {
+			petplace.clinic = this.clinic_id;
+		}
+		if (this.store_id) {
+			petplace.store = this.store_id;
+		}
+	}
+
+	private _query(): string {
+		let query = '';
+
+		if (this.clinic_id) {
+			query += (query ? '&' : '') + 'clinic=' + this.clinic_id;
+		}
+
+		if (this.store_id) {
+			query += (query ? '&' : '') + 'store=' + this.store_id;
+		}
+
+		return query;
 	}
 }

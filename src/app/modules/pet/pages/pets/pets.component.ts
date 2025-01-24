@@ -10,7 +10,7 @@ import { petFormComponents } from '../../formcomponents/pet.formcomponents';
 @Component({
 	templateUrl: './pets.component.html',
 	styleUrls: ['./pets.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class PetsComponent {
 	columns = ['name', 'description'];
@@ -27,17 +27,15 @@ export class PetsComponent {
 					this._petService.create(created as Pet);
 
 					close();
-				},
+				}
 			});
 		},
 		update: (doc: Pet): void => {
-			this._form
-				.modal<Pet>(this.form, [], doc)
-				.then((updated: Pet) => {
-					this._core.copy(updated, doc);
+			this._form.modal<Pet>(this.form, [], doc).then((updated: Pet) => {
+				this._core.copy(updated, doc);
 
-					this._petService.update(doc);
-				});
+				this._petService.update(doc);
+			});
 		},
 		delete: (doc: Pet): void => {
 			this._alert.question({
@@ -46,37 +44,49 @@ export class PetsComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: (): void => {
 							this._petService.delete(doc);
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
 			{
+				icon: 'article',
+				hrefFunc: (doc: Pet): string => {
+					return '/records/' + doc._id;
+				}
+			},
+			{
+				icon: 'report_problem',
+				hrefFunc: (doc: Pet): string => {
+					return '/allergies/' + doc._id;
+				}
+			},
+			{
 				icon: 'cloud_download',
 				click: (doc: Pet): void => {
 					this._form.modalUnique<Pet>('pet', 'url', doc);
-				},
-			},
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	get rows(): Pet[] {

@@ -7,21 +7,27 @@ import { TranslateService } from 'src/app/core/modules/translate/translate.servi
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { petstoreFormComponents } from '../../formcomponents/petstore.formcomponents';
 import { firstValueFrom } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	templateUrl: './store.component.html',
 	styleUrls: ['./store.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class StoreComponent {
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('petstore', petstoreFormComponents);
+	form: FormInterface = this._form.getForm(
+		'petstore',
+		petstoreFormComponents
+	);
 
 	config = {
 		paginate: this.setRows.bind(this),
 		perPage: 20,
-		setPerPage: this._petstoreService.setPerPage.bind(this._petstoreService),
+		setPerPage: this._petstoreService.setPerPage.bind(
+			this._petstoreService
+		),
 		allDocs: false,
 		create: (): void => {
 			this._form.modal<Petstore>(this.form, {
@@ -36,7 +42,7 @@ export class StoreComponent {
 					);
 
 					this.setRows();
-				},
+				}
 			});
 		},
 		update: (doc: Petstore): void => {
@@ -55,51 +61,66 @@ export class StoreComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: async (): Promise<void> => {
-							await firstValueFrom(this._petstoreService.delete(doc));
+							await firstValueFrom(
+								this._petstoreService.delete(doc)
+							);
 
 							this.setRows();
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
 			{
+				icon: 'place',
+				hrefFunc: (doc: Petstore): string => {
+					return '/places/' + 'store/' + doc._id;
+				}
+			},
+			{
 				icon: 'cloud_download',
 				click: (doc: Petstore): void => {
 					this._form.modalUnique<Petstore>('petstore', 'url', doc);
-				},
-			},
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	rows: Petstore[] = [];
+
+	store_id = '';
 
 	constructor(
 		private _translate: TranslateService,
 		private _petstoreService: PetstoreService,
 		private _alert: AlertService,
 		private _form: FormService,
-		private _core: CoreService
+		private _core: CoreService,
+		private _route: ActivatedRoute
 	) {
 		this.setRows();
+
+		this._route.paramMap.subscribe((params) => {
+			this.store_id = params.get('store_id') || '';
+		});
 	}
 
 	setRows(page = this._page): void {
@@ -137,7 +158,8 @@ export class StoreComponent {
 						for (const petstore of this.rows) {
 							if (
 								!petstores.find(
-									(localPetstore) => localPetstore._id === petstore._id
+									(localPetstore) =>
+										localPetstore._id === petstore._id
 								)
 							) {
 								await firstValueFrom(
@@ -148,7 +170,8 @@ export class StoreComponent {
 
 						for (const petstore of petstores) {
 							const localPetstore = this.rows.find(
-								(localPetstore) => localPetstore._id === petstore._id
+								(localPetstore) =>
+									localPetstore._id === petstore._id
 							);
 
 							if (localPetstore) {
@@ -174,5 +197,9 @@ export class StoreComponent {
 
 	private _preCreate(petstore: Petstore): void {
 		delete petstore.__created;
+
+		if (this.store_id) {
+			petstore.store = this.store_id;
+		}
 	}
 }

@@ -7,11 +7,12 @@ import { TranslateService } from 'src/app/core/modules/translate/translate.servi
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { petdrugFormComponents } from '../../formcomponents/petdrug.formcomponents';
 import { firstValueFrom } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	templateUrl: './drugs.component.html',
 	styleUrls: ['./drugs.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class DrugsComponent {
 	columns = ['name', 'description'];
@@ -36,7 +37,7 @@ export class DrugsComponent {
 					);
 
 					this.setRows();
-				},
+				}
 			});
 		},
 		update: (doc: Petdrug): void => {
@@ -55,17 +56,19 @@ export class DrugsComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: async (): Promise<void> => {
-							await firstValueFrom(this._petdrugService.delete(doc));
+							await firstValueFrom(
+								this._petdrugService.delete(doc)
+							);
 
 							this.setRows();
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
@@ -73,33 +76,41 @@ export class DrugsComponent {
 				icon: 'cloud_download',
 				click: (doc: Petdrug): void => {
 					this._form.modalUnique<Petdrug>('petdrug', 'url', doc);
-				},
-			},
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	rows: Petdrug[] = [];
+
+	place_id = '';
 
 	constructor(
 		private _translate: TranslateService,
 		private _petdrugService: PetdrugService,
 		private _alert: AlertService,
 		private _form: FormService,
-		private _core: CoreService
+		private _core: CoreService,
+		private _router: Router,
+		private _route: ActivatedRoute
 	) {
 		this.setRows();
+
+		this._route.paramMap.subscribe((params) => {
+			this.place_id = params.get('place_id') || '';
+		});
 	}
 
 	setRows(page = this._page): void {
@@ -108,11 +119,13 @@ export class DrugsComponent {
 		this._core.afterWhile(
 			this,
 			() => {
-				this._petdrugService.get({ page }).subscribe((rows) => {
-					this.rows.splice(0, this.rows.length);
+				this._petdrugService
+					.get({ page, query: this._query() })
+					.subscribe((rows) => {
+						this.rows.splice(0, this.rows.length);
 
-					this.rows.push(...rows);
-				});
+						this.rows.push(...rows);
+					});
 			},
 			250
 		);
@@ -137,7 +150,8 @@ export class DrugsComponent {
 						for (const petdrug of this.rows) {
 							if (
 								!petdrugs.find(
-									(localPetdrug) => localPetdrug._id === petdrug._id
+									(localPetdrug) =>
+										localPetdrug._id === petdrug._id
 								)
 							) {
 								await firstValueFrom(
@@ -148,7 +162,8 @@ export class DrugsComponent {
 
 						for (const petdrug of petdrugs) {
 							const localPetdrug = this.rows.find(
-								(localPetdrug) => localPetdrug._id === petdrug._id
+								(localPetdrug) =>
+									localPetdrug._id === petdrug._id
 							);
 
 							if (localPetdrug) {
@@ -174,5 +189,19 @@ export class DrugsComponent {
 
 	private _preCreate(petdrug: Petdrug): void {
 		delete petdrug.__created;
+
+		if (this.place_id) {
+			petdrug.place = this.place_id;
+		}
+	}
+
+	private _query(): string {
+		let query = '';
+
+		if (this.place_id) {
+			query += (query ? '&' : '') + 'place=' + this.place_id;
+		}
+
+		return query;
 	}
 }

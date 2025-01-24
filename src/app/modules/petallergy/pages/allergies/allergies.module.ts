@@ -7,6 +7,10 @@ const routes: Routes = [
 	{
 		path: '',
 		component: AllergiesComponent
+	},
+	{
+		path: ':pet_id',
+		component: AllergiesComponent
 	}
 ];
 

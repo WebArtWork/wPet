@@ -7,6 +7,14 @@ const routes: Routes = [
 	{
 		path: '',
 		component: PlacesComponent
+	},
+	{
+		path: 'clinic/:clinic_id',
+		component: PlacesComponent
+	},
+	{
+		path: 'store/:store_id',
+		component: PlacesComponent
 	}
 ];
 

@@ -7,6 +7,10 @@ const routes: Routes = [
 	{
 		path: '',
 		component: RecordsComponent
+	},
+	{
+		path: ':pet_id',
+		component: RecordsComponent
 	}
 ];
 

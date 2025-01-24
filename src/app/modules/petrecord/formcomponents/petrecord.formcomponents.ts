@@ -1,6 +1,6 @@
 export const petrecordFormComponents = {
 	formId: 'petrecord',
-	title: 'Petrecord',
+	title: 'Record',
 	components: [
 		{
 			name: 'Text',

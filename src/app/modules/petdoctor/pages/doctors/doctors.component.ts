@@ -7,38 +7,48 @@ import { TranslateService } from 'src/app/core/modules/translate/translate.servi
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { petdoctorFormComponents } from '../../formcomponents/petdoctor.formcomponents';
 import { firstValueFrom } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	templateUrl: './doctors.component.html',
 	styleUrls: ['./doctors.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class DoctorsComponent {
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('petdoctor', petdoctorFormComponents);
+	form: FormInterface = this._form.getForm(
+		'petdoctor',
+		petdoctorFormComponents
+	);
 
 	config = {
 		paginate: this.setRows.bind(this),
 		perPage: 20,
-		setPerPage: this._petdoctorService.setPerPage.bind(this._petdoctorService),
+		setPerPage: this._petdoctorService.setPerPage.bind(
+			this._petdoctorService
+		),
 		allDocs: false,
-		create: (): void => {
-			this._form.modal<Petdoctor>(this.form, {
-				label: 'Create',
-				click: async (created: unknown, close: () => void) => {
-					close();
+		create: this._router.url.includes('doctors/')
+			? (): void => {
+					this._form.modal<Petdoctor>(this.form, {
+						label: 'Create',
+						click: async (created: unknown, close: () => void) => {
+							close();
 
-					this._preCreate(created as Petdoctor);
+							this._preCreate(created as Petdoctor);
 
-					await firstValueFrom(
-						this._petdoctorService.create(created as Petdoctor)
-					);
+							await firstValueFrom(
+								this._petdoctorService.create(
+									created as Petdoctor
+								)
+							);
 
-					this.setRows();
-				},
-			});
-		},
+							this.setRows();
+						}
+					});
+			  }
+			: null,
 		update: (doc: Petdoctor): void => {
 			this._form
 				.modal<Petdoctor>(this.form, [], doc)
@@ -55,17 +65,19 @@ export class DoctorsComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: async (): Promise<void> => {
-							await firstValueFrom(this._petdoctorService.delete(doc));
+							await firstValueFrom(
+								this._petdoctorService.delete(doc)
+							);
 
 							this.setRows();
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
@@ -73,33 +85,41 @@ export class DoctorsComponent {
 				icon: 'cloud_download',
 				click: (doc: Petdoctor): void => {
 					this._form.modalUnique<Petdoctor>('petdoctor', 'url', doc);
-				},
-			},
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	rows: Petdoctor[] = [];
+
+	clinic_id = '';
 
 	constructor(
 		private _translate: TranslateService,
 		private _petdoctorService: PetdoctorService,
 		private _alert: AlertService,
 		private _form: FormService,
-		private _core: CoreService
+		private _core: CoreService,
+		private _router: Router,
+		private _route: ActivatedRoute
 	) {
 		this.setRows();
+
+		this._route.paramMap.subscribe((params) => {
+			this.clinic_id = params.get('clinic_id') || '';
+		});
 	}
 
 	setRows(page = this._page): void {
@@ -108,11 +128,13 @@ export class DoctorsComponent {
 		this._core.afterWhile(
 			this,
 			() => {
-				this._petdoctorService.get({ page }).subscribe((rows) => {
-					this.rows.splice(0, this.rows.length);
+				this._petdoctorService
+					.get({ page, query: this._query() })
+					.subscribe((rows) => {
+						this.rows.splice(0, this.rows.length);
 
-					this.rows.push(...rows);
-				});
+						this.rows.push(...rows);
+					});
 			},
 			250
 		);
@@ -137,7 +159,8 @@ export class DoctorsComponent {
 						for (const petdoctor of this.rows) {
 							if (
 								!petdoctors.find(
-									(localPetdoctor) => localPetdoctor._id === petdoctor._id
+									(localPetdoctor) =>
+										localPetdoctor._id === petdoctor._id
 								)
 							) {
 								await firstValueFrom(
@@ -148,14 +171,17 @@ export class DoctorsComponent {
 
 						for (const petdoctor of petdoctors) {
 							const localPetdoctor = this.rows.find(
-								(localPetdoctor) => localPetdoctor._id === petdoctor._id
+								(localPetdoctor) =>
+									localPetdoctor._id === petdoctor._id
 							);
 
 							if (localPetdoctor) {
 								this._core.copy(petdoctor, localPetdoctor);
 
 								await firstValueFrom(
-									this._petdoctorService.update(localPetdoctor)
+									this._petdoctorService.update(
+										localPetdoctor
+									)
 								);
 							} else {
 								this._preCreate(petdoctor);
@@ -174,5 +200,19 @@ export class DoctorsComponent {
 
 	private _preCreate(petdoctor: Petdoctor): void {
 		delete petdoctor.__created;
+
+		if (this.clinic_id) {
+			petdoctor.clinic = this.clinic_id;
+		}
+	}
+
+	private _query(): string {
+		let query = '';
+
+		if (this.clinic_id) {
+			query += (query ? '&' : '') + 'clinic=' + this.clinic_id;
+		}
+
+		return query;
 	}
 }
