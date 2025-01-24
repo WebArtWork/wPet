@@ -172,6 +172,26 @@
 					<span class="material-icons">report_problem</span>
 					<span translate>Theme.Allergies</span>
 				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/places"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">place</span>
+					<span translate>Theme.Places</span>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/store"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">store</span>
+					<span translate>Theme.Store</span>
+				</a>
 			</div>
 		</div>
 		<router-outlet></router-outlet>
