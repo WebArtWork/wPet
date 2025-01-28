@@ -12,8 +12,6 @@ import {
 	providedIn: 'root'
 })
 export class PetdoctorService extends CrudService<Petdoctor> {
-	doctors: Petdoctor[] = this.getDocs();
-
 	constructor(
 		_http: HttpService,
 		_store: StoreService,
@@ -29,7 +27,5 @@ export class PetdoctorService extends CrudService<Petdoctor> {
 			_alert,
 			_core
 		);
-
-		this.get();
 	}
 }

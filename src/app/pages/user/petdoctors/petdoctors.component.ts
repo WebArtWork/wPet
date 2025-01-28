@@ -8,9 +8,15 @@ import { PetdoctorService } from 'src/app/modules/petdoctor/services/petdoctor.s
 	standalone: false
 })
 export class PetdoctorsComponent {
-	get doctors(): Petdoctor[] {
-		return this._petdoctorService.doctors;
-	}
+	doctors: Petdoctor[] = [];
 
 	constructor(private _petdoctorService: PetdoctorService) {}
+
+	ngOnInit(): void {
+		this._petdoctorService
+			.get({}, { name: 'public' })
+			.subscribe((doctors) => {
+				this.doctors = doctors;
+			});
+	}
 }
