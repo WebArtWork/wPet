@@ -11,6 +11,6 @@ export class MypetsComponent {
 	get mypets(): Pet[] {
 		return this._petService.pets;
 	}
-
+	isMenuOpen = false
 	constructor(private _petService: PetService) {}
 }

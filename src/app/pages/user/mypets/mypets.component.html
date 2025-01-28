@@ -1,3 +1,4 @@
+<!--
 <p>Page Mypets is connected</p>
 
 <section>Page Title</section>
@@ -7,4 +8,40 @@
 
 <hr />
 
-<app-pet *ngFor="let pet of mypets" [pet]="pet"></app-pet>
+-->
+
+
+
+
+
+<div class="documents-wrapper" [class.documents-wrapper--open]="isMenuOpen"> 
+    <div class="documents-container">
+        <div class="documents-list">
+            <div class="burger-wrap" class="burger-wrap"  (click)="isMenuOpen=!isMenuOpen" [class.burger-wrap--open]="isMenuOpen">
+                <div class="burger" [class.burger--close]="isMenuOpen"></div>
+            </div> 
+            <div class="documents-sidebar" [class.documents-sidebar--open]="isMenuOpen">
+                <div class="documents-sidebar-content">
+                    <div class="documents-sidebar__img">
+                        <img src="assets/default.png" alt="">
+                    </div>
+                    <div class="documents-sidebar__title">
+                        Title of sidebar...
+                    </div>
+                    <div class="documents-sidebar__description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint molestiae consequatur quae. Modi corporis rem amet tempore debitis assumenda minima repellat labore expedita quam. Itaque accusamus culpa ullam necessitatibus nisi.
+                    </div>
+                </div>
+            </div>
+            <div class="documents-main">
+                <div class="documents-main-content">
+                    <div *ngFor="let pet of mypets" class="documents-main-row">
+                        <app-pet  [pet]="pet"></app-pet>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
