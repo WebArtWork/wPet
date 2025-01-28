@@ -26,7 +26,7 @@ const routes: Routes = [
 		canActivate: [GuestGuard],
 		component: GuestComponent,
 		children: [
-			/* guest */ 
+			/* guest */
 			{
 				path: 'components',
 				canActivate: [MetaGuard],
@@ -69,8 +69,11 @@ const routes: Routes = [
 						title: 'Places'
 					}
 				},
-				loadChildren: () => import('./modules/petplace/pages/places/places.module').then(m => m.PlacesModule)
-			}, 
+				loadChildren: () =>
+					import(
+						'./modules/petplace/pages/places/places.module'
+					).then((m) => m.PlacesModule)
+			},
 			{
 				path: 'store',
 				canActivate: [MetaGuard],
@@ -79,8 +82,11 @@ const routes: Routes = [
 						title: 'Store'
 					}
 				},
-				loadChildren: () => import('./modules/petstore/pages/store/store.module').then(m => m.StoreModule)
-			}, 
+				loadChildren: () =>
+					import('./modules/petstore/pages/store/store.module').then(
+						(m) => m.StoreModule
+					)
+			},
 			{
 				path: 'petstore',
 				canActivate: [MetaGuard],
@@ -89,8 +95,11 @@ const routes: Routes = [
 						title: 'Petstore'
 					}
 				},
-				loadChildren: () => import('./pages/user/petstore/petstore.module').then(m => m.PetstoreModule)
-			}, 
+				loadChildren: () =>
+					import('./pages/user/petstore/petstore.module').then(
+						(m) => m.PetstoreModule
+					)
+			},
 			{
 				path: 'petdoctors',
 				canActivate: [MetaGuard],
@@ -99,8 +108,11 @@ const routes: Routes = [
 						title: 'Petdoctors'
 					}
 				},
-				loadChildren: () => import('./pages/user/petdoctors/petdoctors.module').then(m => m.PetdoctorsModule)
-			}, 
+				loadChildren: () =>
+					import('./pages/user/petdoctors/petdoctors.module').then(
+						(m) => m.PetdoctorsModule
+					)
+			},
 			{
 				path: 'petclinics',
 				canActivate: [MetaGuard],
@@ -109,8 +121,11 @@ const routes: Routes = [
 						title: 'Petclinics'
 					}
 				},
-				loadChildren: () => import('./pages/user/petclinics/petclinics.module').then(m => m.PetclinicsModule)
-			}, 
+				loadChildren: () =>
+					import('./pages/user/petclinics/petclinics.module').then(
+						(m) => m.PetclinicsModule
+					)
+			},
 			{
 				path: 'newhome',
 				canActivate: [MetaGuard],
@@ -119,7 +134,10 @@ const routes: Routes = [
 						title: 'Newhome'
 					}
 				},
-				loadChildren: () => import('./pages/user/newhome/newhome.module').then(m => m.NewhomeModule)
+				loadChildren: () =>
+					import('./pages/user/newhome/newhome.module').then(
+						(m) => m.NewhomeModule
+					)
 			},
 			{
 				path: 'pethistory',
@@ -129,8 +147,11 @@ const routes: Routes = [
 						title: 'Pethistory'
 					}
 				},
-				loadChildren: () => import('./pages/user/pethistory/pethistory.module').then(m => m.PethistoryModule)
-			}, 
+				loadChildren: () =>
+					import('./pages/user/pethistory/pethistory.module').then(
+						(m) => m.PethistoryModule
+					)
+			},
 			{
 				path: 'petprofile',
 				canActivate: [MetaGuard],
@@ -139,8 +160,11 @@ const routes: Routes = [
 						title: 'Petprofile'
 					}
 				},
-				loadChildren: () => import('./pages/user/petprofile/petprofile.module').then(m => m.PetprofileModule)
-			}, 
+				loadChildren: () =>
+					import('./pages/user/petprofile/petprofile.module').then(
+						(m) => m.PetprofileModule
+					)
+			},
 			{
 				path: 'mypets',
 				canActivate: [MetaGuard],
@@ -149,8 +173,11 @@ const routes: Routes = [
 						title: 'Mypets'
 					}
 				},
-				loadChildren: () => import('./pages/user/mypets/mypets.module').then(m => m.MypetsModule)
-			}, 
+				loadChildren: () =>
+					import('./pages/user/mypets/mypets.module').then(
+						(m) => m.MypetsModule
+					)
+			},
 			{
 				path: 'allergies',
 				canActivate: [MetaGuard],
@@ -159,8 +186,11 @@ const routes: Routes = [
 						title: 'Allergies'
 					}
 				},
-				loadChildren: () => import('./modules/petallergy/pages/allergies/allergies.module').then(m => m.AllergiesModule)
-			}, 
+				loadChildren: () =>
+					import(
+						'./modules/petallergy/pages/allergies/allergies.module'
+					).then((m) => m.AllergiesModule)
+			},
 			{
 				path: 'items',
 				canActivate: [MetaGuard],
@@ -169,8 +199,11 @@ const routes: Routes = [
 						title: 'Items'
 					}
 				},
-				loadChildren: () => import('./modules/petitem/pages/items/items.module').then(m => m.ItemsModule)
-			}, 
+				loadChildren: () =>
+					import('./modules/petitem/pages/items/items.module').then(
+						(m) => m.ItemsModule
+					)
+			},
 			{
 				path: 'food',
 				canActivate: [MetaGuard],
@@ -179,8 +212,11 @@ const routes: Routes = [
 						title: 'Food'
 					}
 				},
-				loadChildren: () => import('./modules/petfood/pages/food/food.module').then(m => m.FoodModule)
-			}, 
+				loadChildren: () =>
+					import('./modules/petfood/pages/food/food.module').then(
+						(m) => m.FoodModule
+					)
+			},
 			{
 				path: 'drugs',
 				canActivate: [MetaGuard],
@@ -189,8 +225,11 @@ const routes: Routes = [
 						title: 'Drugs'
 					}
 				},
-				loadChildren: () => import('./modules/petdrug/pages/drugs/drugs.module').then(m => m.DrugsModule)
-			}, 
+				loadChildren: () =>
+					import('./modules/petdrug/pages/drugs/drugs.module').then(
+						(m) => m.DrugsModule
+					)
+			},
 			{
 				path: 'clinics',
 				canActivate: [MetaGuard],
@@ -199,8 +238,11 @@ const routes: Routes = [
 						title: 'Clinics'
 					}
 				},
-				loadChildren: () => import('./modules/petclinic/pages/clinics/clinics.module').then(m => m.ClinicsModule)
-			}, 
+				loadChildren: () =>
+					import(
+						'./modules/petclinic/pages/clinics/clinics.module'
+					).then((m) => m.ClinicsModule)
+			},
 			{
 				path: 'doctors',
 				canActivate: [MetaGuard],
@@ -209,8 +251,11 @@ const routes: Routes = [
 						title: 'Doctors'
 					}
 				},
-				loadChildren: () => import('./modules/petdoctor/pages/doctors/doctors.module').then(m => m.DoctorsModule)
-			}, 
+				loadChildren: () =>
+					import(
+						'./modules/petdoctor/pages/doctors/doctors.module'
+					).then((m) => m.DoctorsModule)
+			},
 			{
 				path: 'records',
 				canActivate: [MetaGuard],
@@ -219,8 +264,11 @@ const routes: Routes = [
 						title: 'Records'
 					}
 				},
-				loadChildren: () => import('./modules/petrecord/pages/records/records.module').then(m => m.RecordsModule)
-			}, 
+				loadChildren: () =>
+					import(
+						'./modules/petrecord/pages/records/records.module'
+					).then((m) => m.RecordsModule)
+			},
 			{
 				path: 'pets',
 				canActivate: [MetaGuard],
@@ -229,8 +277,11 @@ const routes: Routes = [
 						title: 'Pets'
 					}
 				},
-				loadChildren: () => import('./modules/pet/pages/pets/pets.module').then(m => m.PetsModule)
-			}, 
+				loadChildren: () =>
+					import('./modules/pet/pages/pets/pets.module').then(
+						(m) => m.PetsModule
+					)
+			},
 			{
 				path: 'profile',
 				canActivate: [MetaGuard],

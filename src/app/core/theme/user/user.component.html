@@ -5,10 +5,10 @@
 				<a
 					routerLinkActive="_activeLink"
 					(click)="showSidebar = false"
-					routerLink="/profile"
+					routerLink="/mypets"
 					class="nav__a"
 				>
-					<span class="material-icons">home</span>
+					<span class="material-icons">pets</span>
 				</a>
 			</li>
 			<li class="nav__li _burger" (click)="showSidebar = !showSidebar">
@@ -88,9 +88,6 @@
 					<span translate>Theme.Translates</span>
 				</a>
 				<hr *ngIf="us.role('admin')" />
-
-
-
 
 				<a
 					[routerLinkActiveOptions]="{ exact: true }"
@@ -191,6 +188,19 @@
 				>
 					<span class="material-icons">store</span>
 					<span translate>Theme.Store</span>
+				</a>
+
+				<hr />
+
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/petdoctors"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">badge</span>
+					<span translate>Theme.Pet Doctors</span>
 				</a>
 			</div>
 		</div>

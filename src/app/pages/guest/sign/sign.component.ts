@@ -191,7 +191,7 @@ export class SignComponent {
 
 			this.us.get();
 
-			this._router.navigateByUrl('/profile');
+			this._router.navigateByUrl('/mypets');
 		} else {
 			this._alert.error({
 				text: 'Something went wrong'

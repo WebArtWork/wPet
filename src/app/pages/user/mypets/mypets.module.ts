@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CoreModule } from 'src/app/core/core.module';
 import { MypetsComponent } from './mypets.component';
 import { Routes, RouterModule } from '@angular/router';
+import { PetComponent } from './pet/pet.component';
 
 const routes: Routes = [
 	{
@@ -12,6 +13,6 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [RouterModule.forChild(routes), CoreModule],
-	declarations: [MypetsComponent]
+	declarations: [MypetsComponent, PetComponent]
 })
 export class MypetsModule {}
