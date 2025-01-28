@@ -9,9 +9,11 @@ import {
 } from 'wacom';
 
 @Injectable({
-	providedIn: 'root',
+	providedIn: 'root'
 })
 export class PetdoctorService extends CrudService<Petdoctor> {
+	doctors: Petdoctor[] = this.getDocs();
+
 	constructor(
 		_http: HttpService,
 		_store: StoreService,
@@ -20,12 +22,14 @@ export class PetdoctorService extends CrudService<Petdoctor> {
 	) {
 		super(
 			{
-				name: 'petdoctor',
+				name: 'petdoctor'
 			},
 			_http,
 			_store,
 			_alert,
 			_core
 		);
+
+		this.get();
 	}
 }

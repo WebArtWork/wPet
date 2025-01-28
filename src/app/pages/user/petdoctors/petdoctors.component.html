@@ -1,8 +1,11 @@
 <p>Page Petdoctors is connected</p>
 
-
 <section>Page Title</section>
 <section>Doctor List (Name, Specialization, Contacts)</section>
 <section>Doctor Profile Link</section>
 <section>Search Bar</section>
 <section>Filter by Specialization/Location</section>
+
+<hr />
+
+<app-doctor *ngFor="let doctor of doctors" [doctor]="doctor"></app-doctor>
