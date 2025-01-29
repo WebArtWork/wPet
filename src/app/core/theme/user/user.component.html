@@ -39,11 +39,9 @@
 						light_mode
 					</span>
 				</div>
-				<a
-					class="nav__burger-link nav__burger-user"
-					routerLink="/profile"
-				>
+				<a class="nav__burger-link nav__burger-user">
 					<img
+						routerLink="/profile"
 						[src]="forceAvatarUrl || us.user.thumb ? url + us.user.thumb : 'assets/default.png'"
 						(error)="forceAvatarUrl = 'assets/default.png'"
 						alt="Profile Picture"
@@ -201,6 +199,26 @@
 				>
 					<span class="material-icons">badge</span>
 					<span translate>Theme.Pet Doctors</span>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/petclinics"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">business</span>
+					<span translate>Theme.Pet Clinics</span>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/petstore"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">store</span>
+					<span translate>Theme.Pet Store</span>
 				</a>
 			</div>
 		</div>
