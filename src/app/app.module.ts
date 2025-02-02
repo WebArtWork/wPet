@@ -62,6 +62,36 @@ const routes: Routes = [
 		children: [
 			/* user */
 			{
+				path: 'petstorepage',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Petstorepage'
+					}
+				},
+				loadChildren: () => import('./pages/user/petstorepage/petstorepage.module').then(m => m.PetstorepageModule)
+			}, 
+			{
+				path: 'petdoctorpage',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Petdoctorpage'
+					}
+				},
+				loadChildren: () => import('./pages/user/petdoctorpage/petdoctorpage.module').then(m => m.PetdoctorpageModule)
+			}, 
+			{
+				path: 'petclinicpage',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Petclinicpage'
+					}
+				},
+				loadChildren: () => import('./pages/user/petclinicpage/petclinicpage.module').then(m => m.PetclinicpageModule)
+			}, 
+			{
 				path: 'places',
 				canActivate: [MetaGuard],
 				data: {
