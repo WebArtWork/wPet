@@ -10,6 +10,7 @@ import { PetstoreService } from 'src/app/modules/petstore/services/petstore.serv
 export class PetstoreComponent {
 	stores: Petstore[] = [];
 
+	isMenuOpen = false;
 	constructor(private _petstoreService: PetstoreService) {}
 
 	ngOnInit(): void {

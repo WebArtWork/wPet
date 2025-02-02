@@ -10,6 +10,7 @@ import { PetdoctorService } from 'src/app/modules/petdoctor/services/petdoctor.s
 export class PetdoctorsComponent {
 	doctors: Petdoctor[] = [];
 
+	isMenuOpen = false;
 	constructor(private _petdoctorService: PetdoctorService) {}
 
 	ngOnInit(): void {

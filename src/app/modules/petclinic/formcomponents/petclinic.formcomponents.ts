@@ -9,11 +9,53 @@ export const petclinicFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill petclinic title',
+					value: 'fill petclinic title'
 				},
 				{
 					name: 'Label',
-					value: 'Title',
+					value: 'Title'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'phone',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petclinic phone'
+				},
+				{
+					name: 'Label',
+					value: 'Phone'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'email',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petclinic email'
+				},
+				{
+					name: 'Label',
+					value: 'Email'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'workingHours',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petclinic workingHours'
+				},
+				{
+					name: 'Label',
+					value: 'Working hours'
 				}
 			]
 		},
@@ -23,13 +65,13 @@ export const petclinicFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill petclinic description',
+					value: 'fill petclinic description'
 				},
 				{
 					name: 'Label',
-					value: 'Description',
+					value: 'Description'
 				}
 			]
 		}
 	]
-}
+};

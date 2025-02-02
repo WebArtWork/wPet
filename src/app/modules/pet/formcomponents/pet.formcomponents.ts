@@ -9,11 +9,67 @@ export const petFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill pet title',
+					value: 'fill pet name'
 				},
 				{
 					name: 'Label',
-					value: 'Title',
+					value: 'Name'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'species',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill pet species'
+				},
+				{
+					name: 'Label',
+					value: 'Species'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'breed',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill pet breed'
+				},
+				{
+					name: 'Label',
+					value: 'Breed'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'age',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill pet age'
+				},
+				{
+					name: 'Label',
+					value: 'Age'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'gender',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill pet gender'
+				},
+				{
+					name: 'Label',
+					value: 'Gender'
 				}
 			]
 		},
@@ -23,13 +79,13 @@ export const petFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill pet description',
+					value: 'fill pet description'
 				},
 				{
 					name: 'Label',
-					value: 'Description',
+					value: 'Description'
 				}
 			]
 		}
 	]
-}
+};

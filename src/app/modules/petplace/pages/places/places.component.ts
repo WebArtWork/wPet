@@ -15,10 +15,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 	standalone: false
 })
 export class PlacesComponent {
-	// clinic_id = this._router.url.includes('places/')
-	// 	? this._router.url.replace('/places/', '')
-	// 	: '';
-
 	columns = ['name', 'description'];
 
 	form: FormInterface = this._form.getForm(

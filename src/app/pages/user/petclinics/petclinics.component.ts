@@ -12,6 +12,7 @@ export class PetclinicsComponent {
 
 	constructor(private _petclinicService: PetclinicService) {}
 
+	isMenuOpen = false;
 	ngOnInit(): void {
 		this._petclinicService
 			.get({}, { name: 'public' })

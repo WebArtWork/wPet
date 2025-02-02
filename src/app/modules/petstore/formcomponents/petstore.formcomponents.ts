@@ -9,11 +9,81 @@ export const petstoreFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill petstore title',
+					value: 'fill petstore title'
 				},
 				{
 					name: 'Label',
-					value: 'Title',
+					value: 'Title'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'phone',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petstore phone'
+				},
+				{
+					name: 'Label',
+					value: 'Phone'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'email',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petstore email'
+				},
+				{
+					name: 'Label',
+					value: 'Email'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'workingHours',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petstore working hours'
+				},
+				{
+					name: 'Label',
+					value: 'Working hours'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'deliveryOptions',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petstore delivery options'
+				},
+				{
+					name: 'Label',
+					value: 'Delivery options'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'paymentMethods',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petstore payment methods'
+				},
+				{
+					name: 'Label',
+					value: 'Payment methods'
 				}
 			]
 		},
@@ -23,13 +93,13 @@ export const petstoreFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill petstore description',
+					value: 'fill petstore description'
 				},
 				{
 					name: 'Label',
-					value: 'Description',
+					value: 'Description'
 				}
 			]
 		}
 	]
-}
+};
