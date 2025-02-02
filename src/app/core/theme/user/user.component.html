@@ -11,6 +11,37 @@
 					<span class="material-icons">pets</span>
 				</a>
 			</li>
+			<li class="nav__li">
+				<a
+					routerLinkActive="_activeLink"
+					(click)="showSidebar = false"
+					routerLink="/petdoctors"
+					class="nav__a"
+				>
+					<span class="material-icons">badge</span>
+				</a>
+			</li>
+			<li class="nav__li">
+				<a
+					routerLinkActive="_activeLink"
+					(click)="showSidebar = false"
+					routerLink="/petclinics"
+					class="nav__a"
+				>
+					<span class="material-icons">business</span>
+				</a>
+			</li>
+			<li class="nav__li">
+				<a
+					routerLinkActive="_activeLink"
+					(click)="showSidebar = false"
+					routerLink="/petstore"
+					class="nav__a"
+				>
+					<span class="material-icons">store</span>
+				</a>
+			</li>
+
 			<li class="nav__li _burger" (click)="showSidebar = !showSidebar">
 				<a class="nav__toggle" [class._active]="showSidebar">
 					<span class="nav__toggle-line"></span>
@@ -186,39 +217,6 @@
 				>
 					<span class="material-icons">store</span>
 					<span translate>Theme.Store</span>
-				</a>
-
-				<hr />
-
-				<a
-					[routerLinkActiveOptions]="{ exact: true }"
-					routerLinkActive="_activeLink"
-					routerLink="/petdoctors"
-					class="nav__burger-link"
-					(click)="hideSidebar()"
-				>
-					<span class="material-icons">badge</span>
-					<span translate>Theme.Pet Doctors</span>
-				</a>
-				<a
-					[routerLinkActiveOptions]="{ exact: true }"
-					routerLinkActive="_activeLink"
-					routerLink="/petclinics"
-					class="nav__burger-link"
-					(click)="hideSidebar()"
-				>
-					<span class="material-icons">business</span>
-					<span translate>Theme.Pet Clinics</span>
-				</a>
-				<a
-					[routerLinkActiveOptions]="{ exact: true }"
-					routerLinkActive="_activeLink"
-					routerLink="/petstore"
-					class="nav__burger-link"
-					(click)="hideSidebar()"
-				>
-					<span class="material-icons">store</span>
-					<span translate>Theme.Pet Store</span>
 				</a>
 			</div>
 		</div>
