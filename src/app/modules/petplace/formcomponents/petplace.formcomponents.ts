@@ -19,6 +19,62 @@ export const petplaceFormComponents = {
 		},
 		{
 			name: 'Text',
+			key: 'address',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petplace address',
+				},
+				{
+					name: 'Label',
+					value: 'Address',
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'latitude',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petplace latitude',
+				},
+				{
+					name: 'Label',
+					value: 'Latitude',
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'longitude',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petplace longitude',
+				},
+				{
+					name: 'Label',
+					value: 'Longitude',
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'placeType',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petplace place type',
+				},
+				{
+					name: 'Label',
+					value: 'place type',
+				}
+			]
+		},
+		{
+			name: 'Text',
 			key: 'description',
 			fields: [
 				{

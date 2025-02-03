@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
 
 @Component({
   selector: 'app-newhome-list',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './newhome-list.component.scss'
 })
 export class NewhomeListComponent {
-
+	@Input() pet: Pet;
 }

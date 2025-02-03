@@ -74,6 +74,16 @@ export const petFormComponents = {
 			]
 		},
 		{
+			name: 'Boolean',
+			key: 'adoptable',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Adoptable'
+				}
+			]
+		},
+		{
 			name: 'Text',
 			key: 'description',
 			fields: [

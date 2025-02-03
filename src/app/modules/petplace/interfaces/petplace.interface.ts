@@ -5,4 +5,9 @@ export interface Petplace extends CrudDocument {
 	description: string;
 	clinic: string;
 	store: string;
+
+	address: string;
+    latitude: string;
+    longitude: string;
+    placeType: string;
 }
