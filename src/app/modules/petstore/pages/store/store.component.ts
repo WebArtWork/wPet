@@ -197,9 +197,5 @@ export class StoreComponent {
 
 	private _preCreate(petstore: Petstore): void {
 		delete petstore.__created;
-
-		if (this.store_id) {
-			petstore.store = this.store_id;
-		}
 	}
 }

@@ -19,6 +19,48 @@ export const petitemFormComponents = {
 		},
 		{
 			name: 'Text',
+			key: 'itemtype',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petfood item type',
+				},
+				{
+					name: 'Label',
+					value: 'Item type',
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'material',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petfood material',
+				},
+				{
+					name: 'Label',
+					value: 'Material',
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'price',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petfood price',
+				},
+				{
+					name: 'Label',
+					value: 'Price',
+				}
+			]
+		},
+		{
+			name: 'Text',
 			key: 'description',
 			fields: [
 				{

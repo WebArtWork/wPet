@@ -19,6 +19,20 @@ export const petclinicFormComponents = {
 		},
 		{
 			name: 'Text',
+			key: 'address',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petclinic address'
+				},
+				{
+					name: 'Label',
+					value: 'Address'
+				}
+			]
+		},
+		{
+			name: 'Text',
 			key: 'phone',
 			fields: [
 				{
