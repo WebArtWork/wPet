@@ -1,18 +1,11 @@
 <div class="documents-wrapper" [class.documents-wrapper--open]="isMenuOpen">
 	<div class="documents-container">
 		<div class="documents-list">
-			<div
-				class="burger-wrap"
-				class="burger-wrap"
-				(click)="isMenuOpen=!isMenuOpen"
-				[class.burger-wrap--open]="isMenuOpen"
-			>
+			<div class="burger-wrap" class="burger-wrap" (click)="isMenuOpen=!isMenuOpen"
+				[class.burger-wrap--open]="isMenuOpen">
 				<div class="burger" [class.burger--close]="isMenuOpen"></div>
 			</div>
-			<div
-				class="documents-sidebar"
-				[class.documents-sidebar--open]="isMenuOpen"
-			>
+			<div class="documents-sidebar" [class.documents-sidebar--open]="isMenuOpen">
 				<div class="documents-sidebar-content">
 					<div class="documents-sidebar__img">
 						<img src="assets/default.png" alt="" />
@@ -32,9 +25,7 @@
 			<div class="documents-main">
 				<div class="documents-main-content">
 					<div *ngFor="let pet of mypets" class="documents-main-row">
-						<a routerLink="/petprofile/{{pet._id}}">
-							<app-pet [pet]="pet"></app-pet>
-						</a>
+						<app-pet [pet]="pet"></app-pet>
 					</div>
 				</div>
 			</div>

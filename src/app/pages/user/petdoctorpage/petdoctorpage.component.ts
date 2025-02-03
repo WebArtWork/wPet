@@ -8,7 +8,7 @@ import { PetdoctorService } from 'src/app/modules/petdoctor/services/petdoctor.s
 	standalone: false
 })
 export class PetdoctorpageComponent {
-	petprofile = this._petdoctorService.doc(
+	petdoctor = this._petdoctorService.doc(
 		this._router.url.replace('/petdoctorpage/', '')
 	);
 

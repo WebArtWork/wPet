@@ -1,3 +1,14 @@
 <!--{{pet|json}}-->
+
+<!-- 
 <div class="documents__title">{{pet.name}}</div>
 <div class="documents__description">{{pet.description}}</div>
+-->
+
+<a routerLink="/petprofile/{{pet._id}}">
+  <div class="documents__title">{{pet.name}}</div>
+  <div class="documents__description">{{pet.description}}</div>
+</a>
+<a routerLink="/pethistory/{{pet._id}}" class="nav__burger-link">
+  <span class="material-icons">article</span>
+</a>

@@ -19,6 +19,90 @@ export const petrecordFormComponents = {
 		},
 		{
 			name: 'Text',
+			key: 'date',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petrecord date',
+				},
+				{
+					name: 'Label',
+					value: 'Date',
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'disease',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petrecord disease',
+				},
+				{
+					name: 'Label',
+					value: 'Disease',
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'treatment',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petrecord treatment',
+				},
+				{
+					name: 'Label',
+					value: 'Treatment',
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'procedure',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petrecord procedure',
+				},
+				{
+					name: 'Label',
+					value: 'Procedure',
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'DocName',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petrecord doctor name',
+				},
+				{
+					name: 'Label',
+					value: 'Doctor name',
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'notes',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill petrecord notes',
+				},
+				{
+					name: 'Label',
+					value: 'Notes',
+				}
+			]
+		},
+		{
+			name: 'Text',
 			key: 'description',
 			fields: [
 				{
