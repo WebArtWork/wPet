@@ -17,4 +17,6 @@ export class PethistorypageComponent {
 		private _petrecordService: PetrecordService,
 		private _router: Router
 	) { }
+
+	isMenuOpen = false
 }

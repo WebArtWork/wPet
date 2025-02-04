@@ -1,7 +1,38 @@
-<div class="documents__title">{{petstore.name}}</div>
-<div class="documents__phone">{{petstore.phone}}</div>
-<div class="documents__email">{{petstore.email}}</div>
-<div class="documents__workingHours">{{petstore.workingHours}}</div>
-<div class="documents__deliveryOptions">{{petstore.deliveryOptions}}</div>
-<div class="documents__paymentMethods">{{petstore.paymentMethods}}</div>
-<div class="documents__description">{{petstore.description}}</div>
+<div class="documents-wrapper" [class.documents-wrapper--open]="isMenuOpen">
+    <div class="documents-container">
+        <div class="documents-list">
+            <div class="burger-wrap" class="burger-wrap" (click)="isMenuOpen=!isMenuOpen"
+                [class.burger-wrap--open]="isMenuOpen">
+                <div class="burger" [class.burger--close]="isMenuOpen"></div>
+            </div>
+            <div class="documents-sidebar" [class.documents-sidebar--open]="isMenuOpen">
+                <div class="documents-sidebar-content">
+                    <div class="documents-sidebar__img">
+                        <img src="assets/default.png" alt="" />
+                    </div>
+                    <div class="documents-sidebar__title">
+                        {{petstore.name}}
+                    </div>
+                    <div>
+                        <wbutton (click)="update(petstore)">Edit</wbutton>
+                        <wbutton (click)="delete(petstore)">Delete</wbutton>
+                    </div>
+
+                </div>
+            </div>
+            <div class="documents-main">
+                <div class="documents-main-content">
+                    <div class="documents-main-row">
+                        <div class="documents__title">{{petstore.name}}</div>
+                        <div class="documents__phone">{{petstore.phone}}</div>
+                        <div class="documents__email">{{petstore.email}}</div>
+                        <div class="documents__workingHours">{{petstore.workingHours}}</div>
+                        <div class="documents__deliveryOptions">{{petstore.deliveryOptions}}</div>
+                        <div class="documents__paymentMethods">{{petstore.paymentMethods}}</div>
+                        <div class="documents__description">{{petstore.description}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

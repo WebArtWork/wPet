@@ -16,4 +16,6 @@ export class PetdoctorpageComponent {
 		private _petdoctorService: PetdoctorService,
 		private _router: Router
 	) {}
+
+	isMenuOpen = false
 }
