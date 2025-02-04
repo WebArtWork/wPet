@@ -13,20 +13,26 @@ export class PethistoryComponent {
 
 	isMenuOpen = false;
 
-
 	pet_id = '';
 
-	constructor(private _petrecordService: PetrecordService, private _route: ActivatedRoute) {
+	constructor(
+		private _petrecordService: PetrecordService,
+		private _route: ActivatedRoute
+	) {
 		this._route.paramMap.subscribe((params) => {
 			this.pet_id = params.get('pet_id') || '';
 		});
+
+		this.load();
 	}
 
-	ngOnInit(): void {
+	load(): void {
 		this._petrecordService
-			.get({ query: this._query() })
+			.get({ page: 1, query: this._query() })
 			.subscribe((records) => {
-				this.records = records;
+				this.records.splice(0, this.records.length);
+
+				this.records.push(...records);
 			});
 	}
 
@@ -39,6 +45,4 @@ export class PethistoryComponent {
 
 		return query;
 	}
-
-	
 }
