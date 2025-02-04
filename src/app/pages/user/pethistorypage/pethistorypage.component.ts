@@ -10,6 +10,7 @@ import { PetrecordService } from 'src/app/modules/petrecord/services/petrecord.s
 export class PethistorypageComponent {
 	petrecord = this._petrecordService.doc(
 		this._router.url.replace('/pethistorypage/', '')
+
 	);
 
 	constructor(

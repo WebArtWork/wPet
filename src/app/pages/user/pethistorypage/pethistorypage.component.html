@@ -1,1 +1,7 @@
+
 <div class="documents__title">{{petrecord.name}}</div>
+<div class="documents__date">{{petrecord._id|mongodate|date:'d MMMM y H:mm'}}</div>
+<div class="documents__disease">{{petrecord.disease}}</div>
+<div class="documents__treatment">{{petrecord.treatment}}</div>
+<div class="documents__procedure">{{petrecord.procedure}}</div>
+<div class="documents__notes">{{petrecord.notes}}</div>

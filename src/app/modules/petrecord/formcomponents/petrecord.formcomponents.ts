@@ -19,20 +19,6 @@ export const petrecordFormComponents = {
 		},
 		{
 			name: 'Text',
-			key: 'date',
-			fields: [
-				{
-					name: 'Placeholder',
-					value: 'fill petrecord date',
-				},
-				{
-					name: 'Label',
-					value: 'Date',
-				}
-			]
-		},
-		{
-			name: 'Text',
 			key: 'disease',
 			fields: [
 				{
@@ -70,20 +56,6 @@ export const petrecordFormComponents = {
 				{
 					name: 'Label',
 					value: 'Procedure',
-				}
-			]
-		},
-		{
-			name: 'Text',
-			key: 'DocName',
-			fields: [
-				{
-					name: 'Placeholder',
-					value: 'fill petrecord doctor name',
-				},
-				{
-					name: 'Label',
-					value: 'Doctor name',
 				}
 			]
 		},
