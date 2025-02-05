@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormService } from 'src/app/core/modules/form/form.service';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { TranslateService } from 'src/app/core/modules/translate/translate.service';
@@ -17,6 +17,7 @@ import { CoreService, AlertService } from 'wacom';
 export class StoreListComponent {
 	@Input() store: Petstore;
 
+	@Output() load = new EventEmitter();
 
 	constructor(
 		private _petstoreService: PetstoreService,
@@ -24,18 +25,26 @@ export class StoreListComponent {
 		private _core: CoreService,
 		private _alert: AlertService,
 		private _translate: TranslateService
-	) { }
+	) {}
 
-
-	form: FormInterface = this._form.getForm('petstore', petstoreFormComponents);
-
+	form: FormInterface = this._form.getForm(
+		'petstore',
+		petstoreFormComponents
+	);
 
 	update(doc: Petstore): void {
-		this._form.modal<Petstore>(this.form, [], doc).then((updated: Petstore) => {
-			this._core.copy(updated, doc);
+		this._form
+			.modal<Petstore>(this.form, [], doc)
+			.then((updated: Petstore) => {
+				this._core.copy(updated, doc);
 
-			this._petstoreService.update(doc);
-		});
+				this._petstoreService.update(doc);
+
+				//TODO temporary code from here to
+				const petdoctor = this._petstoreService.doc(doc._id);
+				this._core.copy(updated, petdoctor);
+				// here
+			});
 	}
 
 	delete(doc: Petstore): void {
@@ -50,7 +59,9 @@ export class StoreListComponent {
 				{
 					text: this._translate.translate('Common.Yes'),
 					callback: (): void => {
-						this._petstoreService.delete(doc);
+						this._petstoreService.delete(doc).subscribe(() => {
+							this.load.emit();
+						});
 					}
 				}
 			]

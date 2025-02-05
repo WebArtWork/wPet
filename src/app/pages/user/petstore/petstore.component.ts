@@ -14,30 +14,47 @@ export class PetstoreComponent {
 	stores: Petstore[] = [];
 
 	isMenuOpen = false;
-	
+
 	constructor(
 		private _petstoreService: PetstoreService,
-		private _form: FormService,
-	) { }
-
-	ngOnInit(): void {
-		this._petstoreService
-			.get({}, { name: 'public' })
-			.subscribe((stores) => {
-				this.stores = stores;
-			});
+		private _form: FormService
+	) {
+		this.load();
 	}
 
-	form: FormInterface = this._form.getForm('petstore', petstoreFormComponents);
+	form: FormInterface = this._form.getForm(
+		'petstore',
+		petstoreFormComponents
+	);
 
 	create(): void {
 		this._form.modal<Petstore>(this.form, {
 			label: 'Create',
-			click: (created: unknown, close: () => void) => {
-				this._petstoreService.create(created as Petstore);
-
+			click: async (created: unknown, close: () => void) => {
 				close();
+
+				this._preCreate(created as Petstore);
+
+				this._petstoreService
+					.create(created as Petstore)
+					.subscribe(() => {
+						this.load();
+					});
 			}
 		});
+	}
+
+	load(): void {
+		this._petstoreService
+			.get({}, { name: 'public' })
+			.subscribe((stores) => {
+				this.stores.splice(0, this.stores.length);
+
+				this.stores.push(...stores);
+			});
+	}
+
+	private _preCreate(petstores: Petstore): void {
+		delete petstores.__created;
 	}
 }

@@ -25,8 +25,9 @@
 					<div class="documents-sidebar__img">
 						<img src="assets/default.png" alt="" />
 					</div>
-					<div class="documents-sidebar__title">
-						Pet Doctors
+					<div class="documents-sidebar__title">Pet Doctors</div>
+					<div>
+						<wbutton (click)="create()">Create</wbutton>
 					</div>
 				</div>
 			</div>
@@ -36,9 +37,10 @@
 						*ngFor="let doctor of doctors"
 						class="documents-main-row"
 					>
-						<a routerLink="/petdoctorpage/{{doctor._id}}">
-							<app-doctor [doctor]="doctor"></app-doctor>
-						</a>
+						<app-doctor
+							[doctor]="doctor"
+							(load)="load()"
+						></app-doctor>
 					</div>
 				</div>
 			</div>

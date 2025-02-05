@@ -1,4 +1,8 @@
 <!-- {{doctor|json}} -->
+<a routerLink="/petdoctorpage/{{doctor._id}}">
+	<div class="documents__title">{{doctor.name}}</div>
+	<div class="documents__description">{{doctor.specialization}}</div>
+</a>
 
-<div class="documents__title">{{doctor.name}}</div>
-<div class="documents__description">{{doctor.specialization}}</div>
+<span (click)="update(doctor)" class="material-icons">edit</span>
+<span (click)="delete(doctor)" class="material-icons">delete</span>

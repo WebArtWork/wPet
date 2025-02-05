@@ -25,9 +25,8 @@ export class PethistoryComponent {
 	) {
 		this._route.paramMap.subscribe((params) => {
 			this.pet_id = params.get('pet_id') || '';
+			this.load();
 		});
-
-		this.load();
 	}
 
 	form: FormInterface = this._form.getForm(

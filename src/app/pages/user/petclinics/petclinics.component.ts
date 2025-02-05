@@ -17,27 +17,44 @@ export class PetclinicsComponent {
 
 	constructor(
 		private _petclinicService: PetclinicService,
-		private _form: FormService,
-	) {}
+		private _form: FormService
+	) {
+		this.load();
+	}
 
-	ngOnInit(): void {
+	form: FormInterface = this._form.getForm(
+		'petclinic',
+		petclinicFormComponents
+	);
+
+	create(): void {
+		this._form.modal<Petclinic>(this.form, {
+			label: 'Create',
+			click: async (created: unknown, close: () => void) => {
+				close();
+
+				this._preCreate(created as Petclinic);
+
+				this._petclinicService
+					.create(created as Petclinic)
+					.subscribe(() => {
+						this.load();
+					});
+			}
+		});
+	}
+
+	load(): void {
 		this._petclinicService
 			.get({}, { name: 'public' })
 			.subscribe((clinics) => {
-				this.clinics = clinics;
+				this.clinics.splice(0, this.clinics.length);
+
+				this.clinics.push(...clinics);
 			});
 	}
 
-		form: FormInterface = this._form.getForm('petclinic', petclinicFormComponents);
-	
-		create(): void {
-			this._form.modal<Petclinic>(this.form, {
-				label: 'Create',
-				click: (created: unknown, close: () => void) => {
-					this._petclinicService.create(created as Petclinic);
-	
-					close();
-				}
-			});
-		}
+	private _preCreate(petclinic: Petclinic): void {
+		delete petclinic.__created;
+	}
 }

@@ -39,6 +39,11 @@ export class HistoryComponent {
 				this._core.copy(updated, doc);
 
 				this._petrecordService.update(doc);
+
+				//TODO temporary code from here to
+				const petrecord = this._petrecordService.doc(doc._id);
+				this._core.copy(updated, petrecord);
+				// here
 			});
 	}
 

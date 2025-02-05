@@ -8,19 +8,25 @@ import { PetService } from 'src/app/modules/pet/services/pet.service';
 	standalone: false
 })
 export class NewhomeComponent {
-	// get mypets(): Pet[] {
-	// 	return this._petService.pets;
-	// }
-
 	availablePets: Pet[] = [];
 
-	isMenuOpen = false
+	isMenuOpen = false;
 
-	constructor(private _petService: PetService) {}
+	constructor(private _petService: PetService) {
+		this.load();
+	}
 
-	ngOnInit(): void {
-		this._petService.get().subscribe(pets => {
-		  this.availablePets = pets.filter(pet => pet.adoptable);
-		});
-	  }
+	load(): void {
+		this._petService
+			.get({}, { name: 'public' })
+			.subscribe((availablePets) => {
+				this.availablePets.splice(0, this.availablePets.length);
+
+				const adoptablePets = availablePets.filter(
+					(pet) => pet.adoptable
+				);
+
+				this.availablePets.push(...adoptablePets);
+			});
+	}
 }
