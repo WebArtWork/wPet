@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
-import { AlertService, HashService, HttpService, UiService } from 'wacom';
+import {
+	AlertService,
+	CoreService,
+	HashService,
+	HttpService,
+	UiService
+} from 'wacom';
 import { Router } from '@angular/router';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { FormService } from 'src/app/core/modules/form/form.service';
 import { TranslateService } from 'src/app/core/modules/translate/translate.service';
 import { UserService } from 'src/app/modules/user/services/user.service';
 import { User } from 'src/app/modules/user/interfaces/user.interface';
+import { core } from '@angular/compiler';
 
 interface RespStatus {
 	email: string;
@@ -104,7 +111,8 @@ export class SignComponent {
 		private _hash: HashService,
 		private _router: Router,
 		private _form: FormService,
-		private _translate: TranslateService
+		private _translate: TranslateService,
+		private _core: CoreService
 	) {}
 
 	submit(): void {
@@ -179,6 +187,8 @@ export class SignComponent {
 
 	private _set = (user: User): void => {
 		if (user) {
+			this._core.emit('wipe');
+
 			const token = (user as unknown as { token: string }).token || '';
 
 			if (token) {
