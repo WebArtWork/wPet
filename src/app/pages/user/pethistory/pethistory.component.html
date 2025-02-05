@@ -7,33 +7,44 @@
 <section>Add New Record Button</section>
 <section>Filter by Date/Type</section> -->
 
-
 <div class="documents-wrapper" [class.documents-wrapper--open]="isMenuOpen">
-    <div class="documents-container">
-        <div class="documents-list">
-            <div class="burger-wrap" class="burger-wrap" (click)="isMenuOpen=!isMenuOpen"
-                [class.burger-wrap--open]="isMenuOpen">
-                <div class="burger" [class.burger--close]="isMenuOpen"></div>
-            </div>
-            <div class="documents-sidebar" [class.documents-sidebar--open]="isMenuOpen">
-                <div class="documents-sidebar-content">
-                    <div class="documents-sidebar__img">
-                        <img src="assets/default.png" alt="" />
-                    </div>
-                    <div class="documents-sidebar__title">
-                        Records
-                    </div>
-                </div>
-            </div>
-            <div class="documents-main">
-                <div class="documents-main-content">
-                    <div *ngFor="let record of records" class="documents-main-row">
-                        <a routerLink="/pethistorypage/{{record._id}}">
-                            <app-history [record]="record"></app-history>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="documents-container">
+		<div class="documents-list">
+			<div
+				class="burger-wrap"
+				class="burger-wrap"
+				(click)="isMenuOpen=!isMenuOpen"
+				[class.burger-wrap--open]="isMenuOpen"
+			>
+				<div class="burger" [class.burger--close]="isMenuOpen"></div>
+			</div>
+			<div
+				class="documents-sidebar"
+				[class.documents-sidebar--open]="isMenuOpen"
+			>
+				<div class="documents-sidebar-content">
+					<div class="documents-sidebar__img">
+						<img src="assets/default.png" alt="" />
+					</div>
+					<div class="documents-sidebar__title">Records</div>
+					<div>
+						<wbutton (click)="create()">Create</wbutton>
+					</div>
+				</div>
+			</div>
+			<div class="documents-main">
+				<div class="documents-main-content">
+					<div
+						*ngFor="let record of records"
+						class="documents-main-row"
+					>
+						<app-history
+							[record]="record"
+							(load)="load()"
+						></app-history>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
