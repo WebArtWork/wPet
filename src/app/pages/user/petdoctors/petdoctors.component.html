@@ -1,11 +1,3 @@
-<!-- <p>Page Petdoctors is connected</p>
-
-<section>Page Title</section>
-<section>Doctor List (Name, Specialization, Contacts)</section>
-<section>Doctor Profile Link</section>
-<section>Search Bar</section>
-<section>Filter by Specialization/Location</section> -->
-
 <div class="documents-wrapper" [class.documents-wrapper--open]="isMenuOpen">
 	<div class="documents-container">
 		<div class="documents-list">
@@ -28,6 +20,12 @@
 					<div class="documents-sidebar__title">Pet Doctors</div>
 					<div>
 						<wbutton (click)="create()">Create</wbutton>
+					</div>
+					<div>
+						<petclinic-selector
+							[value]="clinic_id"
+							(wChange)="clinic_id = $event; load()"
+						></petclinic-selector>
 					</div>
 				</div>
 			</div>

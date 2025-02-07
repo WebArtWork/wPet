@@ -12,7 +12,7 @@ import {
 	providedIn: 'root'
 })
 export class PetclinicService extends CrudService<Petclinic> {
-	petclinics: Petclinic[];
+	petclinics: Petclinic[] = this.getDocs();
 	constructor(
 		_http: HttpService,
 		_store: StoreService,

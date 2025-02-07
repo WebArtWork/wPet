@@ -15,6 +15,8 @@ export class PetdoctorsComponent {
 
 	isMenuOpen = false;
 
+	clinic_id = '';
+
 	constructor(
 		private _petdoctorService: PetdoctorService,
 		private _form: FormService
@@ -46,7 +48,10 @@ export class PetdoctorsComponent {
 
 	load(): void {
 		this._petdoctorService
-			.get({}, { name: 'public' })
+			.get(
+				{ query: this.clinic_id ? 'clinic=' + this.clinic_id : '' },
+				{ name: 'public' }
+			)
 			.subscribe((doctors) => {
 				this.doctors.splice(0, this.doctors.length);
 
