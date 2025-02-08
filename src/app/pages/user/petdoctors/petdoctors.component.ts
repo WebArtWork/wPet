@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormService } from 'src/app/core/modules/form/form.service';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
+import { Petclinic } from 'src/app/modules/petclinic/interfaces/petclinic.interface';
+import { PetclinicService } from 'src/app/modules/petclinic/services/petclinic.service';
 import { petdoctorFormComponents } from 'src/app/modules/petdoctor/formcomponents/petdoctor.formcomponents';
 import { Petdoctor } from 'src/app/modules/petdoctor/interfaces/petdoctor.interface';
 import { PetdoctorService } from 'src/app/modules/petdoctor/services/petdoctor.service';
@@ -13,15 +15,20 @@ import { PetdoctorService } from 'src/app/modules/petdoctor/services/petdoctor.s
 export class PetdoctorsComponent {
 	doctors: Petdoctor[] = [];
 
+	clinics: Petclinic[] = [];
+
 	isMenuOpen = false;
 
 	clinic_id = '';
 
 	constructor(
 		private _petdoctorService: PetdoctorService,
-		private _form: FormService
+		private _form: FormService,
+
+		private _petclinicService: PetclinicService
 	) {
 		this.load();
+		this.selectorsLoad();
 	}
 
 	form: FormInterface = this._form.getForm(
@@ -48,10 +55,7 @@ export class PetdoctorsComponent {
 
 	load(): void {
 		this._petdoctorService
-			.get(
-				{ query: this.clinic_id ? 'clinic=' + this.clinic_id : '' },
-				{ name: 'public' }
-			)
+			.get({ query: this._query() }, { name: 'public' })
 			.subscribe((doctors) => {
 				this.doctors.splice(0, this.doctors.length);
 
@@ -59,7 +63,29 @@ export class PetdoctorsComponent {
 			});
 	}
 
+	//	TODO temporary code {
+	selectorsLoad(): void {
+		this._petclinicService
+			.get({}, { name: 'public' })
+			.subscribe((clinics) => {
+				this.clinics.splice(0, this.clinics.length);
+
+				this.clinics.push(...clinics);
+			});
+	}
+	//	}
+
 	private _preCreate(petdoctor: Petdoctor): void {
 		delete petdoctor.__created;
+	}
+
+	private _query(): string {
+		let query = '';
+
+		if (this.clinic_id) {
+			query += (query ? '&' : '') + 'clinic=' + this.clinic_id;
+		}
+
+		return query;
 	}
 }

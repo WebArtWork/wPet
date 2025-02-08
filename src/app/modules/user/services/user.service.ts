@@ -143,6 +143,8 @@ export class UserService extends CrudService<User> {
 	}
 
 	logout(): void {
+		this.core.emit('wipe');
+
 		this.user = this.new();
 
 		localStorage.removeItem('waw_user');
