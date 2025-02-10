@@ -18,15 +18,19 @@ export class NewhomeComponent {
 
 	load(): void {
 		this._petService
-			.get({}, { name: 'public' })
+			.get({ query: this._query() }, { name: 'public' })
 			.subscribe((availablePets) => {
 				this.availablePets.splice(0, this.availablePets.length);
-
-				const adoptablePets = availablePets.filter(
-					(pet) => pet.adoptable
-				);
-
-				this.availablePets.push(...adoptablePets);
+				this.availablePets.push(...availablePets);
 			});
+	}
+
+	private _query(): string {
+		let query = '';
+
+		if (this.availablePets) {
+			query += (query ? '&' : '') + 'adoptable=' + true;
+		}
+		return query;
 	}
 }
