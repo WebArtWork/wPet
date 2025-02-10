@@ -14,12 +14,12 @@ export class MypetsComponent {
 	get mypets(): Pet[] {
 		return this._petService.pets;
 	}
-	constructor(
-		private _petService: PetService,
-		private _form: FormService,
-	) { }
+	constructor(private _petService: PetService, private _form: FormService) {}
 
-	isMenuOpen = false
+	isMenuOpen = false;
+
+	species = '';
+	search = '';
 
 	form: FormInterface = this._form.getForm('pet', petFormComponents);
 
@@ -32,5 +32,27 @@ export class MypetsComponent {
 				close();
 			}
 		});
+	}
+
+	load(): void {
+		this._petService
+			.get({ query: this._query() }, { name: 'public' })
+			.subscribe((mypets) => {
+				this.mypets.splice(0, this.mypets.length);
+				this.mypets.push(...mypets);
+			});
+	}
+
+	private _query(): string {
+		let query = '';
+
+		if (this.species) {
+			query += (query ? '&' : '') + 'species=' + this.species;
+		}
+		if (this.search) {
+			query += (query ? '&' : '') + 'search=' + this.search;
+		}
+
+		return query;
 	}
 }

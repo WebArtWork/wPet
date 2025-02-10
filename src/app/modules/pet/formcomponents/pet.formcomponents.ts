@@ -18,7 +18,7 @@ export const petFormComponents = {
 			]
 		},
 		{
-			name: 'Text',
+			name: 'Select',
 			key: 'species',
 			fields: [
 				{
@@ -28,6 +28,10 @@ export const petFormComponents = {
 				{
 					name: 'Label',
 					value: 'Species'
+				},
+				{
+					name: 'Items',
+					value: ['Cat', 'Dog']
 				}
 			]
 		},
