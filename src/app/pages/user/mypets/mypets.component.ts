@@ -19,6 +19,10 @@ export class MypetsComponent {
 	isMenuOpen = false;
 
 	species = '';
+	breed = '';
+	gender = '';
+	adoptable = '';
+
 	search = '';
 
 	form: FormInterface = this._form.getForm('pet', petFormComponents);
@@ -48,6 +52,19 @@ export class MypetsComponent {
 
 		if (this.species) {
 			query += (query ? '&' : '') + 'species=' + this.species;
+		}
+		if (this.breed) {
+			query += (query ? '&' : '') + 'breed=' + this.breed;
+		}
+		if (this.gender) {
+			query += (query ? '&' : '') + 'gender=' + this.gender;
+		}
+		if (this.adoptable) {
+			if (this.adoptable === 'Adoptable') {
+				query += (query ? '&' : '') + 'adoptable=' + true;
+			} else {
+				query += (query ? '&' : '') + 'adoptable=' + false;
+			}
 		}
 		if (this.search) {
 			query += (query ? '&' : '') + 'search=' + this.search;

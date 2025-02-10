@@ -23,7 +23,7 @@ export const petFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill pet species'
+					value: 'choose pet species'
 				},
 				{
 					name: 'Label',
@@ -36,16 +36,20 @@ export const petFormComponents = {
 			]
 		},
 		{
-			name: 'Text',
+			name: 'Select',
 			key: 'breed',
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill pet breed'
+					value: 'choose pet breed'
 				},
 				{
 					name: 'Label',
 					value: 'Breed'
+				},
+				{
+					name: 'Items',
+					value: ['White', 'Black']
 				}
 			]
 		},
@@ -64,16 +68,20 @@ export const petFormComponents = {
 			]
 		},
 		{
-			name: 'Text',
+			name: 'Select',
 			key: 'gender',
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill pet gender'
+					value: 'choose pet gender'
 				},
 				{
 					name: 'Label',
 					value: 'Gender'
+				},
+				{
+					name: 'Items',
+					value: ['Male', 'Female']
 				}
 			]
 		},

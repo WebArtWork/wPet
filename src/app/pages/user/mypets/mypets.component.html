@@ -28,6 +28,24 @@
 							[clearable]="true"
 							(modelChange)="species=$event; load()"
 						></wselect>
+						<wselect
+							[placeholder]="'Breed'"
+							[items]="['White','Black']"
+							[clearable]="true"
+							(modelChange)="breed=$event; load()"
+						></wselect>
+						<wselect
+							[placeholder]="'Gender'"
+							[items]="['Male','Female']"
+							[clearable]="true"
+							(modelChange)="gender=$event; load()"
+						></wselect>
+						<wselect
+							[placeholder]="'Adoptable'"
+							[items]="['Adoptable','Not adoptable']"
+							[clearable]="true"
+							(modelChange)="adoptable=$event; load()"
+						></wselect>
 					</div>
 					<div>
 						<winput
