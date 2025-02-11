@@ -228,6 +228,17 @@
 					<span class="material-icons">store</span>
 					<span translate>Theme.Store</span>
 				</a>
+				<hr />
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/petplaces"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">place</span>
+					<span translate>Theme.Places</span>
+				</a>
 			</div>
 		</div>
 		<router-outlet></router-outlet>

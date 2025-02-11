@@ -1,0 +1,6 @@
+<a routerLink="/petstorepage/{{places._id}}">
+	<div class="documents__title">{{places.name}}</div>
+	<div class="documents__description">{{places.description}}</div>
+</a>
+<span (click)="update(places)" class="material-icons">edit</span>
+<span (click)="delete(places)" class="material-icons">delete</span>

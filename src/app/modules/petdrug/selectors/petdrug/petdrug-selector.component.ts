@@ -16,7 +16,7 @@ import { Petdrug } from '../../interfaces/petdrug.interface';
 	styleUrls: ['./petdrug-selector.component.scss'],
 	imports: [SelectModule]
 })
-export class SelectUserComponentDrug implements OnChanges {
+export class SelectPetdrugComponent implements OnChanges {
 	@Input() value: string;
 
 	@Output() wChange = new EventEmitter();

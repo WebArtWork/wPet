@@ -16,7 +16,7 @@ import { Petitem } from '../../interfaces/petitem.interface';
 	styleUrls: ['./petitem-selector.component.scss'],
 	imports: [SelectModule]
 })
-export class SelectUserComponentItem implements OnChanges {
+export class SelectPetitemComponent implements OnChanges {
 	@Input() value: string;
 
 	@Output() wChange = new EventEmitter();
