@@ -13,15 +13,15 @@ const routes: Routes = [
 		component: PetstoreComponent
 	},
 	{
-		path: ':drug_id',
+		path: ':store_drug',
 		component: PetstoreComponent
 	},
 	{
-		path: ':food_id',
+		path: ':store_food',
 		component: PetstoreComponent
 	},
 	{
-		path: ':item_id',
+		path: ':store_item',
 		component: PetstoreComponent
 	}
 ];

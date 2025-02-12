@@ -38,7 +38,7 @@ export class PetstoreComponent {
 		private _petitemService: PetitemService
 	) {
 		this.load();
-		// this.selectorsLoad();
+		this.selectorsLoad();
 	}
 
 	form: FormInterface = this._form.getForm(
@@ -74,23 +74,23 @@ export class PetstoreComponent {
 	}
 
 	//	TODO temporary code {
-	// selectorsLoad(): void {
-	// 	this._petdrugService.get({}, { name: 'public' }).subscribe((drugs) => {
-	// 		this.drugs.splice(0, this.drugs.length);
+	selectorsLoad(): void {
+		this._petdrugService.get({}, { name: 'public' }).subscribe((drugs) => {
+			this.drugs.splice(0, this.drugs.length);
 
-	// 		this.drugs.push(...drugs);
-	// 	});
-	// 	this._petfoodService.get({}, { name: 'public' }).subscribe((food) => {
-	// 		this.food.splice(0, this.food.length);
+			this.drugs.push(...drugs);
+		});
+		this._petfoodService.get({}, { name: 'public' }).subscribe((food) => {
+			this.food.splice(0, this.food.length);
 
-	// 		this.food.push(...food);
-	// 	});
-	// 	this._petitemService.get({}, { name: 'public' }).subscribe((items) => {
-	// 		this.items.splice(0, this.items.length);
+			this.food.push(...food);
+		});
+		this._petitemService.get({}, { name: 'public' }).subscribe((items) => {
+			this.items.splice(0, this.items.length);
 
-	// 		this.items.push(...items);
-	// 	});
-	// }
+			this.items.push(...items);
+		});
+	}
 	//	}
 
 	private _preCreate(petstores: Petstore): void {
@@ -101,13 +101,13 @@ export class PetstoreComponent {
 		let query = '';
 
 		if (this.store_drug) {
-			query += (query ? '&' : '') + 'drug=' + this.store_drug;
+			query += (query ? '&' : '') + 'store_drug=' + this.store_drug;
 		}
 		if (this.store_food) {
-			query += (query ? '&' : '') + 'food=' + this.store_food;
+			query += (query ? '&' : '') + 'store_food=' + this.store_food;
 		}
 		if (this.store_item) {
-			query += (query ? '&' : '') + 'item=' + this.store_item;
+			query += (query ? '&' : '') + 'store_item=' + this.store_item;
 		}
 
 		return query;
