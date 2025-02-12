@@ -21,6 +21,7 @@
 			#inputEl
 		/>
 		<i
+			*ngIf="clearable"
 			style="position: absolute; right: 7px; bottom: 8px"
 			(click)="value = null; onSubmit(); focus()"
 			class="material-icons"

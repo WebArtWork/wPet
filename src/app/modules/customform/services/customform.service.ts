@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-	AlertService,
-	CoreService,
-	HttpService,
-	StoreService,
-	CrudService,
-	CrudDocument
-} from 'wacom';
+import { CoreService, CrudService, CrudDocument } from 'wacom';
 
 export interface CustomformcomponnetfieldInterface {
 	name: string;
@@ -37,21 +30,10 @@ export interface Customform extends CrudDocument {
 export class CustomformService extends CrudService<Customform> {
 	customforms: Customform[] = [];
 
-	constructor(
-		_http: HttpService,
-		_store: StoreService,
-		_alert: AlertService,
-		_core: CoreService
-	) {
-		super(
-			{
-				name: 'form'
-			},
-			_http,
-			_store,
-			_alert,
-			_core
-		);
+	constructor(_core: CoreService) {
+		super({
+			name: 'form'
+		});
 
 		this.get().subscribe((customforms: Customform[]) =>
 			this.customforms.push(...customforms)

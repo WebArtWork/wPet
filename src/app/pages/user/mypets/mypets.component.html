@@ -50,8 +50,9 @@
 					<div>
 						<winput
 							[type]="'search'"
-							(wChange)="search=$event.toString();"
+							(wChange)="search = $event + ''"
 							(wSubmit)="load()"
+							[clearable]="true"
 						></winput>
 					</div>
 				</div>
