@@ -3,7 +3,7 @@
 
 	<label *ngIf="!multiple" for="formPhoto">
 		<img
-			[src]="(force || value ? url : '') + (force || value || '/assets/default.png')"
+			[src]="(!(force || value || '').includes('assets/default.png') && !(force || value || '').includes('https') ? url : '') + ( value || '/assets/default.png')"
 			(error)="force = err"
 			[ngStyle]="imgStyle"
 			class="file__img"
@@ -16,7 +16,7 @@
 	<div *ngIf="multiple" class="file__list">
 		<div *ngFor="let file of files; index as i" class="file__item">
 			<img
-				[src]="(force || value ? url : '')  + file"
+				[src]="(!(force || value || '').includes('assets/default.png') && !(force || value || '').includes('https') ? url : '')  + file"
 				alt="Picture"
 				class="file__item-img"
 			/>

@@ -24,7 +24,7 @@
 		"socket.io-client": "^4.5.1",
 		"tinymce": "^7.5.1",
 		"tslib": "^2.3.0",
-		"wacom": "^19.1.0",
+		"wacom": "^19.2.3",
 		"zone.js": "~0.15.0"
 	},
 	"devDependencies": {

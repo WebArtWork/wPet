@@ -3,9 +3,9 @@ import { FormService } from '../../modules/form/form.service';
 
 interface Interface {}
 @Component({
-    templateUrl: './number.component.html',
-    styleUrls: ['./number.component.scss'],
-    standalone: false
+	templateUrl: './number.component.html',
+	styleUrls: ['./number.component.scss'],
+	standalone: false
 })
 export class NumberComponent implements OnInit {
 	@ViewChild('templateRef', { static: true })

@@ -42,7 +42,7 @@
 		/* Ensure compatibility across browsers */
 		appearance: textfield;
 		-webkit-appearance: textfield; /* For WebKit-based browsers */
-		-moz-appearance: textfield;    /* For Mozilla-based browsers */
+		-moz-appearance: textfield; /* For Mozilla-based browsers */
 
 		&::placeholder {
 			color: var(--c-placeholder);
@@ -81,7 +81,8 @@
 }
 
 /* Error Styling */
-input.error, textarea.error {
+input.error,
+textarea.error {
 	border: 1px solid red; /* Red border to indicate validation error */
 }
 
@@ -99,32 +100,78 @@ input.error, textarea.error {
 	display: flex;
 	column-gap: 5px;
 	cursor: pointer;
-
+	
+	input{
+		width: 0;
+		height: 0;
+		overflow: hidden;
+	}
+	.form-label{
+		line-height: unset;
+		display: flex;
+		align-items: center;
+		font-weight: 500;
+		font-size: 18px;
+	}
 	/* Custom radio button checkbox styling */
-	.checkbox {
+	.mark{
 		position: relative;
-		width: 18px;
-		height: 18px;
+		width: 26px;
+		height: 26px;
 		display: inline-block;
 		border-radius: 4px;
+		background-color: var(--c-primary);
 		transform: scale(1);
 		border: 1px solid var(--c-border);
 		transition: var(--transition);
 		box-shadow: 0 1px 1px var(--c-shadow);
-
+		order: -1;
 		&::before {
 			position: absolute;
 			left: 50%;
 			top: 50%;
 			transition: var(--transition);
 			opacity: 0;
-			transform: translate(-50%, -65%) rotate(45deg);
-			height: 11px;
+			transform: translate(-50%, -71%) rotate(45deg);
+			height: 14px;
 			width: 7px;
 			display: block;
-			content: '';
-			border-bottom: 2px solid var(--c-primary);
-			border-right: 2px solid var(--c-primary);
+			content: "";
+			border-bottom: 3px solid #ffffff;
+			border-right: 3px solid #ffffff;
+		}
+		&--radio{
+			border-radius: 120px;
+			&::before{
+				transform: translate(-50%, -50%) rotate(45deg);
+				border-bottom: unset;
+    			border-right: unset;
+				width: 12px;
+				height: 12px;
+				border-radius: 120px;
+				background: #ffff;
+			}
+		}
+	}
+	
+	.checkbox {
+
+
+
+	}
+	input:checked ~ .mark {
+		&--radio{
+			&::before {
+				opacity: 1;
+			}
+		}
+		&::before {
+			opacity: 1;
+		}
+	}
+	input:checked ~ .mark--radio {
+		&::before {
+			opacity: 1;
 		}
 	}
 }
@@ -151,9 +198,7 @@ input.error, textarea.error {
 
 	/* Custom checkbox styling */
 	.checkmark {
-		position: absolute;
-		top: 0;
-		left: 0;
+		position: relative;
 		height: 32px;
 		width: 32px;
 		background-color: #12677a6e;
@@ -178,15 +223,19 @@ input.error, textarea.error {
 		}
 	}
 
-	&:hover input ~ .checkmark {
+	&:hover input ~ .mark {
 		background-color: #0f353d60;
 	}
 
-	input:checked ~ .checkmark {
+	input:checked ~ .mark {
 		background-color: var(--c-primary);
 
 		&:after {
 			display: block;
 		}
 	}
+}
+.check-text{
+    margin-left: 0;
+    line-height: 0;
 }

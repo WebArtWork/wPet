@@ -1,4 +1,4 @@
-import { CrudDocument } from "wacom";
+import { CrudDocument } from 'wacom';
 
 export interface User extends CrudDocument {
 	data: Record<string, unknown>;

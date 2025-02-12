@@ -2,9 +2,9 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormService } from '../../modules/form/form.service';
 interface Interface {}
 @Component({
-    templateUrl: './time.component.html',
-    styleUrls: ['./time.component.scss'],
-    standalone: false
+	templateUrl: './time.component.html',
+	styleUrls: ['./time.component.scss'],
+	standalone: false
 })
 export class TimeComponent implements OnInit {
 	@ViewChild('templateRef', { static: true })

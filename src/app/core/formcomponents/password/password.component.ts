@@ -3,9 +3,9 @@ import { FormService } from '../../modules/form/form.service';
 import { UiService } from 'wacom';
 interface Interface {}
 @Component({
-    templateUrl: './password.component.html',
-    styleUrls: ['./password.component.scss'],
-    standalone: false
+	templateUrl: './password.component.html',
+	styleUrls: ['./password.component.scss'],
+	standalone: false
 })
 export class PasswordComponent implements OnInit {
 	@ViewChild('templateRef', { static: true })

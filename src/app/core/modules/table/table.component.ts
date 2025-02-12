@@ -23,10 +23,10 @@ import { StoreService } from 'wacom';
  * features like sorting, pagination, search, and custom action buttons.
  */
 @Component({
-    selector: 'wtable',
-    templateUrl: './table.component.html',
-    styleUrls: ['./table.component.scss'],
-    standalone: false
+	selector: 'wtable',
+	templateUrl: './table.component.html',
+	styleUrls: ['./table.component.scss'],
+	standalone: false
 })
 export class TableComponent implements OnInit, AfterContentInit {
 	constructor(private _router: Router, private _store: StoreService) {}

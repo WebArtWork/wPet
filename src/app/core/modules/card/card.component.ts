@@ -1,4 +1,10 @@
-import { Component, Input, AfterContentInit, ContentChild, ElementRef } from '@angular/core';
+import {
+	Component,
+	Input,
+	AfterContentInit,
+	ContentChild,
+	ElementRef
+} from '@angular/core';
 
 /**
  * CardComponent is a flexible container that can be used to display various types
@@ -6,10 +12,10 @@ import { Component, Input, AfterContentInit, ContentChild, ElementRef } from '@a
  * It supports a flexible layout with optional header and footer sections.
  */
 @Component({
-    selector: 'wcard',
-    templateUrl: './card.component.html',
-    styleUrls: ['./card.component.scss'],
-    standalone: false
+	selector: 'wcard',
+	templateUrl: './card.component.html',
+	styleUrls: ['./card.component.scss'],
+	standalone: false
 })
 export class CardComponent implements AfterContentInit {
 	/**
@@ -33,8 +39,12 @@ export class CardComponent implements AfterContentInit {
 	 */
 	hasFooter = false;
 
-	@ContentChild('header', { static: false }) headerContent: ElementRef | undefined;
-	@ContentChild('footer', { static: false }) footerContent: ElementRef | undefined;
+	@ContentChild('header', { static: false }) headerContent:
+		| ElementRef
+		| undefined;
+	@ContentChild('footer', { static: false }) footerContent:
+		| ElementRef
+		| undefined;
 
 	ngAfterContentInit(): void {
 		this.hasHeader = !!this.headerContent;

@@ -20,12 +20,13 @@
 	@media screen and (max-width: 599px) {
 		padding-bottom: 20px;
 	}
-	.edit-header{
+	.edit-header {
 		height: 45px;
 		@media screen and (max-width: 599px) {
 			height: 38px;
 		}
-		.edit, .playlist{
+		.edit,
+		.playlist {
 			height: 45px;
 		}
 	}
@@ -50,7 +51,7 @@
 			background-color: var(--c-primary);
 			color: var(--c-primary);
 			border: 1px solid var(--c-primary);
-			button{
+			button {
 				width: unset !important;
 			}
 
@@ -489,6 +490,6 @@
 	}
 }
 
-.users__btns{
+.users__btns {
 	display: flex;
 }

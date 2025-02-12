@@ -4,10 +4,10 @@ import { FormService } from '../../modules/form/form.service';
 interface Interface {}
 
 @Component({
-    selector: 'button-formcomponents',
-    templateUrl: './button.component.html',
-    styleUrls: ['./button.component.scss'],
-    standalone: false
+	selector: 'button-formcomponents',
+	templateUrl: './button.component.html',
+	styleUrls: ['./button.component.scss'],
+	standalone: false
 })
 export class ButtonComponent implements OnInit {
 	@ViewChild('templateRef', { static: true })

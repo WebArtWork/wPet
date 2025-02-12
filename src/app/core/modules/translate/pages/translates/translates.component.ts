@@ -16,9 +16,9 @@ interface TranslateAll {
 }
 
 @Component({
-    templateUrl: './translates.component.html',
-    styleUrls: ['./translates.component.scss'],
-    standalone: false
+	templateUrl: './translates.component.html',
+	styleUrls: ['./translates.component.scss'],
+	standalone: false
 })
 export class TranslatesComponent {
 	columns = ['page', 'word', 'translation'];
@@ -145,8 +145,8 @@ export class TranslatesComponent {
 	translateAll(missed = false): void {
 		const rows = missed
 			? this.rows.filter(
-				(r) => !this.ts.translates[this.ts.language.code][r.slug]
-			)
+					(r) => !this.ts.translates[this.ts.language.code][r.slug]
+			  )
 			: this.rows;
 		const words = JSON.stringify(rows.map((r) => r.word));
 		const slugs = rows.map((r) => r.slug);

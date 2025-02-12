@@ -5,14 +5,17 @@
 ## Installation
 
 To install the module, run:
+
 ```cmd
 waw add ngx-table
 ```
+
 ## Usage
 
 ### Basic Usage
 
 To use `ngx-table`, first import the module in your Angular application:
+
 ```Typescript
 import { TableModule } from 'ngx-table';
 
@@ -21,28 +24,32 @@ import { TableModule } from 'ngx-table';
 })
 export class AppModule {}
 ```
+
 ### Component Inputs
 
-- `title`: The title of the table.
-- `columns`: Array of column definitions with properties `title` and `field`.
-- `rows`: Array of data rows to display in the table.
-- `config`: Configuration object for the table with options like `perPage`, `pageSizeOptions`, `searchable`, etc.
+-   `title`: The title of the table.
+-   `columns`: Array of column definitions with properties `title` and `field`.
+-   `rows`: Array of data rows to display in the table.
+-   `config`: Configuration object for the table with options like `perPage`, `pageSizeOptions`, `searchable`, etc.
 
 ### Example
+
 ```Typescript
 <wtable [title]="'User List'" [columns]="columns" [rows]="rows" [config]="config"></wtable>
 ```
+
 ### Configuration
 
-- `pageSizeOptions`: Array of numbers for items per page options.
-- `perPage`: Number of items to show per page (-1 for all).
-- `page`: Current page number.
-- `searchable`: Boolean, whether to enable search functionality.
-- `create`: Function to execute when the "Add New" button is clicked.
+-   `pageSizeOptions`: Array of numbers for items per page options.
+-   `perPage`: Number of items to show per page (-1 for all).
+-   `page`: Current page number.
+-   `searchable`: Boolean, whether to enable search functionality.
+-   `create`: Function to execute when the "Add New" button is clicked.
 
 ### Custom Templates
 
 `ngx-table` allows you to use custom templates for cells and actions:
+
 ```Typescript
 <ng-template cell="email" let-row>
   <a [href]="'mailto:' + row.email">{{ row.email }}</a>

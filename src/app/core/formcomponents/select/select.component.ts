@@ -4,9 +4,9 @@ import { FormService } from '../../modules/form/form.service';
 interface Interface {}
 
 @Component({
-    templateUrl: './select.component.html',
-    styleUrls: ['./select.component.scss'],
-    standalone: false
+	templateUrl: './select.component.html',
+	styleUrls: ['./select.component.scss'],
+	standalone: false
 })
 export class SelectComponent implements OnInit {
 	@ViewChild('templateRef', { static: true })

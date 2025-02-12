@@ -17,10 +17,10 @@ import {
  * and items.
  */
 @Component({
-    selector: 'wselect',
-    templateUrl: './select.component.html',
-    styleUrls: ['./select.component.scss'],
-    standalone: false
+	selector: 'wselect',
+	templateUrl: './select.component.html',
+	styleUrls: ['./select.component.scss'],
+	standalone: false
 })
 export class SelectComponent implements OnInit, OnChanges {
 	/** Placeholder text for the select input. */

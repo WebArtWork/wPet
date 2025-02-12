@@ -1,5 +1,5 @@
 {
-	"repo" : "git@github.com:WebArtWork/ngx-file.git",
+	"repo": "git@github.com:WebArtWork/ngx-file.git",
 	"dependencies": {
 		"ngx-image-cropper": "*"
 	},

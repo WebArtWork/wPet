@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 import { CalendarDate } from './calendar.interface';
 
 @Component({
-    selector: 'wcalendar',
-    templateUrl: './calendar.component.html',
-    styleUrls: ['./calendar.component.scss'],
-    standalone: false
+	selector: 'wcalendar',
+	templateUrl: './calendar.component.html',
+	styleUrls: ['./calendar.component.scss'],
+	standalone: false
 })
 export class CalendarComponent {
 	@Input() eventsByDate: Record<string, CalendarDate[]> = {};

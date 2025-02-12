@@ -4,9 +4,9 @@ import { FormService } from '../../modules/form/form.service';
 interface Interface {}
 
 @Component({
-    templateUrl: './email.component.html',
-    styleUrls: ['./email.component.scss'],
-    standalone: false
+	templateUrl: './email.component.html',
+	styleUrls: ['./email.component.scss'],
+	standalone: false
 })
 export class EmailComponent implements OnInit {
 	@ViewChild('templateRef', { static: true })

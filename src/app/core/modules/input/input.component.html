@@ -5,20 +5,28 @@
 	[for]="name"
 >
 	<span class="w-forms__title" *ngIf="label">{{ label }}</span>
-	<input
-		[placeholder]="placeholder || 'Enter text...'"
-		(ngModelChange)="value = $event; onChange()"
-		(keyup.enter)="onSubmit()"
-		[type]="type || 'text'"
-		class="w-forms__input"
-		(blur)="wBlur.emit()"
-		[class.error]="error"
-		[disabled]="disabled"
-		[ngModel]="value"
-		[ngClass]="wClass"
-		[name]="name"
-		#inputEl
-	/>
+	<div style="position: relative">
+		<input
+			[placeholder]="placeholder || 'Enter text...'"
+			(ngModelChange)="value = $event; onChange(); error = false"
+			(keyup.enter)="onSubmit()"
+			[type]="type || 'text'"
+			class="w-forms__input"
+			(blur)="wBlur.emit()"
+			[class.error]="error"
+			[disabled]="disabled"
+			[ngModel]="value"
+			[ngClass]="wClass"
+			[name]="name"
+			#inputEl
+		/>
+		<i
+			style="position: absolute; right: 7px; bottom: 8px"
+			(click)="value = null; onSubmit(); focus()"
+			class="material-icons"
+			>close</i
+		>
+	</div>
 	<!-- Error Message Display -->
 	<div *ngIf="error" class="error-message">
 		{{ label || placeholder }} is invalid.
@@ -54,10 +62,12 @@
 <ng-container *ngIf="type === 'radio'">
 	<label class="check-label" *ngFor="let item of items">
 		<span class="form-label">{{ item }}</span>
+
 		<input
 			(ngModelChange)="value = $event; onChange()"
 			[disabled]="disabled"
 			[class.error]="error"
+			class="w-input__checkbox"
 			[ngModel]="value"
 			[ngClass]="wClass"
 			[value]="item"
@@ -65,26 +75,46 @@
 			type="radio"
 			#inputEl
 		/>
-		<span class="checkbox _radio"></span>
+
+		<span class="mark mark--radio"></span>
 		<ng-content></ng-content>
 	</label>
 </ng-container>
 
 <!-- Checkboxes -->
 <ng-container *ngIf="type === 'checkbox'">
-	<label class="container-box">
-		<input
-			(ngModelChange)="value = $event; onChange()"
-			class="w-input__checkbox"
-			[disabled]="disabled"
-			[class.error]="error"
-			[ngModel]="value"
-			[ngClass]="wClass"
-			type="checkbox"
-			[name]="name"
-			#inputEl
-		/>
-		<span class="checkmark"></span>
-		<span class="check-text" *ngIf="label">{{ label }}</span>
-	</label>
+	<ng-container *ngIf="items?.length">
+		<label class="check-label" *ngFor="let item of items; index as i">
+			<span class="form-label">{{ item }}</span>
+			<input
+				(ngModelChange)="setCheckboxValue($event, i); onChange()"
+				class="w-input__checkbox"
+				[disabled]="disabled"
+				[class.error]="error"
+				ngModel
+				[ngClass]="wClass"
+				type="checkbox"
+				[name]="name+i"
+				#inputEl
+			/>
+			<span class="mark"></span>
+		</label>
+	</ng-container>
+	<ng-container *ngIf="!items?.length">
+		<label class="check-label">
+			<span class="check-text form-label" *ngIf="label">{{ label }}</span>
+			<input
+				(ngModelChange)="value = $event; onChange()"
+				class="w-input__checkbox"
+				[disabled]="disabled"
+				[class.error]="error"
+				[ngModel]="value"
+				[ngClass]="wClass"
+				type="checkbox"
+				[name]="name"
+				#inputEl
+			/>
+			<span class="mark"></span>
+		</label>
+	</ng-container>
 </ng-container>

@@ -4,9 +4,9 @@ import { FormService } from '../../modules/form/form.service';
 interface Interface {}
 
 @Component({
-    templateUrl: './text.component.html',
-    styleUrls: ['./text.component.scss'],
-    standalone: false
+	templateUrl: './text.component.html',
+	styleUrls: ['./text.component.scss'],
+	standalone: false
 })
 export class TextComponent implements OnInit {
 	@ViewChild('templateRef', { static: true })

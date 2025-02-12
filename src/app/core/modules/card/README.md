@@ -4,11 +4,11 @@ The Card Module is a highly flexible Angular component designed to act as a cont
 
 ## Features
 
-- Flexible layout for various content types.
-- Optional header and footer sections.
-- Supports custom CSS classes for further styling.
-- Uses CSS Flexbox for responsive and adaptive layout design.
-- Accepts an array of strings to render multiple body sections.
+-   Flexible layout for various content types.
+-   Optional header and footer sections.
+-   Supports custom CSS classes for further styling.
+-   Uses CSS Flexbox for responsive and adaptive layout design.
+-   Accepts an array of strings to render multiple body sections.
 
 ## Installation
 
@@ -21,6 +21,7 @@ waw add ngx-card
 ### Importing the Module
 
 First, import the `CardModule` into your Angular module:
+
 ```Typescript
 import { CardModule } from '@your-namespace/card-module';
 
@@ -35,9 +36,11 @@ import { CardModule } from '@your-namespace/card-module';
 })
 export class AppModule { }
 ```
+
 ### Basic Example
 
 Here’s a basic example of how to use the card component to display custom content:
+
 ```Typescript
 <wcard>
   <div class="user-profile">
@@ -47,9 +50,11 @@ Here’s a basic example of how to use the card component to display custom cont
   </div>
 </wcard>
 ```
+
 ### Using Header and Footer
 
 You can optionally add a header and footer to the card:
+
 ```Typescript
 <wcard
   [header]="headerTemplate"
@@ -71,9 +76,11 @@ You can optionally add a header and footer to the card:
   <button class="buy-now">Buy Now</button>
 </ng-template>
 ```
+
 ### Using `sections`
 
 The `sections` input allows you to pass an array of strings to the card component. Each string will be rendered as a separate section within the card body:
+
 ```Typescript
 <wcard [sections]="['Section 1', 'Section 2', 'Section 3']">
   <div header>
@@ -85,9 +92,11 @@ The `sections` input allows you to pass an array of strings to the card componen
   </div>
 </wcard>
 ```
+
 ### Custom Classes
 
 You can provide custom classes for additional styling:
+
 ```Typescript
 <wcard [cardClass]="'custom-card-class'">
   <div class="custom-content">
@@ -95,14 +104,15 @@ You can provide custom classes for additional styling:
   </div>
 </wcard>
 ```
+
 ## API
 
 ### Inputs
 
-- **cardClass** (`string`): Custom CSS classes to apply to the card.
-- **sections** (`string[] | null`): Array of strings representing multiple content sections in the body.
-- **header** (`TemplateRef<any> | null`): Optional header template for the card.
-- **footer** (`TemplateRef<any> | null`): Optional footer template for the card.
+-   **cardClass** (`string`): Custom CSS classes to apply to the card.
+-   **sections** (`string[] | null`): Array of strings representing multiple content sections in the body.
+-   **header** (`TemplateRef<any> | null`): Optional header template for the card.
+-   **footer** (`TemplateRef<any> | null`): Optional footer template for the card.
 
 ## Customization
 

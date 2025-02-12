@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+	Component,
+	EventEmitter,
+	Input,
+	OnChanges,
+	OnInit,
+	Output,
+	SimpleChanges
+} from '@angular/core';
 import { HttpService, ModalService } from 'wacom';
 import { FileService } from './file.service';
 import { FileCropperComponent } from './file-cropper/file-cropper.component';
@@ -10,12 +18,12 @@ import { environment } from 'src/environments/environment';
  * multiple file uploads.
  */
 @Component({
-    selector: 'ngx-file',
-    templateUrl: './file.component.html',
-    styleUrls: ['./file.component.scss'],
-    standalone: false
+	selector: 'ngx-file',
+	templateUrl: './file.component.html',
+	styleUrls: ['./file.component.scss'],
+	standalone: false
 })
-export class FileComponent implements OnInit {
+export class FileComponent implements OnInit, OnChanges {
 	readonly url = environment.url;
 
 	/**
@@ -109,7 +117,16 @@ export class FileComponent implements OnInit {
 	ngOnInit(): void {
 		if (!this.name && !this.multiple && this.value) {
 			const paths = ((this.value as string) || '').split('/');
+
 			this.name = paths[paths.length - 1].split('?')[0];
+		}
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes['value']) {
+			this.value = changes['value'].currentValue;
+
+			this.force = '';
 		}
 	}
 
@@ -117,7 +134,7 @@ export class FileComponent implements OnInit {
 	 * Initiates the file selection and cropping process.
 	 */
 	set(): void {
-		this._fs.setFile = (dataUrl: string) => {
+		this._fs.setFile = (dataUrl: string): void => {
 			if (this.width && this.height) {
 				this._modal.show({
 					uploadImage: this.uploadImage.bind(this),
@@ -144,7 +161,7 @@ export class FileComponent implements OnInit {
 				name: this.name,
 				dataUrl
 			},
-			(url) => {
+			(url: string) => {
 				if (this.multiple) {
 					if (!this.value) {
 						this.value = [];
@@ -153,6 +170,7 @@ export class FileComponent implements OnInit {
 					(this.value as string[]).push(url);
 				} else {
 					this.name = url.split('/')[5].split('?')[0];
+
 					this.value = url;
 				}
 

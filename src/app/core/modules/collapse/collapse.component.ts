@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 import { Collapse } from './collapse.interface';
 
 @Component({
-    selector: 'wcollapse',
-    templateUrl: './collapse.component.html',
-    styleUrls: ['./collapse.component.scss'],
-    standalone: false
+	selector: 'wcollapse',
+	templateUrl: './collapse.component.html',
+	styleUrls: ['./collapse.component.scss'],
+	standalone: false
 })
 export class CollapseComponent {
 	@Input() config: Collapse;
@@ -14,7 +14,7 @@ export class CollapseComponent {
 		this.config = this.config || ({} as Collapse);
 
 		this.config.show =
-			typeof this.config.show === 'boolean' ? this.config.show : false; 
+			typeof this.config.show === 'boolean' ? this.config.show : false;
 
 		this.config.toggle = this.config.toggle || this.toggle.bind(this);
 		this.config.open = this.config.open || this.open.bind(this);

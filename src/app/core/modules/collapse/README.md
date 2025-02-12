@@ -14,10 +14,6 @@
 ```
 
 ```html
-config = {
-	show: false,
-	toggle: function() { this.show = !this.show },
-	open: function() { this.show = true },
-	close: function() { this.show = false }
-}
+config = { show: false, toggle: function() { this.show = !this.show }, open:
+function() { this.show = true }, close: function() { this.show = false } }
 ```

@@ -4,9 +4,9 @@ import { FormService } from '../../modules/form/form.service';
 interface Interface {}
 
 @Component({
-    templateUrl: './tags.component.html',
-    styleUrls: ['./tags.component.scss'],
-    standalone: false
+	templateUrl: './tags.component.html',
+	styleUrls: ['./tags.component.scss'],
+	standalone: false
 })
 export class TagsComponent implements OnInit {
 	@ViewChild('templateRef', { static: true })
@@ -18,19 +18,17 @@ export class TagsComponent implements OnInit {
 		this._form.addTemplateComponent<Interface>('Tags', this.templateRef);
 	}
 
-	@ViewChild('inputRef', { static: false }) inputRef: any;
-
 	addTag(data: any): void {
 		data.submition[data.key] = data.submition[data.key] || [];
 
-		data.submition[data.key].push(this.inputRef.value.replace('\n', ''));
+		data.submition[data.key].push(data.field.__name);
 
-		this.inputRef.value = '';
+		data.field.__name = '';
 
-		data.wChange.emit();
+		data.wChange();
 
 		setTimeout(() => {
-			this.inputRef.focus();
+			data.field.focus();
 		}, 100);
 	}
 }

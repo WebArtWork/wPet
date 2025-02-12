@@ -1,8 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'perPage',
-    standalone: false
+	name: 'perPage',
+	standalone: false
 })
 export class PerPagePipe implements PipeTransform {
 	/**

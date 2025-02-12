@@ -6,10 +6,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
  * disabled states and custom click events.
  */
 @Component({
-    selector: 'wbutton',
-    templateUrl: './button.component.html',
-    styleUrls: ['./button.component.scss'],
-    standalone: false
+	selector: 'wbutton',
+	templateUrl: './button.component.html',
+	styleUrls: ['./button.component.scss'],
+	standalone: false
 })
 export class ButtonComponent {
 	/**

@@ -11,37 +11,44 @@ import {
 } from '@angular/core';
 import { CoreService } from 'wacom';
 
+export type Value =
+	| null
+	| string
+	| number
+	| boolean
+	| string[]
+	| number[]
+	| boolean[];
+
 /**
  * InputComponent is a customizable input component that supports various types of inputs,
  * including text, radio buttons, checkboxes, and textareas. It also provides validation,
  * custom value replacement, and event handling for changes, submissions, and blur events.
  */
 @Component({
-    selector: 'winput',
-    templateUrl: './input.component.html',
-    styleUrls: ['./input.component.scss'],
-    standalone: false
+	selector: 'winput',
+	templateUrl: './input.component.html',
+	styleUrls: ['./input.component.scss'],
+	standalone: false
 })
 export class InputComponent implements OnInit, OnChanges {
 	/**
 	 * The value of the input field.
 	 */
-	@Input() value: string | number | boolean = '';
+	@Input() value: Value = '';
+
+	@Input() clearable: boolean = false;
 
 	/**
 	 * A function to replace the input value before emitting changes.
 	 * This allows custom transformations of the input value.
 	 */
-	@Input() replace: (
-		value: string | number | boolean
-	) => string | number | boolean;
+	@Input() replace: (value: Value) => Value;
 
 	/**
 	 * A function to validate the input value. The default implementation checks for a truthy value.
 	 */
-	@Input() valid: (value: string | number | boolean) => boolean = (
-		value: string | number | boolean
-	) => !!value;
+	@Input() valid: (value: Value) => boolean = (value: Value) => !!value;
 
 	/**
 	 * A list of items used for radio buttons or other list-based inputs.
@@ -111,12 +118,12 @@ export class InputComponent implements OnInit, OnChanges {
 	/**
 	 * Event emitted when the input value changes.
 	 */
-	@Output() wChange = new EventEmitter<string | number | boolean>();
+	@Output() wChange = new EventEmitter<Value>();
 
 	/**
 	 * Event emitted when the form is submitted.
 	 */
-	@Output() wSubmit = new EventEmitter<string | number | boolean>();
+	@Output() wSubmit = new EventEmitter<Value>();
 
 	/**
 	 * Event emitted when the input field loses focus.
@@ -154,6 +161,10 @@ export class InputComponent implements OnInit, OnChanges {
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes['disabled']) {
 			this.disabled = changes['disabled'].currentValue;
+		}
+
+		if (changes['value'] && this.value !== changes['value'].currentValue) {
+			this.value = changes['value'].currentValue;
 		}
 	}
 
@@ -202,5 +213,23 @@ export class InputComponent implements OnInit, OnChanges {
 	 */
 	setDisabled(disabled: boolean): void {
 		this.disabled = disabled;
+	}
+
+	setCheckboxValue(add: boolean, i: number): void {
+		this.value = Array.isArray(this.value) ? this.value : [];
+
+		const index = (
+			this.value as Array<string | number | boolean>
+		).findIndex((item) => item === this.items[i]);
+
+		if (index !== -1) {
+			(this.value as Array<string | number | boolean>).splice(index, 1);
+		}
+
+		if (add) {
+			(this.value as Array<string | number | boolean>).push(
+				this.items[i]
+			);
+		}
 	}
 }
