@@ -7,7 +7,9 @@ export interface Petplace extends CrudDocument {
 	store: string;
 
 	address: string;
-    latitude: string;
-    longitude: string;
-    placeType: string;
+	latitude: string;
+	longitude: string;
+	placeType: string;
+
+	link: string;
 }

@@ -6,8 +6,10 @@ export interface Petfood extends CrudDocument {
 	place: string;
 
 	foodbrand: string;
-    foodtype: string;
-    flavor: string;
-    quantity: string;
-    feedinginstructions: string;
+	foodtype: string;
+	flavor: string;
+	quantity: string;
+	feedinginstructions: string;
+
+	link: string;
 }

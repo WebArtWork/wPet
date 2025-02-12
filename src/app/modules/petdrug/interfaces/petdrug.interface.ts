@@ -6,7 +6,9 @@ export interface Petdrug extends CrudDocument {
 	place: string;
 
 	dosage: string;
-    frequency: string;
-    usageperiod: string;
-    purpose: string;
+	frequency: string;
+	usageperiod: string;
+	purpose: string;
+
+	link: string;
 }

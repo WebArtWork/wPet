@@ -6,7 +6,9 @@ export interface Petitem extends CrudDocument {
 	place: string;
 
 	itemtype: string;
-    material: string;
-    price: string;
-    purchasedate: string;
+	material: string;
+	price: string;
+	purchasedate: string;
+
+	link: string;
 }

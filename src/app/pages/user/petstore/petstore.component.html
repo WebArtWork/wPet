@@ -32,16 +32,16 @@
 					</div>
 					<div>
 						<petdrug-selector
-							[value]="drug_id"
-							(wChange)="drug_id = $event; load()"
+							[value]="store_drug"
+							(wChange)="store_drug = $event; load()"
 						></petdrug-selector>
 						<petfood-selector
-							[value]="food_id"
-							(wChange)="food_id = $event; load()"
+							[value]="store_food"
+							(wChange)="store_food = $event; load()"
 						></petfood-selector>
 						<petitem-selector
-							[value]="item_id"
-							(wChange)="item_id = $event; load()"
+							[value]="store_item"
+							(wChange)="store_item = $event; load()"
 						></petitem-selector>
 					</div>
 				</div>

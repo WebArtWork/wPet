@@ -27,12 +27,14 @@
 							[items]="['Cat','Dog']"
 							[clearable]="true"
 							(modelChange)="species=$event; load()"
+							[searchable]="true"
 						></wselect>
 						<wselect
 							[placeholder]="'Breed'"
 							[items]="['White','Black']"
 							[clearable]="true"
 							(modelChange)="breed=$event; load()"
+							[searchable]="true"
 						></wselect>
 						<wselect
 							[placeholder]="'Gender'"

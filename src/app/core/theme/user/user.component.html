@@ -228,6 +228,16 @@
 					<span class="material-icons">store</span>
 					<span translate>Theme.Store</span>
 				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/links"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">link</span>
+					<span translate>Theme.Links</span>
+				</a>
 				<hr />
 				<a
 					[routerLinkActiveOptions]="{ exact: true }"

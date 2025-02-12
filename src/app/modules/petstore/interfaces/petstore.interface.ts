@@ -8,4 +8,6 @@ export interface Petstore extends CrudDocument {
 	deliveryOptions: string;
 	paymentMethods: string;
 	description: string;
+
+	link: string;
 }

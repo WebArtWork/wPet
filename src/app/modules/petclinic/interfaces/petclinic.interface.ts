@@ -7,4 +7,6 @@ export interface Petclinic extends CrudDocument {
 	phone: string;
 	email: string;
 	workingHours: string;
+
+	link: string;
 }
