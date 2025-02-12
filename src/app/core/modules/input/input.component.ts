@@ -201,11 +201,11 @@ export class InputComponent implements OnInit, OnChanges {
 	 * Validates the input value before emitting the submit event.
 	 */
 	onSubmit(): void {
-		if (this.valid(this.value)) {
-			this.wSubmit.emit(this.value);
-		} else {
-			this.error = true;
-		}
+		// if (this.valid(this.value)) {
+		this.wSubmit.emit(this.value);
+		// } else {
+		// this.error = true;
+		// }
 	}
 
 	/**
