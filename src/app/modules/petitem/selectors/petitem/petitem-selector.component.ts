@@ -18,6 +18,7 @@ import { Petitem } from '../../interfaces/petitem.interface';
 })
 export class SelectPetitemComponent implements OnChanges {
 	@Input() value: string;
+	@Input() disabled: boolean;
 
 	@Output() wChange = new EventEmitter();
 

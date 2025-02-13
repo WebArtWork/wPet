@@ -18,6 +18,7 @@ import { Petfood } from '../../interfaces/petfood.interface';
 })
 export class SelectPetfoodComponent implements OnChanges {
 	@Input() value: string;
+	@Input() disabled: boolean;
 
 	@Output() wChange = new EventEmitter();
 

@@ -25,6 +25,8 @@ export class PetplacesComponent {
 
 	isMenuOpen = false;
 	drugDisabled = false;
+	foodDisabled = false;
+	itemDisabled = false;
 
 	place_drug = '';
 	place_food = '';
@@ -89,7 +91,13 @@ export class PetplacesComponent {
 			});
 
 		this.drugDisabled =
-			!this.drugDisabled && this.place_food ? true : false;
+			this.place_food ||
+			this.place_item ||
+			(this.place_food && this.place_item)
+				? true
+				: false;
+		this.foodDisabled = this.place_drug ? true : false;
+		this.itemDisabled = this.place_drug ? true : false;
 	}
 
 	private _preCreate(petplace: Petplace): void {

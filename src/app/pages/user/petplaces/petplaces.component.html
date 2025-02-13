@@ -29,10 +29,12 @@
 						></petdrug-selector>
 						<petfood-selector
 							[value]="place_food"
+							[disabled]="foodDisabled"
 							(wChange)="place_food = $event; load()"
 						></petfood-selector>
 						<petitem-selector
 							[value]="place_item"
+							[disabled]="itemDisabled"
 							(wChange)="place_item = $event; load()"
 						></petitem-selector>
 					</div>
