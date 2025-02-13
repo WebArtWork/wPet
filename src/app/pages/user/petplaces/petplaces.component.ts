@@ -87,6 +87,9 @@ export class PetplacesComponent {
 
 				this.places.push(...places);
 			});
+
+		this.drugDisabled =
+			!this.drugDisabled && this.place_food ? true : false;
 	}
 
 	private _preCreate(petplace: Petplace): void {
@@ -101,8 +104,8 @@ export class PetplacesComponent {
 
 		if (this.place_food) {
 			query += (query ? '&' : '') + 'place_food=' + this.place_food;
-			this.drugDisabled = true;
 		}
+
 		if (this.place_item) {
 			query += (query ? '&' : '') + 'place_item=' + this.place_item;
 		}

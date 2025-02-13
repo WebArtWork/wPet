@@ -70,7 +70,11 @@
 		</div>
 
 		<!-- Clearable icon -->
-		<div class="w-select__arrow" *ngIf="clearable" (click)="clear()">
+		<div
+			class="w-select__arrow"
+			*ngIf="clearable"
+			(click)="disabled ? null : clear()"
+		>
 			<span class="material-icons">close</span>
 		</div>
 
@@ -78,7 +82,7 @@
 		<div
 			class="w-select__arrow"
 			[class._active]="selectShow"
-			(click)="selectShow=!selectShow; focus_search(); "
+			(click)="disabled ? null : selectShow=!selectShow; focus_search(); "
 		>
 			<svg
 				width="7"

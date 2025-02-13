@@ -32,5 +32,8 @@ export class SelectPetdrugComponent implements OnChanges {
 		if (changes['value'] && !changes['value'].firstChange) {
 			this.value = changes['value'].currentValue;
 		}
+		if (changes['disabled'] && !changes['disabled'].firstChange) {
+			this.disabled = changes['disabled'].currentValue;
+		}
 	}
 }
