@@ -18,6 +18,7 @@ import { Petdrug } from '../../interfaces/petdrug.interface';
 })
 export class SelectPetdrugComponent implements OnChanges {
 	@Input() value: string;
+	@Input() disabled: boolean;
 
 	@Output() wChange = new EventEmitter();
 

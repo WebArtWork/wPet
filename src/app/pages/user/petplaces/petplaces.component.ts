@@ -24,6 +24,7 @@ export class PetplacesComponent {
 	items: Petitem[] = [];
 
 	isMenuOpen = false;
+	drugDisabled = false;
 
 	place_drug = '';
 	place_food = '';
@@ -100,6 +101,7 @@ export class PetplacesComponent {
 
 		if (this.place_food) {
 			query += (query ? '&' : '') + 'place_food=' + this.place_food;
+			this.drugDisabled = true;
 		}
 		if (this.place_item) {
 			query += (query ? '&' : '') + 'place_item=' + this.place_item;

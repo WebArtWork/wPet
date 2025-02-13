@@ -24,6 +24,7 @@
 					<div>
 						<petdrug-selector
 							[value]="place_drug"
+							[disabled]="drugDisabled"
 							(wChange)="place_drug = $event; load()"
 						></petdrug-selector>
 						<petfood-selector

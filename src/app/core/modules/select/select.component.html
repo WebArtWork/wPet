@@ -10,7 +10,7 @@
 	>
 		<!-- Select header with the selected item(s) -->
 		<div
-			(click)="selectShow=!selectShow; focus_search();"
+			(click)="disabled ? null : selectShow=!selectShow; focus_search();"
 			class="w-select__header"
 		>
 			<svg
