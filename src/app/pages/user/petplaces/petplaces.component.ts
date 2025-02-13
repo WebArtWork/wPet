@@ -11,6 +11,7 @@ import { Petitem } from 'src/app/modules/petitem/interfaces/petitem.interface';
 import { PetdrugService } from 'src/app/modules/petdrug/services/petdrug.service';
 import { PetfoodService } from 'src/app/modules/petfood/services/petfood.service';
 import { PetitemService } from 'src/app/modules/petitem/services/petitem.service';
+import { Value } from 'src/app/core/modules/input/input.component';
 
 @Component({
 	templateUrl: './petplaces.component.html',
@@ -31,6 +32,7 @@ export class PetplacesComponent {
 	place_drug = '';
 	place_food = '';
 	place_item = '';
+	search = '';
 
 	constructor(
 		private _petplaceService: PetplaceService,
@@ -63,6 +65,10 @@ export class PetplacesComponent {
 		'petplace',
 		petplaceFormComponents
 	);
+
+	setSearch(value: Value): void {
+		this.search = (value as string) || '';
+	}
 
 	create(): void {
 		this._form.modal<Petplace>(this.form, {
@@ -116,6 +122,9 @@ export class PetplacesComponent {
 
 		if (this.place_item) {
 			query += (query ? '&' : '') + 'place_item=' + this.place_item;
+		}
+		if (this.search) {
+			query += (query ? '&' : '') + 'search=' + this.search;
 		}
 
 		return query;

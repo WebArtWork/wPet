@@ -37,6 +37,12 @@
 							[disabled]="itemDisabled"
 							(wChange)="place_item = $event; load()"
 						></petitem-selector>
+						<winput
+							[type]="'search'"
+							[clearable]="true"
+							(wChange)="setSearch($event)"
+							(wSubmit)="load()"
+						></winput>
 					</div>
 				</div>
 			</div>

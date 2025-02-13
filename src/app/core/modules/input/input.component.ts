@@ -48,7 +48,7 @@ export class InputComponent implements OnInit, OnChanges {
 	/**
 	 * A function to validate the input value. The default implementation checks for a truthy value.
 	 */
-	@Input() valid: (value: Value) => boolean = (value: Value) => !!value;
+	@Input() valid: (value: Value) => boolean = (value: Value) => true;
 
 	/**
 	 * A list of items used for radio buttons or other list-based inputs.
@@ -201,6 +201,8 @@ export class InputComponent implements OnInit, OnChanges {
 	 * Validates the input value before emitting the submit event.
 	 */
 	onSubmit(): void {
+		this.wChange.emit(this.value);
+
 		if (this.valid(this.value)) {
 			this.wSubmit.emit(this.value);
 		} else {
