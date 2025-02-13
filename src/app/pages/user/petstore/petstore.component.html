@@ -31,18 +31,14 @@
 						<wbutton (click)="create()">Create</wbutton>
 					</div>
 					<div>
-						<petdrug-selector
-							[value]="store_drug"
-							(wChange)="store_drug = $event; load()"
-						></petdrug-selector>
-						<!-- <petfood-selector
+						<petfood-selector
 							[value]="store_food"
 							(wChange)="store_food = $event; load()"
 						></petfood-selector>
 						<petitem-selector
 							[value]="store_item"
 							(wChange)="store_item = $event; load()"
-						></petitem-selector> -->
+						></petitem-selector>
 					</div>
 				</div>
 			</div>

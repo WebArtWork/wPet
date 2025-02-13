@@ -21,7 +21,20 @@
 					<div>
 						<wbutton (click)="create()">Create</wbutton>
 					</div>
-					<div></div>
+					<div>
+						<petdrug-selector
+							[value]="place_drug"
+							(wChange)="place_drug = $event; load()"
+						></petdrug-selector>
+						<petfood-selector
+							[value]="place_food"
+							(wChange)="place_food = $event; load()"
+						></petfood-selector>
+						<petitem-selector
+							[value]="place_item"
+							(wChange)="place_item = $event; load()"
+						></petitem-selector>
+					</div>
 				</div>
 			</div>
 			<div class="documents-main">

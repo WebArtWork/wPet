@@ -5,6 +5,13 @@ import { petplaceFormComponents } from 'src/app/modules/petplace/formcomponents/
 import { Petplace } from 'src/app/modules/petplace/interfaces/petplace.interface';
 import { PetplaceService } from 'src/app/modules/petplace/services/petplace.service';
 
+import { Petdrug } from 'src/app/modules/petdrug/interfaces/petdrug.interface';
+import { Petfood } from 'src/app/modules/petfood/interfaces/petfood.interface';
+import { Petitem } from 'src/app/modules/petitem/interfaces/petitem.interface';
+import { PetdrugService } from 'src/app/modules/petdrug/services/petdrug.service';
+import { PetfoodService } from 'src/app/modules/petfood/services/petfood.service';
+import { PetitemService } from 'src/app/modules/petitem/services/petitem.service';
+
 @Component({
 	templateUrl: './petplaces.component.html',
 	styleUrls: ['./petplaces.component.scss'],
@@ -12,17 +19,41 @@ import { PetplaceService } from 'src/app/modules/petplace/services/petplace.serv
 })
 export class PetplacesComponent {
 	places: Petplace[] = [];
+	drugs: Petdrug[] = [];
+	food: Petfood[] = [];
+	items: Petitem[] = [];
 
 	isMenuOpen = false;
 
-	clinic_id = '';
-	store_id = '';
+	place_drug = '';
+	place_food = '';
+	place_item = '';
 
 	constructor(
 		private _petplaceService: PetplaceService,
-		private _form: FormService
+		private _form: FormService,
+
+		private _petdrugService: PetdrugService,
+		private _petfoodService: PetfoodService,
+		private _petitemService: PetitemService
 	) {
 		this.load();
+
+		this._petdrugService.get().subscribe((drugs) => {
+			this.drugs.splice(0, this.drugs.length);
+
+			this.drugs.push(...drugs);
+		});
+		this._petfoodService.get().subscribe((food) => {
+			this.food.splice(0, this.food.length);
+
+			this.food.push(...food);
+		});
+		this._petitemService.get().subscribe((items) => {
+			this.items.splice(0, this.items.length);
+
+			this.items.push(...items);
+		});
 	}
 
 	form: FormInterface = this._form.getForm(
@@ -63,12 +94,15 @@ export class PetplacesComponent {
 	private _query(): string {
 		let query = '';
 
-		if (this.clinic_id) {
-			query += (query ? '&' : '') + 'clinic=' + this.clinic_id;
+		if (this.place_drug) {
+			query += (query ? '&' : '') + 'place_drug=' + this.place_drug;
 		}
 
-		if (this.store_id) {
-			query += (query ? '&' : '') + 'store=' + this.store_id;
+		if (this.place_food) {
+			query += (query ? '&' : '') + 'place_food=' + this.place_food;
+		}
+		if (this.place_item) {
+			query += (query ? '&' : '') + 'place_item=' + this.place_item;
 		}
 
 		return query;
