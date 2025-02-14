@@ -6,6 +6,8 @@ import { TranslateService } from 'src/app/core/modules/translate/translate.servi
 import { petFormComponents } from 'src/app/modules/pet/formcomponents/pet.formcomponents';
 import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
 import { PetService } from 'src/app/modules/pet/services/pet.service';
+import { Petallergy } from 'src/app/modules/petallergy/interfaces/petallergy.interface';
+import { PetallergyService } from 'src/app/modules/petallergy/services/petallergy.service';
 import { CoreService, AlertService } from 'wacom';
 
 @Component({
@@ -18,20 +20,26 @@ export class PetprofileComponent {
 		this._router.url.replace('/petprofile/', '')
 	);
 
+	allergies: Petallergy[] = [];
+
+	allergy = '';
+
 	constructor(
 		private _petService: PetService,
 		private _router: Router,
 		private _form: FormService,
 		private _core: CoreService,
 		private _alert: AlertService,
-		private _translate: TranslateService
-	) { }
+		private _translate: TranslateService,
 
-	isMenuOpen = false
+		private _petallergyService: PetallergyService
+	) {
+		this.load();
+	}
 
+	isMenuOpen = false;
 
 	form: FormInterface = this._form.getForm('pet', petFormComponents);
-
 
 	update(doc: Pet): void {
 		this._form.modal<Pet>(this.form, [], doc).then((updated: Pet) => {
@@ -54,10 +62,18 @@ export class PetprofileComponent {
 					text: this._translate.translate('Common.Yes'),
 					callback: (): void => {
 						this._petService.delete(doc);
-						this._router.navigateByUrl('/mypets')
+						this._router.navigateByUrl('/mypets');
 					}
 				}
 			]
+		});
+	}
+
+	load(): void {
+		this._petallergyService.get().subscribe((allergies) => {
+			this.allergies.splice(0, this.allergies.length);
+
+			this.allergies.push(...allergies);
 		});
 	}
 }

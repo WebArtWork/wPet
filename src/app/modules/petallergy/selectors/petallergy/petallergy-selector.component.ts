@@ -16,7 +16,7 @@ import { Petallergy } from '../../interfaces/petallergy.interface';
 	styleUrls: ['./petallergy-selector.component.scss'],
 	imports: [SelectModule]
 })
-export class SelectUserComponent implements OnChanges {
+export class PetallergySelectorComponent implements OnChanges {
 	@Input() value: string;
 
 	@Output() wChange = new EventEmitter();

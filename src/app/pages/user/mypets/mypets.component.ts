@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormService } from 'src/app/core/modules/form/form.service';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
+import { Value } from 'src/app/core/modules/input/input.component';
 import { petFormComponents } from 'src/app/modules/pet/formcomponents/pet.formcomponents';
 import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
 import { PetService } from 'src/app/modules/pet/services/pet.service';
@@ -26,6 +27,10 @@ export class MypetsComponent {
 	search = '';
 
 	form: FormInterface = this._form.getForm('pet', petFormComponents);
+
+	setSearch(value: Value): void {
+		this.search = (value as string) || '';
+	}
 
 	create(): void {
 		this._form.modal<Pet>(this.form, {

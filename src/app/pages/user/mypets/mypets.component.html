@@ -52,7 +52,7 @@
 					<div>
 						<winput
 							[type]="'search'"
-							(wChange)="search = $event + ''"
+							(wChange)="setSearch($event)"
 							(wSubmit)="load()"
 							[clearable]="true"
 						></winput>

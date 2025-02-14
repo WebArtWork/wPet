@@ -27,7 +27,7 @@ import { Petitem } from 'src/app/modules/petitem/interfaces/petitem.interface';
 	standalone: false
 })
 export class LinksComponent {
-	columns = ['name', 'description'];
+	columns = ['clinic', 'store', 'place', 'drug', 'food', 'item'];
 
 	form: FormInterface = this._form.getForm('petlink', petlinkFormComponents);
 

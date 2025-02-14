@@ -29,6 +29,19 @@
 					<div>
 						<wbutton (click)="create()">Create</wbutton>
 					</div>
+
+					<div>
+						<petdrug-selector
+							[value]="clinic_drug"
+							(wChange)="clinic_drug = $event; load()"
+						></petdrug-selector>
+						<winput
+							[type]="'search'"
+							[clearable]="true"
+							(wChange)="setSearch($event)"
+							(wSubmit)="load()"
+						></winput>
+					</div>
 				</div>
 			</div>
 			<div class="documents-main">

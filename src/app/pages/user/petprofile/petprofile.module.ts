@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CoreModule } from 'src/app/core/core.module';
 import { PetprofileComponent } from './petprofile.component';
 import { Routes, RouterModule } from '@angular/router';
+import { PetallergySelectorComponent } from 'src/app/modules/petallergy/selectors/petallergy/petallergy-selector.component';
 
 const routes: Routes = [
 	{
@@ -11,7 +12,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forChild(routes), CoreModule],
+	imports: [
+		RouterModule.forChild(routes),
+		CoreModule,
+		PetallergySelectorComponent
+	],
 	declarations: [PetprofileComponent]
 })
 export class PetprofileModule {}

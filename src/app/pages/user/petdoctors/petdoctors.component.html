@@ -26,6 +26,12 @@
 							[value]="clinic_id"
 							(wChange)="clinic_id = $event; load()"
 						></petclinic-selector>
+						<winput
+							[type]="'search'"
+							[clearable]="true"
+							(wChange)="setSearch($event)"
+							(wSubmit)="load()"
+						></winput>
 					</div>
 				</div>
 			</div>

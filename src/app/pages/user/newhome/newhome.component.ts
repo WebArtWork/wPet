@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Value } from 'src/app/core/modules/input/input.component';
 import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
 import { PetService } from 'src/app/modules/pet/services/pet.service';
 
@@ -10,10 +11,19 @@ import { PetService } from 'src/app/modules/pet/services/pet.service';
 export class NewhomeComponent {
 	availablePets: Pet[] = [];
 
+	species = '';
+	breed = '';
+	gender = '';
+	search = '';
+
 	isMenuOpen = false;
 
 	constructor(private _petService: PetService) {
 		this.load();
+	}
+
+	setSearch(value: Value): void {
+		this.search = (value as string) || '';
 	}
 
 	load(): void {
@@ -30,7 +40,22 @@ export class NewhomeComponent {
 
 		if (this.availablePets) {
 			query += (query ? '&' : '') + 'adoptable=' + true;
+
+			if (this.species) {
+				query += (query ? '&' : '') + 'species=' + this.species;
+			}
+			if (this.breed) {
+				query += (query ? '&' : '') + 'breed=' + this.breed;
+			}
+			if (this.gender) {
+				query += (query ? '&' : '') + 'gender=' + this.gender;
+			}
 		}
+
+		if (this.search) {
+			query += (query ? '&' : '') + 'search=' + this.search;
+		}
+
 		return query;
 	}
 }

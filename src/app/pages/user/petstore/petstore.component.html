@@ -40,6 +40,14 @@
 							(wChange)="store_item = $event; load()"
 						></petitem-selector>
 					</div>
+					<div>
+						<winput
+							[type]="'search'"
+							(wChange)="setSearch($event)"
+							(wSubmit)="load()"
+							[clearable]="true"
+						></winput>
+					</div>
 				</div>
 			</div>
 			<div class="documents-main">

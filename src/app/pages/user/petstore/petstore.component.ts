@@ -9,6 +9,7 @@ import { Petfood } from 'src/app/modules/petfood/interfaces/petfood.interface';
 import { Petitem } from 'src/app/modules/petitem/interfaces/petitem.interface';
 import { PetfoodService } from 'src/app/modules/petfood/services/petfood.service';
 import { PetitemService } from 'src/app/modules/petitem/services/petitem.service';
+import { Value } from 'src/app/core/modules/input/input.component';
 
 @Component({
 	templateUrl: './petstore.component.html',
@@ -24,6 +25,7 @@ export class PetstoreComponent {
 
 	store_food = '';
 	store_item = '';
+	search = '';
 
 	constructor(
 		private _petstoreService: PetstoreService,
@@ -50,6 +52,10 @@ export class PetstoreComponent {
 		'petstore',
 		petstoreFormComponents
 	);
+
+	setSearch(value: Value): void {
+		this.search = (value as string) || '';
+	}
 
 	create(): void {
 		this._form.modal<Petstore>(this.form, {
@@ -90,6 +96,9 @@ export class PetstoreComponent {
 		}
 		if (this.store_item) {
 			query += (query ? '&' : '') + 'store_item=' + this.store_item;
+		}
+		if (this.search) {
+			query += (query ? '&' : '') + 'search=' + this.search;
 		}
 
 		return query;

@@ -9,41 +9,67 @@
 
 <!-- {{petprofile|json}} -->
 
-
 <div class="documents-wrapper" [class.documents-wrapper--open]="isMenuOpen">
-    <div class="documents-container">
-        <div class="documents-list">
-            <div class="burger-wrap" class="burger-wrap" (click)="isMenuOpen=!isMenuOpen"
-                [class.burger-wrap--open]="isMenuOpen">
-                <div class="burger" [class.burger--close]="isMenuOpen"></div>
-            </div>
-            <div class="documents-sidebar" [class.documents-sidebar--open]="isMenuOpen">
-                <div class="documents-sidebar-content">
-                    <div class="documents-sidebar__img">
-                        <img src="assets/default.png" alt="" />
-                    </div>
-                    <div class="documents-sidebar__title">
-                        {{petprofile.name}}
-                    </div>
-                    <div>
-                        <wbutton (click)="update(petprofile)">Edit</wbutton>
-                        <wbutton (click)="delete(petprofile)">Delete</wbutton>
-                    </div>
-
-                </div>
-            </div>
-            <div class="documents-main">
-                <div class="documents-main-content">
-                    <div class="documents-main-row">
-                        <div class="documents__title">{{petprofile.name}}</div>
-                        <div class="documents__species">{{petprofile.species}}</div>
-                        <div class="documents__breed">{{petprofile.breed}}</div>
-                        <div class="documents__age">{{petprofile.age}}</div>
-                        <div class="documents__gender">{{petprofile.gender}}</div>
-                        <div class="documents__description">{{petprofile.description}}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="documents-container">
+		<div class="documents-list">
+			<div
+				class="burger-wrap"
+				class="burger-wrap"
+				(click)="isMenuOpen=!isMenuOpen"
+				[class.burger-wrap--open]="isMenuOpen"
+			>
+				<div class="burger" [class.burger--close]="isMenuOpen"></div>
+			</div>
+			<div
+				class="documents-sidebar"
+				[class.documents-sidebar--open]="isMenuOpen"
+			>
+				<div class="documents-sidebar-content">
+					<div class="documents-sidebar__img">
+						<img src="assets/default.png" alt="" />
+					</div>
+					<div class="documents-sidebar__title">
+						{{petprofile.name}}
+					</div>
+					<div>
+						<wbutton (click)="update(petprofile)">Edit</wbutton>
+						<wbutton (click)="delete(petprofile)">Delete</wbutton>
+					</div>
+					<div>
+						<petallergy-selector
+							[value]="allergy"
+							(wChange)="allergy = $event; load()"
+						>
+						</petallergy-selector>
+					</div>
+				</div>
+			</div>
+			<div class="documents-main">
+				<div class="documents-main-content">
+					<div class="documents-main-row">
+						<div class="documents__title">{{petprofile.name}}</div>
+						<div class="documents__species">
+							{{petprofile.species}}
+						</div>
+						<div class="documents__breed">{{petprofile.breed}}</div>
+						<div class="documents__age">{{petprofile.age}}</div>
+						<div class="documents__gender">
+							{{petprofile.gender}}
+						</div>
+						<div class="documents__description">
+							{{petprofile.description}}
+						</div>
+					</div>
+					<div class="documents-main-row">
+						<div
+							*ngFor="let petallergy of petprofile.allergies"
+							class="documents__title"
+						>
+							{{petallergy}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

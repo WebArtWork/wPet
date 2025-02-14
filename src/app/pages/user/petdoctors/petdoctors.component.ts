@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormService } from 'src/app/core/modules/form/form.service';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
+import { Value } from 'src/app/core/modules/input/input.component';
 import { Petclinic } from 'src/app/modules/petclinic/interfaces/petclinic.interface';
 import { PetclinicService } from 'src/app/modules/petclinic/services/petclinic.service';
 import { petdoctorFormComponents } from 'src/app/modules/petdoctor/formcomponents/petdoctor.formcomponents';
@@ -20,6 +21,7 @@ export class PetdoctorsComponent {
 	isMenuOpen = false;
 
 	clinic_id = '';
+	search = '';
 
 	constructor(
 		private _petdoctorService: PetdoctorService,
@@ -35,6 +37,10 @@ export class PetdoctorsComponent {
 		'petdoctor',
 		petdoctorFormComponents
 	);
+
+	setSearch(value: Value): void {
+		this.search = (value as string) || '';
+	}
 
 	create(): void {
 		this._form.modal<Petdoctor>(this.form, {
@@ -84,6 +90,9 @@ export class PetdoctorsComponent {
 
 		if (this.clinic_id) {
 			query += (query ? '&' : '') + 'clinic=' + this.clinic_id;
+		}
+		if (this.search) {
+			query += (query ? '&' : '') + 'search=' + this.search;
 		}
 
 		return query;

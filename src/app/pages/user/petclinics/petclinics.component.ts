@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormService } from 'src/app/core/modules/form/form.service';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
+import { Value } from 'src/app/core/modules/input/input.component';
 import { petclinicFormComponents } from 'src/app/modules/petclinic/formcomponents/petclinic.formcomponents';
 import { Petclinic } from 'src/app/modules/petclinic/interfaces/petclinic.interface';
 import { PetclinicService } from 'src/app/modules/petclinic/services/petclinic.service';
@@ -15,6 +16,9 @@ export class PetclinicsComponent {
 
 	isMenuOpen = false;
 
+	search = '';
+	clinic_drug = '';
+
 	constructor(
 		private _petclinicService: PetclinicService,
 		private _form: FormService
@@ -26,6 +30,10 @@ export class PetclinicsComponent {
 		'petclinic',
 		petclinicFormComponents
 	);
+
+	setSearch(value: Value): void {
+		this.search = (value as string) || '';
+	}
 
 	create(): void {
 		this._form.modal<Petclinic>(this.form, {
@@ -46,7 +54,7 @@ export class PetclinicsComponent {
 
 	load(): void {
 		this._petclinicService
-			.get({}, { name: 'public' })
+			.get({ query: this._query() }, { name: 'public' })
 			.subscribe((clinics) => {
 				this.clinics.splice(0, this.clinics.length);
 
@@ -56,5 +64,18 @@ export class PetclinicsComponent {
 
 	private _preCreate(petclinic: Petclinic): void {
 		delete petclinic.__created;
+	}
+
+	private _query(): string {
+		let query = '';
+
+		if (this.clinic_drug) {
+			query += (query ? '&' : '') + 'clinic_drug=' + this.clinic_drug;
+		}
+		if (this.search) {
+			query += (query ? '&' : '') + 'search=' + this.search;
+		}
+
+		return query;
 	}
 }

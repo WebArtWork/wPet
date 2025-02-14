@@ -1,6 +1,7 @@
 <wselect
-	(modelChange)="onChange.emit($event)"
-	placeholder="Select petallergy"
+	(modelChange)="wChange.emit($event)"
+	placeholder="Allergy"
 	[select]="value"
 	[items]="items"
+	[multiple]="true"
 ></wselect>
