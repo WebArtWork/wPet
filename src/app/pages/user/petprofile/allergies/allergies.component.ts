@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
-import { PetService } from 'src/app/modules/pet/services/pet.service';
+import { Petallergy } from 'src/app/modules/petallergy/interfaces/petallergy.interface';
+import { PetallergyService } from 'src/app/modules/petallergy/services/petallergy.service';
 
 @Component({
 	selector: 'app-allergies',
@@ -9,13 +9,12 @@ import { PetService } from 'src/app/modules/pet/services/pet.service';
 	styleUrl: './allergies.component.scss'
 })
 export class AllergiesComponent {
-	@Input() petallergy: Pet;
+	@Input() petallergy: string;
+	allergy: Petallergy;
 
-	constructor(private _petService: PetService) {}
-
-	allergy = '';
+	constructor(private _petallergyService: PetallergyService) {}
 
 	ngOnInit() {
-		//this.allergy = this._petService.doc(this.petallergy._id);
+		this.allergy = this._petallergyService.doc(this.petallergy);
 	}
 }
