@@ -7,7 +7,6 @@ import { petFormComponents } from 'src/app/modules/pet/formcomponents/pet.formco
 import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
 import { PetService } from 'src/app/modules/pet/services/pet.service';
 import { Petallergy } from 'src/app/modules/petallergy/interfaces/petallergy.interface';
-import { PetallergyService } from 'src/app/modules/petallergy/services/petallergy.service';
 import { CoreService, AlertService } from 'wacom';
 
 @Component({
@@ -22,8 +21,7 @@ export class PetprofileComponent {
 
 	allergies: Petallergy[] = [];
 
-	allergy = '';
-	select_allergy = [];
+	allergy = [];
 
 	constructor(
 		private _petService: PetService,
@@ -31,12 +29,8 @@ export class PetprofileComponent {
 		private _form: FormService,
 		private _core: CoreService,
 		private _alert: AlertService,
-		private _translate: TranslateService,
-
-		private _petallergyService: PetallergyService
-	) {
-		// this.load();
-	}
+		private _translate: TranslateService
+	) {}
 
 	isMenuOpen = false;
 
@@ -52,8 +46,7 @@ export class PetprofileComponent {
 
 	updateAllergies(doc: Pet): void {
 		// Оновлюємо поле allergies на новий масив
-
-		doc.allergies = this.select_allergy;
+		doc.allergies = this.allergy;
 
 		// Викликаємо сервіс для оновлення даних в базі
 		this._petService.update(doc);
@@ -77,15 +70,5 @@ export class PetprofileComponent {
 				}
 			]
 		});
-	}
-
-	load(): void {
-		this._petallergyService.get().subscribe((allergies) => {
-			this.allergies.splice(0, this.allergies.length);
-
-			this.allergies.push(...allergies);
-		});
-
-		console.log(this.allergy);
 	}
 }

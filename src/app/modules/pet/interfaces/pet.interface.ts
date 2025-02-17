@@ -7,7 +7,7 @@ export interface Pet extends CrudDocument {
 	age: string;
 	gender: string;
 	description: string;
-	allergies: any[];
+	allergies: any;
 
 	adoptable: boolean;
 }
