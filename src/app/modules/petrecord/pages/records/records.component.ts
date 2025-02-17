@@ -15,7 +15,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 	standalone: false
 })
 export class RecordsComponent {
-	columns = ['name', 'description'];
+	columns = [
+		'name',
+		'disease',
+		'treatment',
+		'procedure',
+		'notes',
+		'description'
+	];
 
 	form: FormInterface = this._form.getForm(
 		'petrecord',

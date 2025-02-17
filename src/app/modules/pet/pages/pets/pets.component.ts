@@ -13,7 +13,7 @@ import { petFormComponents } from '../../formcomponents/pet.formcomponents';
 	standalone: false
 })
 export class PetsComponent {
-	columns = ['name', 'description'];
+	columns = ['name', 'species', 'breed', 'age', 'gender', 'adoptable', 'description'];
 
 	form: FormInterface = this._form.getForm('pet', petFormComponents);
 

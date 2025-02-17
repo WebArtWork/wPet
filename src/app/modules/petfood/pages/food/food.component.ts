@@ -15,7 +15,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 	standalone: false
 })
 export class FoodComponent {
-	columns = ['name', 'description'];
+	columns = [
+		'name',
+		'foodbrand',
+		'foodtype',
+		'flavor',
+		'quantity',
+		'feedinginstructions',
+		'description'
+	];
 
 	form: FormInterface = this._form.getForm('petfood', petfoodFormComponents);
 

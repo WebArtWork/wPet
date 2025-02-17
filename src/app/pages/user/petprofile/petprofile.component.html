@@ -38,7 +38,7 @@
 					<div>
 						<petallergy-selector
 							[value]="allergy"
-							(wChange)="allergy = $event; load()"
+							(wChange)="select_allergy = $event; load(); updateAllergies(petprofile)"
 						>
 						</petallergy-selector>
 					</div>

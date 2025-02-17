@@ -15,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 	standalone: false
 })
 export class ItemsComponent {
-	columns = ['name', 'description'];
+	columns = ['name', 'itemtype', 'material', 'price', 'description'];
 
 	form: FormInterface = this._form.getForm('petitem', petitemFormComponents);
 

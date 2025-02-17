@@ -15,7 +15,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 	standalone: false
 })
 export class DoctorsComponent {
-	columns = ['name', 'description'];
+	columns = [
+		'name',
+		'specialization',
+		'phone',
+		'email',
+		'workingHours',
+		'description'
+	];
 
 	form: FormInterface = this._form.getForm(
 		'petdoctor',

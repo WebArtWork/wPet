@@ -23,6 +23,7 @@ export class PetprofileComponent {
 	allergies: Petallergy[] = [];
 
 	allergy = '';
+	select_allergy = [];
 
 	constructor(
 		private _petService: PetService,
@@ -34,7 +35,7 @@ export class PetprofileComponent {
 
 		private _petallergyService: PetallergyService
 	) {
-		this.load();
+		// this.load();
 	}
 
 	isMenuOpen = false;
@@ -47,6 +48,15 @@ export class PetprofileComponent {
 
 			this._petService.update(doc);
 		});
+	}
+
+	updateAllergies(doc: Pet): void {
+		// Оновлюємо поле allergies на новий масив
+
+		doc.allergies = this.select_allergy;
+
+		// Викликаємо сервіс для оновлення даних в базі
+		this._petService.update(doc);
 	}
 
 	delete(doc: Pet): void {
@@ -75,5 +85,7 @@ export class PetprofileComponent {
 
 			this.allergies.push(...allergies);
 		});
+
+		console.log(this.allergy);
 	}
 }

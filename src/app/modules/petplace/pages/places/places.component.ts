@@ -15,7 +15,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 	standalone: false
 })
 export class PlacesComponent {
-	columns = ['name', 'description'];
+	columns = [
+		'name',
+		'address',
+		'latitude',
+		'longitude',
+		'placeType',
+		'description'
+	];
 
 	form: FormInterface = this._form.getForm(
 		'petplace',

@@ -14,7 +14,14 @@ import { firstValueFrom } from 'rxjs';
 	standalone: false
 })
 export class ClinicsComponent {
-	columns = ['name', 'description'];
+	columns = [
+		'name',
+		'address',
+		'phone',
+		'email',
+		'workingHours',
+		'description'
+	];
 
 	form: FormInterface = this._form.getForm(
 		'petclinic',

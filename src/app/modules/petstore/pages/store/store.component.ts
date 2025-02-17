@@ -15,7 +15,15 @@ import { ActivatedRoute } from '@angular/router';
 	standalone: false
 })
 export class StoreComponent {
-	columns = ['name', 'description'];
+	columns = [
+		'name',
+		'phone',
+		'email',
+		'workingHours',
+		'deliveryOptions',
+		'paymentMethods',
+		'description'
+	];
 
 	form: FormInterface = this._form.getForm(
 		'petstore',

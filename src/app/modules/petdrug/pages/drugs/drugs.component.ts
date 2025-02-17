@@ -15,7 +15,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 	standalone: false
 })
 export class DrugsComponent {
-	columns = ['name', 'description'];
+	columns = [
+		'name',
+		'dosage',
+		'frequency',
+		'usageperiod',
+		'purpose',
+		'description'
+	];
 
 	form: FormInterface = this._form.getForm('petdrug', petdrugFormComponents);
 

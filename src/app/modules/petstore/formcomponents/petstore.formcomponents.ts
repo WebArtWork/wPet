@@ -93,7 +93,7 @@ export const petstoreFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill petstore description'
+					value: 'fill	 petstore description'
 				},
 				{
 					name: 'Label',
