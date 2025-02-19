@@ -9,11 +9,11 @@ export const petrecordFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill petrecord title',
+					value: 'fill petrecord title'
 				},
 				{
 					name: 'Label',
-					value: 'Title',
+					value: 'Title'
 				}
 			]
 		},
@@ -23,11 +23,11 @@ export const petrecordFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill petrecord disease',
+					value: 'fill petrecord disease'
 				},
 				{
 					name: 'Label',
-					value: 'Disease',
+					value: 'Disease'
 				}
 			]
 		},
@@ -37,11 +37,11 @@ export const petrecordFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill petrecord treatment',
+					value: 'fill petrecord treatment'
 				},
 				{
 					name: 'Label',
-					value: 'Treatment',
+					value: 'Treatment'
 				}
 			]
 		},
@@ -51,11 +51,11 @@ export const petrecordFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill petrecord procedure',
+					value: 'fill petrecord procedure'
 				},
 				{
 					name: 'Label',
-					value: 'Procedure',
+					value: 'Procedure'
 				}
 			]
 		},
@@ -65,11 +65,11 @@ export const petrecordFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill petrecord notes',
+					value: 'fill petrecord notes'
 				},
 				{
 					name: 'Label',
-					value: 'Notes',
+					value: 'Notes'
 				}
 			]
 		},
@@ -79,13 +79,13 @@ export const petrecordFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill petrecord description',
+					value: 'fill petrecord description'
 				},
 				{
 					name: 'Label',
-					value: 'Description',
+					value: 'Description'
 				}
 			]
 		}
 	]
-}
+};

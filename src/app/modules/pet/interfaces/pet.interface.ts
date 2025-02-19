@@ -2,6 +2,7 @@ import { CrudDocument } from 'wacom';
 
 export interface Pet extends CrudDocument {
 	name: string;
+	thumb: string;
 	species: string;
 	breed: string;
 	age: string;
