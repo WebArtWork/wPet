@@ -5,6 +5,8 @@ import { Value } from 'src/app/core/modules/input/input.component';
 import { petFormComponents } from 'src/app/modules/pet/formcomponents/pet.formcomponents';
 import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
 import { PetService } from 'src/app/modules/pet/services/pet.service';
+import { UserService } from 'src/app/modules/user/services/user.service';
+import { CoreService } from 'wacom';
 
 @Component({
 	templateUrl: './mypets.component.html',
@@ -12,10 +14,23 @@ import { PetService } from 'src/app/modules/pet/services/pet.service';
 	standalone: false
 })
 export class MypetsComponent {
-	get mypets(): Pet[] {
-		return this._petService.pets;
+	mypets: Pet[] = [];
+
+	constructor(
+		private _petService: PetService,
+		private _form: FormService,
+		private _userService: UserService,
+		private _core: CoreService
+	) {
+		this._core.onComplete('pet_loaded').then(() => {
+			this.mypets =
+				this._petService.petsByAuthor[this._userService.user._id];
+		});
+		this._core.onComplete('petLoaded').then(() => {
+			this.mypets =
+				this._petService.petsByAuthor[this._userService.user._id];
+		});
 	}
-	constructor(private _petService: PetService, private _form: FormService) {}
 
 	isMenuOpen = false;
 

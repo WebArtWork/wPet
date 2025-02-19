@@ -1,6 +1,5 @@
-
-
 1. ==== button ====
+
 ```
 <button class="w-btn _primary">Add</button>
 <button class="w-btn _second">Cancel</button>
@@ -8,6 +7,7 @@
 ```
 
 2. ==== input ====
+
 ```
  <label class="w-forms">
 	<span class="w-forms__title">Text</span>
@@ -16,6 +16,7 @@
 ```
 
 3. ==== select ====
+
 ```
 <label class="w-forms">
 	<span class="w-forms__title">Name</span>
@@ -27,6 +28,7 @@
 ```
 
 4. ==== textarea ====
+
 ```
 <label class="w-forms">
 	<span class="w-forms__title">Text</span>
@@ -35,6 +37,7 @@
 ```
 
 5. ==== switch ====
+
 ```
 <label class="w-switch">
 	<div class="w-switch__toggle">
@@ -46,6 +49,7 @@
 ```
 
 6. ==== checkbox ====
+
 ```
 <label class="w-checkbox">
 	<input class="w-checkbox__input" type="checkbox" name="text">
@@ -57,6 +61,7 @@
 ```
 
 <!-- Checkbox SVG Sprites - put one time on page-->
+
 ```
 <svg class="w-checkbox__svg-icon">
     <symbol id="check" viewbox="0 0 12 10">
@@ -66,6 +71,7 @@
 ```
 
 7. ==== radio ====
+
 ```
 <label class="w-radio">
 	<input type="radio" name="text" class="w-radio__input">
@@ -75,6 +81,7 @@
 ```
 
 8. ==== table ====
+
 ```
 <div class="w-table-wrapp">
 	<table class="w-table">
@@ -104,8 +111,8 @@
 </div>
 ```
 
-
 9. ==== card ====
+
 ```
 <div class="w-card"></div>
 

@@ -1,12 +1,12 @@
 @mixin text-default($ls, $lh, $fw, $fs, $color) {
-    letter-spacing: $ls;
-    line-height: $lh;
-    font-weight: $fw;
-    font-size: $fs;
-    color: $color;
+	letter-spacing: $ls;
+	line-height: $lh;
+	font-weight: $fw;
+	font-size: $fs;
+	color: $color;
 }
-@mixin flexBox ($display: null, $row:null, $jc: null, $ai: null, $wrap: null) {
-    display: $display;
+@mixin flexBox($display: null, $row: null, $jc: null, $ai: null, $wrap: null) {
+	display: $display;
 	flex-direction: $row;
 	justify-content: $jc;
 	align-items: $ai;
