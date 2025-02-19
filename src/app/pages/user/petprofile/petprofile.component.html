@@ -37,8 +37,8 @@
 					</div>
 					<div>
 						<petallergy-selector
-							[value]="allergy"
-							(wChange)="select_allergy = $event; load(); updateAllergies(petprofile)"
+							[value]="petprofile.allergies"
+							(wChange)="allergy = $event; updateAllergies(petprofile)"
 						>
 						</petallergy-selector>
 					</div>
@@ -60,13 +60,13 @@
 							{{petprofile.description}}
 						</div>
 					</div>
-					<div class="documents-main-row">
-						<div
-							*ngFor="let petallergy of petprofile.allergies"
-							class="documents__title"
-						>
-							{{petallergy}}
-						</div>
+					<h3>Allergies</h3>
+					<div
+						*ngFor="let petallergy of petprofile.allergies"
+						class="documents-main-row"
+					>
+						<app-allergies [petallergy]="petallergy">
+						</app-allergies>
 					</div>
 				</div>
 			</div>

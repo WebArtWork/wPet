@@ -3,6 +3,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { PetprofileComponent } from './petprofile.component';
 import { Routes, RouterModule } from '@angular/router';
 import { PetallergySelectorComponent } from 'src/app/modules/petallergy/selectors/petallergy/petallergy-selector.component';
+import { AllergiesComponent } from './allergies/allergies.component';
 
 const routes: Routes = [
 	{
@@ -17,6 +18,6 @@ const routes: Routes = [
 		CoreModule,
 		PetallergySelectorComponent
 	],
-	declarations: [PetprofileComponent]
+	declarations: [PetprofileComponent, AllergiesComponent]
 })
 export class PetprofileModule {}

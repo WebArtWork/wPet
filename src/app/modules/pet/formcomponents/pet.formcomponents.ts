@@ -108,6 +108,16 @@ export const petFormComponents = {
 					value: 'Description'
 				}
 			]
+		},
+		{
+			name: 'Photo',
+			key: 'thumb',
+			fields: [
+				{
+					name: 'Label',
+					value: 'photo'
+				}
+			]
 		}
 	]
 };

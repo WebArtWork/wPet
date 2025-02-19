@@ -4,13 +4,13 @@
 <div class="documents__title">{{pet.name}}</div>
 <div class="documents__description">{{pet.description}}</div>
 -->
-
+<img src="{{pet.thumb}}" />
 <a routerLink="/petprofile/{{pet._id}}">
-  <div class="documents__title">{{pet.name}}</div>
-  <div class="documents__description">{{pet.description}}</div>
+	<div class="documents__title">{{pet.name}}</div>
+	<div class="documents__description">{{pet.description}}</div>
 </a>
 <a routerLink="/pethistory/{{pet._id}}" class="nav__burger-link">
-  <span class="material-icons">article</span>
+	<span class="material-icons">article</span>
 </a>
 <span (click)="update(pet)" class="material-icons">edit</span>
 <span (click)="delete(pet)" class="material-icons">delete</span>
