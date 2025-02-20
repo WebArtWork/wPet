@@ -102,6 +102,7 @@ export class PetsComponent {
 
 	constructor(
 		private _translate: TranslateService,
+		private _userService: UserService,
 		private _petService: PetService,
 		private _alert: AlertService,
 		private _form: FormService,
