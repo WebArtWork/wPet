@@ -20,6 +20,7 @@ import { Petplace } from 'src/app/modules/petplace/interfaces/petplace.interface
 import { Petdrug } from 'src/app/modules/petdrug/interfaces/petdrug.interface';
 import { Petfood } from 'src/app/modules/petfood/interfaces/petfood.interface';
 import { Petitem } from 'src/app/modules/petitem/interfaces/petitem.interface';
+import { FormComponentInterface } from 'src/app/core/modules/form/interfaces/component.interface';
 
 @Component({
 	templateUrl: './links.component.html',
@@ -37,20 +38,33 @@ export class LinksComponent {
 		setPerPage: this._petlinkService.setPerPage.bind(this._petlinkService),
 		allDocs: false,
 		create: (): void => {
-			this._form.modal<Petlink>(this.form, {
-				label: 'Create',
-				click: async (created: unknown, close: () => void) => {
-					close();
+			const submition = {};
+			this._form.modal<Petlink>(
+				this.form,
+				{
+					label: 'Create',
+					click: async (created: unknown, close: () => void) => {
+						close();
 
-					this._preCreate(created as Petlink);
+						this._preCreate(created as Petlink);
 
-					await firstValueFrom(
-						this._petlinkService.create(created as Petlink)
-					);
+						await firstValueFrom(
+							this._petlinkService.create(created as Petlink)
+						);
 
-					this.setRows();
+						this.setRows();
+					}
+				},
+				submition,
+				(change: Petlink) => {
+					(
+						this._form.getComponent(
+							this.form,
+							'store'
+						) as FormComponentInterface
+					).hidden = true;
 				}
-			});
+			);
 		},
 		update: (doc: Petlink): void => {
 			this._form
