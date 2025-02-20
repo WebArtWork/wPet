@@ -37,9 +37,13 @@ export class MypetsComponent {
 			.onComplete('petLoaded')
 			.then(() => {
 				console.log('Promise complete');
-				this.mypets =
-					this._petService.petsByAuthor[this._userService.user._id];
-				console.log(this.mypets);
+				setTimeout(() => {
+					this.mypets =
+						this._petService.petsByAuthor[
+							this._userService.user._id
+						];
+					console.log(this.mypets);
+				}, 200); // Затримка 2 секунди (2000 мс)
 			})
 			.catch((err) => {
 				console.log('Promise is not complete', err);
