@@ -6,6 +6,7 @@ import { FormService } from 'src/app/core/modules/form/form.service';
 import { TranslateService } from 'src/app/core/modules/translate/translate.service';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { petFormComponents } from '../../formcomponents/pet.formcomponents';
+import { UserService } from 'src/app/modules/user/services/user.service';
 
 @Component({
 	templateUrl: './pets.component.html',
@@ -13,7 +14,15 @@ import { petFormComponents } from '../../formcomponents/pet.formcomponents';
 	standalone: false
 })
 export class PetsComponent {
-	columns = ['name', 'species', 'breed', 'age', 'gender', 'adoptable', 'description'];
+	columns = [
+		'name',
+		'species',
+		'breed',
+		'age',
+		'gender',
+		'adoptable',
+		'description'
+	];
 
 	form: FormInterface = this._form.getForm('pet', petFormComponents);
 
@@ -89,17 +98,18 @@ export class PetsComponent {
 		]
 	};
 
-	get rows(): Pet[] {
-		return this._petService.pets;
-	}
+	rows: Pet[] = [];
 
 	constructor(
 		private _translate: TranslateService,
 		private _petService: PetService,
 		private _alert: AlertService,
 		private _form: FormService,
-		private _core: CoreService
-	) {}
+		private _core: CoreService,
+		private _userService: UserService
+	) {
+		this.rows = this._petService.petsByAuthor[this._userService.user._id];
+	}
 
 	private _bulkManagement(create = true): () => void {
 		return (): void => {

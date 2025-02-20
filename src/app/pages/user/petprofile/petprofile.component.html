@@ -31,16 +31,22 @@
 					<div class="documents-sidebar__title">
 						{{petprofile.name}}
 					</div>
-					<div>
-						<wbutton (click)="update(petprofile)">Edit</wbutton>
-						<wbutton (click)="delete(petprofile)">Delete</wbutton>
-					</div>
-					<div>
-						<petallergy-selector
-							[value]="petprofile.allergies"
-							(wChange)="allergy = $event; updateAllergies(petprofile)"
-						>
-						</petallergy-selector>
+					<div
+						*ngIf="this.petprofile.author === _userService.user._id"
+					>
+						<div>
+							<wbutton (click)="update(petprofile)">Edit</wbutton>
+							<wbutton (click)="delete(petprofile)"
+								>Delete</wbutton
+							>
+						</div>
+						<div>
+							<petallergy-selector
+								[value]="petprofile.allergies"
+								(wChange)="allergy = $event; updateAllergies(petprofile)"
+							>
+							</petallergy-selector>
+						</div>
 					</div>
 				</div>
 			</div>

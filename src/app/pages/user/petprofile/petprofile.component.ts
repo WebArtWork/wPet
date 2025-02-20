@@ -7,6 +7,7 @@ import { petFormComponents } from 'src/app/modules/pet/formcomponents/pet.formco
 import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
 import { PetService } from 'src/app/modules/pet/services/pet.service';
 import { Petallergy } from 'src/app/modules/petallergy/interfaces/petallergy.interface';
+import { UserService } from 'src/app/modules/user/services/user.service';
 import { CoreService, AlertService } from 'wacom';
 
 @Component({
@@ -22,6 +23,7 @@ export class PetprofileComponent {
 	allergies: Petallergy[] = [];
 
 	allergy = [];
+	auth: boolean;
 
 	constructor(
 		private _petService: PetService,
@@ -29,7 +31,8 @@ export class PetprofileComponent {
 		private _form: FormService,
 		private _core: CoreService,
 		private _alert: AlertService,
-		private _translate: TranslateService
+		private _translate: TranslateService,
+		public _userService: UserService
 	) {}
 
 	isMenuOpen = false;
