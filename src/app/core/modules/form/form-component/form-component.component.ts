@@ -62,11 +62,9 @@ export class FormComponentComponent implements OnInit {
 	constructor(private _form: FormService) {}
 
 	ngOnInit(): void {
-		if (Array.isArray(this.component.fields)) {
-			for (const field of this.component.fields) {
-				this.field[field.name] = field.value;
-			}
-		}
+		this.component.resetFields = this._resetFields.bind(this);
+
+		this._resetFields();
 
 		this.localSubmition = this.submition;
 
@@ -135,5 +133,13 @@ export class FormComponentComponent implements OnInit {
 		}
 
 		return -1;
+	}
+
+	private _resetFields() {
+		if (Array.isArray(this.component.fields)) {
+			for (const field of this.component.fields) {
+				this.field[field.name] = field.value;
+			}
+		}
 	}
 }

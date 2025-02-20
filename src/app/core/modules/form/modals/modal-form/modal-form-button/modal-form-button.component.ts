@@ -8,10 +8,10 @@ import {
 import { FormModalButton } from '../../../form.service';
 
 @Component({
-    selector: 'app-modal-form-button',
-    templateUrl: './modal-form-button.component.html',
-    styleUrls: ['./modal-form-button.component.scss'],
-    standalone: false
+	selector: 'app-modal-form-button',
+	templateUrl: './modal-form-button.component.html',
+	styleUrls: ['./modal-form-button.component.scss'],
+	standalone: false
 })
 export class ModalFormButtonComponent {
 	@Input() button: FormModalButton;

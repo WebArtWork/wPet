@@ -10,10 +10,10 @@ import { FormInterface } from './interfaces/form.interface';
 import { CoreService } from 'wacom';
 
 @Component({
-    selector: 'wform',
-    templateUrl: './form.component.html',
-    styleUrls: ['./form.component.scss'],
-    standalone: false
+	selector: 'wform',
+	templateUrl: './form.component.html',
+	styleUrls: ['./form.component.scss'],
+	standalone: false
 })
 export class FormComponent implements AfterViewInit {
 	@Input() config: FormInterface;

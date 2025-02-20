@@ -27,4 +27,5 @@ export interface FormComponentInterface {
 	disabled?: boolean; // set component disabled
 	// disabled?: boolean | (value: unknown) => boolean;
 	component?: unknown; // deprecated
+	resetFields?: () => void;
 }

@@ -3,10 +3,10 @@ import { FormInterface } from '../../interfaces/form.interface';
 import { MongoService } from 'wacom';
 
 @Component({
-    selector: 'app-modal-unique',
-    templateUrl: './modal-unique.component.html',
-    styleUrls: ['./modal-unique.component.scss'],
-    standalone: false
+	selector: 'app-modal-unique',
+	templateUrl: './modal-unique.component.html',
+	styleUrls: ['./modal-unique.component.scss'],
+	standalone: false
 })
 export class ModalUniqueComponent {
 	constructor(private _mongo: MongoService) {}

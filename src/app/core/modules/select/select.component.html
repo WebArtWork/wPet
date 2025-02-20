@@ -10,7 +10,7 @@
 	>
 		<!-- Select header with the selected item(s) -->
 		<div
-			(click)="disabled ? null : selectShow=!selectShow; focus_search();"
+			(click)="selectShow=!selectShow; focus_search();"
 			class="w-select__header"
 		>
 			<svg
@@ -70,11 +70,7 @@
 		</div>
 
 		<!-- Clearable icon -->
-		<div
-			class="w-select__arrow"
-			*ngIf="clearable"
-			(click)="disabled ? null : clear()"
-		>
+		<div class="w-select__arrow" *ngIf="clearable" (click)="clear()">
 			<span class="material-icons">close</span>
 		</div>
 
@@ -82,7 +78,7 @@
 		<div
 			class="w-select__arrow"
 			[class._active]="selectShow"
-			(click)="disabled ? null : selectShow=!selectShow; focus_search(); "
+			(click)="selectShow=!selectShow; focus_search(); "
 		>
 			<svg
 				width="7"

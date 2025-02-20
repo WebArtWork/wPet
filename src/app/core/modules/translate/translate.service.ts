@@ -23,7 +23,46 @@ export interface Word {
 })
 export class TranslateService {
 	readonly allLanguages = languages;
+
 	readonly appId = (environment as unknown as { appId: string }).appId;
+
+	readonly defaultLanguageCode = (
+		environment as unknown as { defaultLanguageCode: string }
+	).defaultLanguageCode;
+
+	// Array of all words for translation
+	words: Word[] = [];
+
+	// Array of pages for words
+	pages: string[] = [];
+
+	// Array of supported languages
+	languages: Language[] = (
+		environment as unknown as { languages: Language[] }
+	).languages
+		? (environment as unknown as { languages: Language[] }).languages
+		: [
+				{
+					code: 'en',
+					name: 'English',
+					origin: 'English'
+				}
+			];
+
+	// Currently selected language
+	language: Language = this.defaultLanguageCode
+		? languages.find((l) => l.code === this.defaultLanguageCode) || {
+				code: 'en',
+				name: 'English',
+				origin: 'English'
+			}
+		: this.languages.length
+			? this.languages[0]
+			: {
+					code: 'en',
+					name: 'English',
+					origin: 'English'
+				};
 
 	constructor(
 		private store: StoreService,
@@ -79,12 +118,6 @@ export class TranslateService {
 		);
 	}
 
-	// Array of all words for translation
-	words: Word[] = [];
-
-	// Array of pages for words
-	pages: string[] = [];
-
 	/**
 	 * Deletes a word and its associated translation from the backend and local state.
 	 * @param word - The word object to delete.
@@ -108,30 +141,6 @@ export class TranslateService {
 			}
 		);
 	}
-
-	/* Translate Use */
-
-	// Array of supported languages
-	languages: Language[] = (
-		environment as unknown as { languages: Language[] }
-	).languages
-		? (environment as unknown as { languages: Language[] }).languages
-		: [
-				{
-					code: 'en',
-					name: 'English',
-					origin: 'English'
-				}
-		  ];
-
-	// Currently selected language
-	language: Language = this.languages.length
-		? this.languages[0]
-		: {
-				code: 'en',
-				name: 'English',
-				origin: 'English'
-		  };
 
 	/**
 	 * Sets the current language and updates the translations.
@@ -174,6 +183,7 @@ export class TranslateService {
 	translates: any = {};
 
 	resets: any = {};
+
 	now = Date.now();
 
 	/**
@@ -237,6 +247,7 @@ export class TranslateService {
 	}
 
 	private _created: Record<string, boolean> = {};
+
 	private _wordsLoaded = false;
 
 	/**
