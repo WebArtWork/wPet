@@ -22,14 +22,28 @@ export class MypetsComponent {
 		public _userService: UserService,
 		private _core: CoreService
 	) {
-		this._core.onComplete('pet_loaded').then(() => {
-			this.mypets =
-				this._petService.petsByAuthor[this._userService.user._id];
-		});
-		this._core.onComplete('petLoaded').then(() => {
-			this.mypets =
-				this._petService.petsByAuthor[this._userService.user._id];
-		});
+		// this._core
+		// 	.onComplete('pet_loaded')
+		// 	.then(() => {
+		// 		console.log('Promise complete');
+		// 		this.mypets =
+		// 			this._petService.petsByAuthor[this._userService.user._id];
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log('Promise is not complete', err);
+		// 	});
+
+		this._core
+			.onComplete('petLoaded')
+			.then(() => {
+				console.log('Promise complete');
+				this.mypets =
+					this._petService.petsByAuthor[this._userService.user._id];
+				console.log(this.mypets);
+			})
+			.catch((err) => {
+				console.log('Promise is not complete', err);
+			});
 	}
 
 	isMenuOpen = false;
