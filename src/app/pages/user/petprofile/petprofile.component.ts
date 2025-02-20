@@ -7,6 +7,7 @@ import { petFormComponents } from 'src/app/modules/pet/formcomponents/pet.formco
 import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
 import { PetService } from 'src/app/modules/pet/services/pet.service';
 import { Petallergy } from 'src/app/modules/petallergy/interfaces/petallergy.interface';
+import { PetallergyService } from 'src/app/modules/petallergy/services/petallergy.service';
 import { UserService } from 'src/app/modules/user/services/user.service';
 import { CoreService, AlertService } from 'wacom';
 
@@ -32,7 +33,8 @@ export class PetprofileComponent {
 		private _core: CoreService,
 		private _alert: AlertService,
 		private _translate: TranslateService,
-		public _userService: UserService
+		public _userService: UserService,
+		private _petallergyService: PetallergyService
 	) {}
 
 	isMenuOpen = false;
