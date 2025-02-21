@@ -57,12 +57,62 @@ export class LinksComponent {
 				},
 				submition,
 				(change: Petlink) => {
-					(
-						this._form.getComponent(
-							this.form,
-							'store'
-						) as FormComponentInterface
-					).hidden = true;
+					const selectedType = change.type;
+
+					console.log(submition);
+					console.log(selectedType);
+
+					const selectClinic = this._form.getComponent(
+						this.form,
+						'clinic'
+					) as FormComponentInterface;
+					const selectStore = this._form.getComponent(
+						this.form,
+						'store'
+					) as FormComponentInterface;
+					const selectPlace = this._form.getComponent(
+						this.form,
+						'place'
+					) as FormComponentInterface;
+					const selectDrug = this._form.getComponent(
+						this.form,
+						'drug'
+					) as FormComponentInterface;
+					const selectFood = this._form.getComponent(
+						this.form,
+						'food'
+					) as FormComponentInterface;
+					const selectItem = this._form.getComponent(
+						this.form,
+						'item'
+					) as FormComponentInterface;
+
+					switch (selectedType) {
+						case 'Clinic':
+							selectClinic.hidden = false;
+							selectStore.hidden = true;
+							selectPlace.hidden = false;
+							selectDrug.hidden = false;
+							selectFood.hidden = true;
+							selectItem.hidden = true;
+							break;
+						case 'Store':
+							selectClinic.hidden = true;
+							selectStore.hidden = false;
+							selectPlace.hidden = false;
+							selectDrug.hidden = true;
+							selectFood.hidden = false;
+							selectItem.hidden = false;
+							break;
+						default:
+							selectClinic.hidden = true;
+							selectStore.hidden = true;
+							selectPlace.hidden = true;
+							selectDrug.hidden = true;
+							selectFood.hidden = true;
+							selectItem.hidden = true;
+							break;
+					}
 				}
 			);
 		},
@@ -128,41 +178,41 @@ export class LinksComponent {
 		private _petitemService: PetitemService
 	) {
 		this._petclinicService.get().subscribe((clinics) => {
-			const currentClinic = petlinkFormComponents.components[0].fields[2]
+			const currentClinic = petlinkFormComponents.components[1].fields[2]
 				.value as Array<Petclinic>;
 			currentClinic.splice(0, currentClinic.length);
 			currentClinic.push(...clinics);
 		});
 
 		this._petstoreService.get().subscribe((stores) => {
-			const currentStore = petlinkFormComponents.components[1].fields[2]
+			const currentStore = petlinkFormComponents.components[2].fields[2]
 				.value as Array<Petstore>;
 			currentStore.splice(0, currentStore.length);
 			currentStore.push(...stores);
 		});
 
 		this._petplaceService.get().subscribe((places) => {
-			const currentPlace = petlinkFormComponents.components[2].fields[2]
+			const currentPlace = petlinkFormComponents.components[3].fields[2]
 				.value as Array<Petplace>;
 			currentPlace.splice(0, currentPlace.length);
 			currentPlace.push(...places);
 		});
 		this._petdrugService.get().subscribe((drugs) => {
-			const currentDrugs = petlinkFormComponents.components[3].fields[2]
+			const currentDrugs = petlinkFormComponents.components[4].fields[2]
 				.value as Array<Petdrug>;
 			currentDrugs.splice(0, currentDrugs.length);
 			currentDrugs.push(...drugs);
 		});
 
 		this._petfoodService.get().subscribe((food) => {
-			const currentFood = petlinkFormComponents.components[4].fields[2]
+			const currentFood = petlinkFormComponents.components[5].fields[2]
 				.value as Array<Petfood>;
 			currentFood.splice(0, currentFood.length);
 			currentFood.push(...food);
 		});
 
 		this._petitemService.get().subscribe((items) => {
-			const currentItems = petlinkFormComponents.components[5].fields[2]
+			const currentItems = petlinkFormComponents.components[6].fields[2]
 				.value as Array<Petitem>;
 			currentItems.splice(0, currentItems.length);
 			currentItems.push(...items);

@@ -4,8 +4,28 @@ export const petlinkFormComponents = {
 	components: [
 		{
 			name: 'Select',
-			key: 'clinic',
+			key: 'type',
 			focused: true,
+			hidden: false,
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'Choose clinic or store'
+				},
+				{
+					name: 'Label',
+					value: 'Title'
+				},
+				{
+					name: 'Items',
+					value: ['Clinic', 'Store']
+				}
+			]
+		},
+		{
+			name: 'Select',
+			key: 'clinic',
+			hidden: true,
 			fields: [
 				{
 					name: 'Placeholder',
@@ -24,6 +44,7 @@ export const petlinkFormComponents = {
 		{
 			name: 'Select',
 			key: 'store',
+			hidden: true,
 			fields: [
 				{
 					name: 'Placeholder',
@@ -42,6 +63,7 @@ export const petlinkFormComponents = {
 		{
 			name: 'Select',
 			key: 'place',
+			hidden: true,
 			fields: [
 				{
 					name: 'Placeholder',
@@ -60,6 +82,7 @@ export const petlinkFormComponents = {
 		{
 			name: 'Select',
 			key: 'drug',
+			hidden: true,
 			fields: [
 				{
 					name: 'Placeholder',
@@ -78,6 +101,7 @@ export const petlinkFormComponents = {
 		{
 			name: 'Select',
 			key: 'food',
+			hidden: true,
 			fields: [
 				{
 					name: 'Placeholder',
@@ -96,6 +120,7 @@ export const petlinkFormComponents = {
 		{
 			name: 'Select',
 			key: 'item',
+			hidden: true,
 			fields: [
 				{
 					name: 'Placeholder',

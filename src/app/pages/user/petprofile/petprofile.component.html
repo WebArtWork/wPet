@@ -74,6 +74,14 @@
 						<app-allergies [petallergy]="petallergy">
 						</app-allergies>
 					</div>
+					<h3>User</h3>
+					<div>
+						<img
+							[src]="'https://webart.work' + user.thumb"
+							width="60px"
+						/>{{user.name}}
+					</div>
+					<div>{{user|json}}</div>
 				</div>
 			</div>
 		</div>

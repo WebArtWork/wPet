@@ -8,6 +8,7 @@ import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
 import { PetService } from 'src/app/modules/pet/services/pet.service';
 import { Petallergy } from 'src/app/modules/petallergy/interfaces/petallergy.interface';
 import { PetallergyService } from 'src/app/modules/petallergy/services/petallergy.service';
+import { User } from 'src/app/modules/user/interfaces/user.interface';
 import { UserService } from 'src/app/modules/user/services/user.service';
 import { CoreService, AlertService } from 'wacom';
 
@@ -22,6 +23,7 @@ export class PetprofileComponent {
 	);
 
 	allergies: Petallergy[] = [];
+	user: User;
 
 	allergy = [];
 	auth: boolean;
@@ -35,7 +37,10 @@ export class PetprofileComponent {
 		private _translate: TranslateService,
 		public _userService: UserService,
 		private _petallergyService: PetallergyService
-	) {}
+	) {
+		this.user = this._userService.doc(this.petprofile.author);
+		console.log(this.user);
+	}
 
 	isMenuOpen = false;
 
