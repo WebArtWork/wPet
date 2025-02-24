@@ -24,14 +24,14 @@ export class PetprofileComponent {
 	);
 
 	allergies: Petallergy[] = [];
-	user: User;
-
 	allergy = [];
+
+	user: User;
 	auth: boolean;
 
+	apiUrl = environment.url;
 	petPhoto =
-		environment.url +
-		(this.petprofile.thumb ? this.petprofile.thumb : null);
+		this.apiUrl + (this.petprofile.thumb ? this.petprofile.thumb : null);
 
 	constructor(
 		private _petService: PetService,
@@ -59,10 +59,8 @@ export class PetprofileComponent {
 	}
 
 	updateAllergies(doc: Pet): void {
-		// Оновлюємо поле allergies на новий масив
 		doc.allergies = this.allergy;
 
-		// Викликаємо сервіс для оновлення даних в базі
 		this._petService.update(doc);
 	}
 

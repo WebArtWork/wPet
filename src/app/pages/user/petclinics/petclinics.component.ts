@@ -5,6 +5,8 @@ import { Value } from 'src/app/core/modules/input/input.component';
 import { petclinicFormComponents } from 'src/app/modules/petclinic/formcomponents/petclinic.formcomponents';
 import { Petclinic } from 'src/app/modules/petclinic/interfaces/petclinic.interface';
 import { PetclinicService } from 'src/app/modules/petclinic/services/petclinic.service';
+import { Petdrug } from 'src/app/modules/petdrug/interfaces/petdrug.interface';
+import { PetdrugService } from 'src/app/modules/petdrug/services/petdrug.service';
 
 @Component({
 	templateUrl: './petclinics.component.html',
@@ -13,17 +15,25 @@ import { PetclinicService } from 'src/app/modules/petclinic/services/petclinic.s
 })
 export class PetclinicsComponent {
 	clinics: Petclinic[] = [];
+	drugs: Petdrug[] = [];
 
 	isMenuOpen = false;
 
-	search = '';
 	clinic_drug = '';
+	search = '';
 
 	constructor(
 		private _petclinicService: PetclinicService,
+		private _petdrugService: PetdrugService,
 		private _form: FormService
 	) {
 		this.load();
+
+		this._petdrugService.get().subscribe((drugs) => {
+			this.drugs.splice(0, this.drugs.length);
+
+			this.drugs.push(...drugs);
+		});
 	}
 
 	form: FormInterface = this._form.getForm(

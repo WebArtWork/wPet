@@ -1,14 +1,3 @@
-<!-- <p>Page Petprofile is connected</p>
-
-<section>Page Title</section>
-<section>Pet Image</section>
-<section>Basic Info (Name, Breed, Age, Gender)</section>
-<section>Medical History</section>
-<section>Edit Profile Button</section>
- -->
-
-<!-- {{petprofile|json}} -->
-
 <div class="documents-wrapper" [class.documents-wrapper--open]="isMenuOpen">
 	<div class="documents-container">
 		<div class="documents-list">
@@ -47,7 +36,7 @@
 			<div class="documents-main">
 				<div class="documents-main-content">
 					<div class="documents-main-row">
-						<img [src]="petPhoto" height="60px" alt="Pet photo" />
+						<img [src]="petPhoto" height="120px" alt="Pet photo" />
 
 						<div class="documents__title">{{petprofile.name}}</div>
 						<div class="documents__species">
@@ -71,10 +60,15 @@
 						</app-allergies>
 					</div>
 					<h3>User</h3>
-					<img [src]="" height="60px" alt="Owner photo" />
-					<div>{{user.name}}</div>
-					<div>{{user.email}}</div>
-					<!-- <div>{{user|json}}</div> -->
+					<div class="documents-main-row">
+						<img
+							[src]="apiUrl + user.thumb"
+							height="60px"
+							alt="Owner photo"
+						/>
+						<div>{{user.name}}</div>
+						<div>{{user.email}}</div>
+					</div>
 				</div>
 			</div>
 		</div>
