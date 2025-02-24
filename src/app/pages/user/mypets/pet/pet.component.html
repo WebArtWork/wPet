@@ -4,7 +4,7 @@
 <div class="documents__title">{{pet.name}}</div>
 <div class="documents__description">{{pet.description}}</div>
 -->
-<img src="{{pet.thumb}}" />
+<img [src]="apiUrl + pet.thumb" width="60px" />
 <a routerLink="/petprofile/{{pet._id}}">
 	<div class="documents__title">{{pet.name}}</div>
 	<div class="documents__description">{{pet.description}}</div>

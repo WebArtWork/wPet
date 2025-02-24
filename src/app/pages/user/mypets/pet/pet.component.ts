@@ -6,6 +6,7 @@ import { petFormComponents } from 'src/app/modules/pet/formcomponents/pet.formco
 import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
 import { PetService } from 'src/app/modules/pet/services/pet.service';
 import { CoreService, AlertService } from 'wacom';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
 	selector: 'app-pet',
@@ -17,16 +18,17 @@ import { CoreService, AlertService } from 'wacom';
 export class PetComponent {
 	@Input() pet: Pet;
 
+	apiUrl = environment.url;
+
 	constructor(
 		private _petService: PetService,
 		private _form: FormService,
 		private _core: CoreService,
 		private _alert: AlertService,
 		private _translate: TranslateService
-	) { }
+	) {}
 
 	form: FormInterface = this._form.getForm('pet', petFormComponents);
-
 
 	update(doc: Pet): void {
 		this._form.modal<Pet>(this.form, [], doc).then((updated: Pet) => {

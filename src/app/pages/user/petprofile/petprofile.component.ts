@@ -10,6 +10,7 @@ import { Petallergy } from 'src/app/modules/petallergy/interfaces/petallergy.int
 import { PetallergyService } from 'src/app/modules/petallergy/services/petallergy.service';
 import { User } from 'src/app/modules/user/interfaces/user.interface';
 import { UserService } from 'src/app/modules/user/services/user.service';
+import { environment } from 'src/environments/environment.prod';
 import { CoreService, AlertService } from 'wacom';
 
 @Component({
@@ -28,6 +29,8 @@ export class PetprofileComponent {
 	allergy = [];
 	auth: boolean;
 
+	apiUrl = environment.url;
+
 	constructor(
 		private _petService: PetService,
 		private _router: Router,
@@ -39,7 +42,6 @@ export class PetprofileComponent {
 		private _petallergyService: PetallergyService
 	) {
 		this.user = this._userService.doc(this.petprofile.author);
-		console.log(this.user);
 	}
 
 	isMenuOpen = false;

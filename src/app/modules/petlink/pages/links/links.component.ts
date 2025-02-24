@@ -20,7 +20,7 @@ import { Petplace } from 'src/app/modules/petplace/interfaces/petplace.interface
 import { Petdrug } from 'src/app/modules/petdrug/interfaces/petdrug.interface';
 import { Petfood } from 'src/app/modules/petfood/interfaces/petfood.interface';
 import { Petitem } from 'src/app/modules/petitem/interfaces/petitem.interface';
-import { FormComponentInterface } from 'src/app/core/modules/form/interfaces/component.interface';
+// import { FormComponentInterface } from 'src/app/core/modules/form/interfaces/component.interface';
 
 @Component({
 	templateUrl: './links.component.html',
@@ -57,7 +57,7 @@ export class LinksComponent {
 				},
 				submition,
 				(change: Petlink) => {
-					const selectedType = change.type;
+					/*const selectedType = change.type;
 
 					console.log(submition);
 					console.log(selectedType);
@@ -105,14 +105,14 @@ export class LinksComponent {
 							selectItem.hidden = false;
 							break;
 						default:
-							selectClinic.hidden = true;
-							selectStore.hidden = true;
-							selectPlace.hidden = true;
-							selectDrug.hidden = true;
-							selectFood.hidden = true;
-							selectItem.hidden = true;
+							selectClinic.hidden = false;
+							selectStore.hidden = false;
+							selectPlace.hidden = false;
+							selectDrug.hidden = false;
+							selectFood.hidden = false;
+							selectItem.hidden = false;
 							break;
-					}
+					}*/
 				}
 			);
 		},
