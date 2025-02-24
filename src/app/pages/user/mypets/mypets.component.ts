@@ -6,6 +6,7 @@ import { petFormComponents } from 'src/app/modules/pet/formcomponents/pet.formco
 import { Pet } from 'src/app/modules/pet/interfaces/pet.interface';
 import { PetService } from 'src/app/modules/pet/services/pet.service';
 import { UserService } from 'src/app/modules/user/services/user.service';
+import { environment } from 'src/environments/environment.prod';
 import { CoreService } from 'wacom';
 
 @Component({
@@ -15,6 +16,8 @@ import { CoreService } from 'wacom';
 })
 export class MypetsComponent {
 	mypets: Pet[] = [];
+
+	apiUrl = environment.url;
 
 	constructor(
 		private _petService: PetService,

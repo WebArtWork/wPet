@@ -25,12 +25,6 @@
 				[class.documents-sidebar--open]="isMenuOpen"
 			>
 				<div class="documents-sidebar-content">
-					<div class="documents-sidebar__img">
-						<img src="assets/default.png" alt="" />
-					</div>
-					<div class="documents-sidebar__title">
-						{{petprofile.name}}
-					</div>
 					<div
 						*ngIf="this.petprofile.author === _userService.user._id"
 					>
@@ -53,6 +47,8 @@
 			<div class="documents-main">
 				<div class="documents-main-content">
 					<div class="documents-main-row">
+						<img [src]="petPhoto" height="60px" alt="Pet photo" />
+
 						<div class="documents__title">{{petprofile.name}}</div>
 						<div class="documents__species">
 							{{petprofile.species}}
@@ -75,13 +71,10 @@
 						</app-allergies>
 					</div>
 					<h3>User</h3>
-					<div>
-						<img
-							[src]="apiUrl + user.thumb"
-							width="60px"
-						/>{{user.name}}
-					</div>
-					<div>{{user|json}}</div>
+					<img [src]="" height="60px" alt="Owner photo" />
+					<div>{{user.name}}</div>
+					<div>{{user.email}}</div>
+					<!-- <div>{{user|json}}</div> -->
 				</div>
 			</div>
 		</div>

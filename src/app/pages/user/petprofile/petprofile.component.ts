@@ -29,7 +29,9 @@ export class PetprofileComponent {
 	allergy = [];
 	auth: boolean;
 
-	apiUrl = environment.url;
+	petPhoto =
+		environment.url +
+		(this.petprofile.thumb ? this.petprofile.thumb : null);
 
 	constructor(
 		private _petService: PetService,

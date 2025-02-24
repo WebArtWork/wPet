@@ -1,3 +1,5 @@
-<!-- <p>newhome-list works!</p> -->
-<div class="documents__title">{{pet.name}}</div>
-<div class="documents__description">{{pet.description}}</div>
+<a routerLink="/petprofile/{{pet._id}}">
+	<img [src]="apiUrl + pet.thumb" height="60px" alt="Pet photo" />
+	<div class="documents__title">{{pet.name}}</div>
+	<div class="documents__description">{{pet.description}}</div>
+</a>
