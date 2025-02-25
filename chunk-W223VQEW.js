@@ -1,0 +1,1 @@
+import{ib as o,r as e}from"./chunk-3B44IZU7.js";var n=(()=>{class t extends o{constructor(){super({name:"petfood"}),this.petfoods=this.getDocs()}static{this.\u0275fac=function(r){return new(r||t)}}static{this.\u0275prov=e({token:t,factory:t.\u0275fac,providedIn:"root"})}}return t})();export{n as a};
