@@ -98,7 +98,9 @@ export class PetsComponent {
 		]
 	};
 
-	rows: Pet[] = [];
+	get rows(): Pet[] {
+		return this._petService.petsByAuthor[this._userService.user._id];
+	}
 
 	constructor(
 		private _translate: TranslateService,
@@ -108,7 +110,7 @@ export class PetsComponent {
 		private _core: CoreService,
 		private _userService: UserService
 	) {
-		this.rows = this._petService.petsByAuthor[this._userService.user._id];
+		// this.rows = this._petService.petsByAuthor[this._userService.user._id];
 	}
 
 	private _bulkManagement(create = true): () => void {
